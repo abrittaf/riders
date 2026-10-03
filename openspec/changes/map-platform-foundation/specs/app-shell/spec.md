@@ -7,11 +7,11 @@ Define cómo Riders existe en el celular como aplicación instalable: cómo se i
 ## ADDED Requirements
 
 ### Requirement: Instalación en la pantalla de inicio
-La aplicación SHALL poder instalarse en la pantalla de inicio del celular desde el navegador, tanto en iOS como en Android, y una vez instalada SHALL abrirse a pantalla completa, sin la barra de direcciones del navegador.
+La aplicación SHALL poder instalarse en la pantalla de inicio del celular desde el navegador, tanto en iOS como en Android, y una vez instalada SHALL abrirse sin la interfaz del navegador (barra de direcciones y controles de navegación).
 
 #### Scenario: Instalación en Android
 - **WHEN** el Rider abre la aplicación en el navegador de un celular Android y acepta la propuesta de instalación
-- **THEN** la aplicación queda en la pantalla de inicio con su ícono y su nombre, y al abrirla desde ahí se muestra a pantalla completa
+- **THEN** la aplicación queda en la pantalla de inicio con su ícono y su nombre, y al abrirla desde ahí se muestra sin la interfaz del navegador
 
 #### Scenario: Instalación en iOS
 - **WHEN** el Rider abre la aplicación en Safari en un iPhone
@@ -29,9 +29,9 @@ Una vez instalada, la aplicación SHALL abrirse y mostrar su interfaz completa s
 - **WHEN** el Rider la abre sin conectividad
 - **THEN** la interfaz se muestra completa y utilizable, sin pantallas en blanco ni mensajes de error de carga
 
-#### Scenario: Primera apertura sin conexión
-- **WHEN** el Rider intenta abrir la aplicación por primera vez sin conectividad
-- **THEN** ve un mensaje que explica que la primera apertura necesita conexión y qué pasará después
+#### Scenario: Primera carga interrumpida
+- **WHEN** la primera apertura de la aplicación pierde la conectividad antes de completarse
+- **THEN** la aplicación muestra un mensaje que explica que necesita conexión para terminar de cargarse por primera vez, en lugar de una pantalla en blanco o un error del navegador
 
 ### Requirement: Indicación del estado de conectividad
 La aplicación SHALL indicar de forma visible cuando no hay conectividad y qué funciones no están disponibles en ese estado, sin bloquear el uso del resto.
