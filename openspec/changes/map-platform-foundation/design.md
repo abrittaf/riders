@@ -10,7 +10,7 @@ Proyecto nuevo, sin código. Ver `proposal.md` para la motivación. Restriccione
 - Un único módulo, `map-platform`, que conoce a los proveedores de mapa; el resto de la app usa su interfaz y puede cambiar de proveedor sin tocar nada más.
 - Una sola fuente de datos de mapa para uso con y sin conexión, para que el mapa se vea igual en ambos modos.
 - Costo cero de operación con el volumen de uso previsto (un grupo de amigos), sin ningún servicio que exija registrar un medio de pago.
-- Verificado en celulares reales con iOS y Android, no solo en el navegador de escritorio.
+- Verificado en celulares reales, no solo en el navegador de escritorio: en iPhone dentro de este change; en Android queda pendiente hasta contar con un dispositivo (ver Risks).
 
 **Non-Goals:**
 - Elegir backend, base de datos o autenticación: este change no tiene servidor.
@@ -62,6 +62,7 @@ Sin costo, con HTTPS (requisito del service worker y de la geolocalización), pu
 - [OpenFreeMap es un servicio comunitario sostenido con donaciones, sin compromiso de disponibilidad] → el módulo `map-platform` admite otro proveedor detrás de la misma interfaz; la alternativa PMTiles de D3 queda documentada; las zonas ya descargadas siguen funcionando sin conexión aunque el servicio no esté disponible.
 - [La estimación de tamaño previa a la descarga se aleja del tamaño real] → calibrar el promedio por nivel de detalle con las teselas ya descargadas y mostrar siempre el tamaño real al terminar; medir con zonas típicas (un tramo de 300 km de ruta) antes de fijar el límite de teselas por zona.
 - [iOS vuelve a pedir el permiso de ubicación con frecuencia en web apps instaladas] → explicar al Rider por qué se pide y verificar el comportamiento real en el iPhone en las pruebas de integración.
+- [No se dispone de un celular Android: la instalación, el mapa sin conexión y la posición propia no están verificados en un Android real] → mientras tanto la cobertura de Android es la de Playwright con emulación Chromium; la verificación en un dispositivo queda como tarea 7.6, pendiente; la propuesta de instalación de Android es lo que menos cubren las pruebas automatizadas.
 - [Pérdida de conectividad a mitad de una descarga] → registro tesela por tesela con pausa y reanudación (D4); escenario cubierto en el spec.
 - [Dependencia de la continuidad de los servicios gratuitos] → la interfaz de `map-platform` aísla el cambio de proveedor; se documenta cómo autoalojar OpenFreeMap y la alternativa PMTiles.
 
