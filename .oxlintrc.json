@@ -1,0 +1,49 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "ignorePatterns": [
+    "dist",
+    "dist-pmtiles",
+    "coverage",
+    "playwright-report",
+    "test-results"
+  ],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "maplibre-gl",
+            "message": "Solo `src/map-platform` conoce al renderizador de mapas. Usá la interfaz de `map-platform`."
+          },
+          {
+            "name": "pmtiles",
+            "message": "Solo `src/map-platform` conoce el formato de los archivos de teselas. Usá la interfaz de `map-platform`."
+          }
+        ],
+        "patterns": [
+          {
+            "group": ["maplibre-gl/*", "pmtiles/*"],
+            "message": "Solo `src/map-platform` conoce al renderizador y a los formatos de teselas."
+          },
+          {
+            "group": [
+              "**/map-platform/providers/**",
+              "**/map-platform/maplibre/**"
+            ],
+            "message": "Los proveedores de mapa son internos de `src/map-platform`. Usá la interfaz de `map-platform`."
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/map-platform/**", "scripts/build-sample-pmtiles.mjs"],
+      "rules": { "no-restricted-imports": "off" }
+    }
+  ]
+}

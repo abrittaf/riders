@@ -1,0 +1,9 @@
+dist
+dist-pmtiles
+coverage
+playwright-report
+test-results
+package-lock.json
+openspec
+.claude
+docs
