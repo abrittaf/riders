@@ -1,0 +1,94 @@
+# openspec/config.yaml — Riders (nombre provisorio)
+#
+# Constitución del proyecto. El bloque `context` se inyecta en todos los
+# artefactos (proposal, specs, design, tasks); `rules` agrega reglas por artefacto.
+# Los specs vigentes (openspec/specs/) y los changes (openspec/changes/) se
+# escriben en español; solo quedan en inglés las palabras clave que valida el CLI,
+# los identificadores y los nombres de las entidades del dominio.
+
+schema: spec-driven
+
+context: |
+  Language: Spanish (Argentina)
+  All artifacts must be written in Spanish (Argentina).
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+  Identificadores en inglés y kebab-case: change-id, nombres de capability y rutas de archivos.
+  Las entidades del dominio se nombran en inglés tal como figuran en el glosario (Rider, Vehicle, Point, Roadmap, Trip).
+
+  ## Producto
+  Riders (nombre provisorio) es una aplicación para usar desde el celular que ayuda a
+  grupos de viajeros en moto a planificar y realizar viajes. Un Rider arma Roadmaps
+  (plantillas de ruta compuestas por Points), convoca Trips a partir de ellos e invita a
+  otros Riders; durante el Trip, cada miembro ve en el mapa el avatar de sus compañeros
+  y la información del clima sobre la ruta.
+
+  La app no desarrolla funcionalidad de mapas. El mapa, los lugares y el cálculo de rutas
+  se toman de proveedores existentes basados en OpenStreetMap. La app agrega lo que esos
+  proveedores no ofrecen: Trips, posición de los miembros en vivo, autonomía de los
+  vehículos y clima sobre la ruta.
+
+  ## Glosario del dominio
+  - Rider: usuario de la app. Tiene cuenta, perfil y avatar.
+  - Vehicle: la moto de un Rider. Su atributo central es la autonomía (km máximos entre cargas de combustible; por ejemplo 200 km o 300 km). La autonomía condiciona la planificación de un Roadmap.
+  - Point: un lugar en el mapa, con características propias según su tipo: estación de servicio (carga de combustible), punto de interés, restaurante, alojamiento, entre otros. Proviene del proveedor de mapas.
+  - Roadmap: plantilla de ruta. Secuencia ordenada de Points más la ruta calculada entre ellos. El Roadmap más simple es un segmento entre dos Points. No tiene fechas ni participantes. Lo crea un Rider.
+  - Trip: un viaje concreto creado a partir de un Roadmap. Toma una copia del Roadmap y desde ese momento sigue su propia suerte: puede divergir de la plantilla. Agrega fecha, hora de salida, hora de llegada, admin y miembros. Durante el Trip se ve la posición en vivo de los miembros y el clima sobre la ruta, en especial viento y lluvia.
+  - admin: rol dentro de un Trip. El Rider que crea el Trip es su admin, invita a otros Riders y puede nombrar admins a otros miembros. No existe una entidad "grupo": la membresía vive en el Trip.
+
+  ## Usuarios y datos
+  - Todo Rider tiene una cuenta. Los Trips se conforman únicamente con Riders que tienen la app instalada.
+  - Lo que proviene del proveedor de mapas (mapa, Points, cálculo de rutas) es información compartida por todos los usuarios.
+  - Un Roadmap lo ve su autor y los miembros de los Trips que lo usan.
+  - Lo privado es el Trip y la posición de las personas: visibles solo para los miembros de ese Trip. Quien no es miembro no accede a ninguna información del Trip.
+
+  ## Plataforma y conectividad
+  - Aplicación móvil distribuida como PWA (Progressive Web App), por la facilidad de instalación. La PWA debe ofrecer una experiencia fluida; toda limitación de la plataforma que afecte una funcionalidad central se identifica y resuelve en el design.md del change correspondiente.
+  - El seguimiento en vivo funciona con la app abierta en primer plano y la pantalla encendida (la app evita que se apague). Una web app instalada no ejecuta código en segundo plano en iOS, y en Android con restricciones: si el Rider cambia de app o bloquea el teléfono, deja de enviar su posición. Por eso la posición de cada compañero se muestra siempre con la antigüedad del dato, también con conectividad.
+  - La ruta de un Roadmap se calcula con conectividad, al planificar, y se guarda con el Roadmap (y con la copia que toma el Trip). Sin conexión no se recalcula la ruta ante un desvío.
+  - Con conectividad la funcionalidad es completa.
+  - Sin conectividad la app se degrada de forma controlada: el GPS sigue funcionando; si el mapa de la zona del Trip ya fue descargado, el Rider se ve a sí mismo sobre el mapa con la ruta planificada dibujada; los demás miembros se muestran en su última posición conocida, cada uno con un pequeño indicador de la antigüedad de ese dato.
+  - La app soporta múltiples idiomas. Idioma inicial: español (Argentina). Ningún texto visible al usuario se escribe fijo en el código.
+
+  ## Stack tecnológico
+  Lo innegociable se fija acá; lo demás lo propone y justifica el design.md de cada change.
+  Cuando un design.md fija algo que aplica a todo el proyecto (framework, base de datos,
+  backend, autenticación, hosting, proveedor concreto de teselas, ruteo o clima), se
+  promueve a este bloque al archivar el change.
+  Fijado hasta ahora:
+  - PWA como forma de distribución.
+  - Datos de mapa de OpenStreetMap; mapa, lugares y rutas de proveedores existentes basados en esos datos.
+  - Se priorizan proveedores sin costo y que no exijan registrar un medio de pago, ni siquiera para un nivel gratuito. Un proveedor que no cumpla esto requiere justificación explícita en el design.md.
+  - Cálculo de rutas con alguno de los motores de código abierto OSRM, GraphHopper o Valhalla, consumido como servicio al planificar.
+
+  ## Principios
+  - Un change es una intención que se puede enunciar en una frase. Preferir varios changes chicos a uno grande.
+  - Una capability es un dominio funcional con límites claros; su nombre debe aclararle el concepto a quien lo lee.
+  - Los specs describen comportamiento observable; nunca implementación ni tecnología.
+  - No reimplementar lo que los proveedores de mapas ya ofrecen.
+  - Sin costo quiere decir también sin medio de pago registrado: un servicio que lo pida para habilitar su nivel gratuito no cumple la condición.
+  - El consumo de batería y de datos móviles es una restricción de diseño de primer orden, en especial en todo lo que involucra ubicación en tiempo real.
+
+  ## Decisiones pendientes
+  - Nombre definitivo de la aplicación.
+  - Proveedor concreto de cada pieza de mapas: teselas y descarga de regiones para uso sin conexión, motor de ruteo (cuál de los tres y en qué modalidad), búsqueda de Points.
+  - Proveedor de información del clima.
+  - Stack: lenguaje, framework, base de datos, backend, hosting, autenticación.
+
+rules:
+  proposal:
+    - Redactar el "Why" desde la necesidad del Rider o de los miembros del Trip, no desde la tecnología.
+    - Incluir una lista explícita de lo que queda fuera de alcance del change.
+  specs:
+    - Cada requisito tiene, además del camino feliz, al menos un escenario de error o caso límite cuando aplique.
+    - Si la capability depende de conectividad, incluir un escenario que describa el comportamiento sin conectividad.
+    - Los escenarios describen lo que el Rider ve o recibe, sin nombrar pantallas concretas, librerías ni estructuras internas.
+    - Usar los nombres del glosario para las entidades del dominio; no introducir sinónimos.
+  design:
+    - Justificar cada dependencia externa nueva (por qué esa y qué alternativas se consideraron); si tiene costo o exige registrar un medio de pago, justificarlo explícitamente.
+    - Señalar explícitamente toda decisión que aplique a todo el proyecto, para promoverla a config.yaml.
+    - Evaluar el impacto en batería y datos móviles de toda decisión que involucre ubicación, mapas o sincronización.
+    - Si una funcionalidad depende de una capacidad del navegador o de la PWA, verificar su disponibilidad en iOS y Android y documentar cómo se resuelve cualquier limitación.
+    - Antes de construir algo relacionado con mapas, lugares o rutas, verificar si un proveedor existente ya lo ofrece y bajo qué condiciones de uso (límites, atribución, uso no comercial).
+  tasks:
+    - Cada grupo de tareas incluye sus propias pruebas y su verificación; no acumularlas en un grupo final.
+    - Toda tarea que agregue textos visibles al usuario incluye su verificación en el idioma inicial y en un segundo idioma.
