@@ -5,8 +5,8 @@
 - [x] 1.1 Crear el proyecto con Vite, React y TypeScript en modo estricto, con linter y formateador configurados, y verificar que `npm run build` y `npm run lint` terminan sin errores
 - [x] 1.2 Configurar Vitest con React Testing Library y verificar que una prueba de ejemplo corre con `npm test`
 - [x] 1.3 Configurar Playwright con emulación de celular (Chromium) para pruebas de flujo completo y verificar que una prueba abre la app y encuentra el título
-- [ ] 1.4 Crear la acción de GitHub que publica la rama principal en GitHub Pages y verificar que la app queda accesible por HTTPS en la URL de Pages
-- [ ] 1.5 Documentar en `README.md` cómo instalar, correr, probar y publicar, y verificar que los comandos documentados funcionan tal como están escritos
+- [x] 1.4 Crear la acción de GitHub que publica la rama principal en GitHub Pages y verificar que la app queda accesible por HTTPS en la URL de Pages
+- [x] 1.5 Documentar en `README.md` cómo instalar, correr, probar y publicar, y verificar que los comandos documentados funcionan tal como están escritos
 
 ## 2. Internacionalización (`app-shell`)
 
@@ -23,7 +23,7 @@
 
 ## 4. Proveedor de mapa: OpenFreeMap
 
-- [ ] 4.1 Verificar desde la URL de GitHub Pages que las teselas de OpenFreeMap se obtienen desde el navegador (CORS y HTTPS) y registrar en `docs/proveedor-de-mapa.md` la dirección del servidor, el esquema de datos, el zoom máximo, la atribución exigida, la frecuencia de actualización y cómo autoalojar la instancia si hiciera falta; verificar que el documento describe lo mismo que la configuración de la app
+- [x] 4.1 Verificar desde la URL de GitHub Pages que las teselas de OpenFreeMap se obtienen desde el navegador (CORS y HTTPS) y registrar en `docs/proveedor-de-mapa.md` la dirección del servidor, el esquema de datos, el zoom máximo, la atribución exigida, la frecuencia de actualización y cómo autoalojar la instancia si hiciera falta; verificar que el documento describe lo mismo que la configuración de la app
 - [x] 4.2 Definir el estilo del mapa a partir de uno de los estilos publicados por OpenFreeMap, con etiquetas en el idioma de la interfaz cuando el dato exista, y verificar con una prueba que el estilo referencia solo capas presentes en el esquema OpenMapTiles
 
 ## 5. Módulo `map-platform` y mapa base (`map-view`)
