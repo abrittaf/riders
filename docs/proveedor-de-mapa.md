@@ -35,11 +35,13 @@ origen. No hay registro, clave ni límite declarado de peticiones. Una tesela si
 (mar abierto) responde 200 con un cuerpo mínimo; no hay que tratar el 404 como caso
 normal.
 
-Verificación de CORS y HTTPS: comprobado el 3 de octubre de 2026 desde la línea de
-comandos (con cabecera `Origin`) y desde el navegador en las pruebas de flujo completo,
-que corren contra el servidor real. Falta repetir la comprobación desde la dirección
-publicada en GitHub Pages (tarea 4.1), que queda pendiente hasta que la app esté
-publicada.
+Verificación de CORS y HTTPS: comprobado el 3 de octubre de 2026 desde la app publicada
+en `https://abrittaf.github.io/riders/`, con un navegador Chromium en emulación de
+celular. Desde ese origen el navegador obtuvo el TileJSON, las teselas de la compilación
+`20260927_080001_pt`, los glifos y los íconos, todos por HTTPS con respuesta 200 y sin
+ninguna petición rechazada; una tesela pedida con `fetch` desde la página llegó como
+respuesta de tipo `cors` con contenido `application/vnd.mapbox-vector-tile`. El TileJSON
+informó zoom máximo 14, igual que la configuración de la app.
 
 ## Esquema de datos
 

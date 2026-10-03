@@ -89,9 +89,11 @@ que corre en cada cambio en la rama `main`: verifica formato y linter, corre tod
 pruebas, construye la app y la publica. No hay un comando local de publicación: publicar
 es integrar el cambio en `main`.
 
-Preparación, una sola vez: en GitHub, en Settings → Pages del repositorio, elegir
-«GitHub Actions» como origen (Source). La dirección publicada queda en
-`https://<usuario>.github.io/<repositorio>/`.
+La app publicada está en https://abrittaf.github.io/riders/.
+
+Preparación, ya hecha para este repositorio y necesaria una sola vez en uno nuevo: en
+GitHub, en Settings → Pages, elegir «GitHub Actions» como origen (Source). La dirección
+publicada tiene la forma `https://<usuario>.github.io/<repositorio>/`.
 
 Para volver a una versión anterior se vuelve a publicar su commit: en la pestaña Actions,
 abrir la corrida de ese commit y elegir «Re-run all jobs».
