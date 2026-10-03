@@ -1,0 +1,103 @@
+{
+  "app": {
+    "name": "Riders"
+  },
+  "nav": {
+    "options": "Options",
+    "close": "Close",
+    "offlineRegions": "Offline areas"
+  },
+  "options": {
+    "title": "Options",
+    "language": "Language"
+  },
+  "languages": {
+    "es-AR": "Spanish (Argentina)",
+    "en": "English"
+  },
+  "connectivity": {
+    "offline": "Offline",
+    "unavailableOffline": "Not available offline"
+  },
+  "install": {
+    "offer": {
+      "text": "Install Riders on your phone to open it full screen and use it offline.",
+      "accept": "Install"
+    },
+    "dismiss": "Not now",
+    "ios": {
+      "title": "Install Riders on your iPhone",
+      "stepShare": "Tap the Share button in Safari.",
+      "stepAddToHome": "Choose “Add to Home Screen”.",
+      "stepConfirm": "Confirm with “Add”."
+    }
+  },
+  "firstOpenOffline": {
+    "title": "Riders needs a connection the first time",
+    "body": "Connect to the internet and open the app again. After that first time, Riders will open even without a connection."
+  },
+  "map": {
+    "unavailableOffline": "This area of the map is not available offline.",
+    "incompleteRegion": "The area “{{name}}” is incomplete: showing what was downloaded so far.",
+    "sources": {
+      "open": "Map sources",
+      "title": "Map data sources",
+      "openStreetMap": "Map data © OpenStreetMap contributors, available under the Open Database License (ODbL).",
+      "openMapTiles": "Vector tile schema © OpenMapTiles.",
+      "openFreeMap": "Tile service and map style provided by OpenFreeMap."
+    }
+  },
+  "location": {
+    "show": "Show my position",
+    "why": "Riders uses your location only to show you on the map.",
+    "center": "Center on my position",
+    "searching": "Searching for GPS signal…",
+    "denied": {
+      "title": "Your position cannot be shown",
+      "howTo": "Location permission is denied. To enable it, open your phone settings, find the permissions for Riders (or for the browser you open it with) and allow access to location."
+    }
+  },
+  "offlineRegions": {
+    "title": "Downloaded areas",
+    "empty": {
+      "title": "You have not downloaded any area yet",
+      "body": "Downloading an area lets you see its map when you have no connection, for example on the road. To do it, move and zoom the map until you see the area you want to take with you, come back to this screen and tap “Download the area visible on the map”."
+    },
+    "storage": {
+      "used": "Your areas take up {{size}}.",
+      "available": "Space available on the phone: {{size}}."
+    },
+    "download": {
+      "start": "Download the area visible on the map",
+      "name": "Area name",
+      "estimatedSize": "Estimated size: {{size}}",
+      "confirm": "Confirm download",
+      "cancel": "Cancel",
+      "tooLarge_one": "The visible area is too large to download. Zoom the map in {{count}} level and try again.",
+      "tooLarge_other": "The visible area is too large to download. Zoom the map in {{count}} levels and try again.",
+      "zoomIn": "Zoom the map in",
+      "insufficientSpace": "There is not enough space on the phone: the area would take about {{estimated}} and {{available}} are available."
+    },
+    "region": {
+      "details": "{{size}} · downloaded on {{date}}",
+      "downloading": "Downloading… {{percent}}%",
+      "complete": "Available offline",
+      "paused": {
+        "connectivity": "Paused: no connection. The download resumes by itself when the connection is back.",
+        "manual": "Paused.",
+        "storage-full": "Paused: there is no space left on the phone."
+      },
+      "incomplete": "Incomplete area: offline you only see what was downloaded so far.",
+      "pause": "Pause",
+      "resume": "Resume",
+      "refresh": "Update",
+      "delete": "Delete",
+      "confirmDelete": "Delete “{{name}}”? Its map will no longer be available offline.",
+      "confirmDeleteYes": "Yes, delete"
+    }
+  },
+  "storageWarning": {
+    "text": "Your phone storage is running out. Your downloaded areas take up {{size}}. You can delete the ones you no longer need; Riders does not delete anything by itself.",
+    "manage": "Choose areas to delete"
+  }
+}
