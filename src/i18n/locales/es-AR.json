@@ -1,0 +1,103 @@
+{
+  "app": {
+    "name": "Riders"
+  },
+  "nav": {
+    "options": "Opciones",
+    "close": "Cerrar",
+    "offlineRegions": "Zonas sin conexión"
+  },
+  "options": {
+    "title": "Opciones",
+    "language": "Idioma"
+  },
+  "languages": {
+    "es-AR": "Español (Argentina)",
+    "en": "Inglés"
+  },
+  "connectivity": {
+    "offline": "Sin conexión",
+    "unavailableOffline": "No disponible sin conexión"
+  },
+  "install": {
+    "offer": {
+      "text": "Instalá Riders en tu celular para abrirla a pantalla completa y usarla sin conexión.",
+      "accept": "Instalar"
+    },
+    "dismiss": "Ahora no",
+    "ios": {
+      "title": "Instalá Riders en tu iPhone",
+      "stepShare": "Tocá el botón Compartir de Safari.",
+      "stepAddToHome": "Elegí «Agregar a inicio».",
+      "stepConfirm": "Confirmá con «Agregar»."
+    }
+  },
+  "firstOpenOffline": {
+    "title": "Riders necesita conexión la primera vez",
+    "body": "Conectate a internet y volvé a abrir la app. Después de esa primera apertura, Riders va a abrir aunque no tengas conexión."
+  },
+  "map": {
+    "unavailableOffline": "Esta zona del mapa no está disponible sin conexión.",
+    "incompleteRegion": "La zona «{{name}}» está incompleta: se muestra lo que se llegó a descargar.",
+    "sources": {
+      "open": "Fuentes del mapa",
+      "title": "Fuentes de datos del mapa",
+      "openStreetMap": "Datos del mapa © colaboradores de OpenStreetMap, disponibles bajo la licencia Open Database License (ODbL).",
+      "openMapTiles": "Esquema de las teselas vectoriales © OpenMapTiles.",
+      "openFreeMap": "Servicio de teselas y estilo del mapa provistos por OpenFreeMap."
+    }
+  },
+  "location": {
+    "show": "Mostrar mi posición",
+    "why": "Riders usa tu ubicación solo para mostrarte en el mapa.",
+    "center": "Centrar en mi posición",
+    "searching": "Buscando señal de GPS…",
+    "denied": {
+      "title": "No se puede mostrar tu posición",
+      "howTo": "El permiso de ubicación está denegado. Para habilitarlo, abrí la configuración del celular, buscá los permisos de Riders (o del navegador con el que la abrís) y permití el acceso a la ubicación."
+    }
+  },
+  "offlineRegions": {
+    "title": "Zonas descargadas",
+    "empty": {
+      "title": "Todavía no descargaste ninguna zona",
+      "body": "Descargar una zona te permite ver su mapa cuando no tenés conexión, por ejemplo en la ruta. Para hacerlo, mové y acercá el mapa hasta ver la zona que querés llevar, volvé a esta pantalla y tocá «Descargar la zona visible en el mapa»."
+    },
+    "storage": {
+      "used": "Tus zonas ocupan {{size}}.",
+      "available": "Espacio disponible en el celular: {{size}}."
+    },
+    "download": {
+      "start": "Descargar la zona visible en el mapa",
+      "name": "Nombre de la zona",
+      "estimatedSize": "Tamaño estimado: {{size}}",
+      "confirm": "Confirmar descarga",
+      "cancel": "Cancelar",
+      "tooLarge_one": "La zona visible es demasiado grande para descargarla. Acercá el mapa {{count}} nivel de zoom y volvé a intentarlo.",
+      "tooLarge_other": "La zona visible es demasiado grande para descargarla. Acercá el mapa {{count}} niveles de zoom y volvé a intentarlo.",
+      "zoomIn": "Acercar el mapa",
+      "insufficientSpace": "No hay espacio suficiente en el celular: la zona ocuparía unos {{estimated}} y quedan {{available}} disponibles."
+    },
+    "region": {
+      "details": "{{size}} · descargada el {{date}}",
+      "downloading": "Descargando… {{percent}} %",
+      "complete": "Disponible sin conexión",
+      "paused": {
+        "connectivity": "En pausa: sin conexión. La descarga se retoma sola cuando vuelva la conexión.",
+        "manual": "En pausa.",
+        "storage-full": "En pausa: no queda espacio en el celular."
+      },
+      "incomplete": "Zona incompleta: sin conexión se ve solo lo que se llegó a descargar.",
+      "pause": "Pausar",
+      "resume": "Reanudar",
+      "refresh": "Actualizar",
+      "delete": "Borrar",
+      "confirmDelete": "¿Borrar «{{name}}»? Su mapa deja de estar disponible sin conexión.",
+      "confirmDeleteYes": "Sí, borrar"
+    }
+  },
+  "storageWarning": {
+    "text": "El almacenamiento del celular está por agotarse. Tus zonas descargadas ocupan {{size}}. Podés borrar las que ya no necesites; Riders no borra nada por su cuenta.",
+    "manage": "Elegir zonas para borrar"
+  }
+}

@@ -1,0 +1,267 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #1c1c1e;
+  background: #ffffff;
+  --app-bar-color: #14213d;
+  --accent-color: #fca311;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+button,
+select,
+input {
+  font: inherit;
+  min-height: 2.75rem;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  padding-top: calc(0.25rem + env(safe-area-inset-top));
+  background: var(--app-bar-color);
+  color: #ffffff;
+}
+
+.app-bar h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.app-bar nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.app-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding-top: env(safe-area-inset-top);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #d1d1d6;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.connectivity-indicator {
+  margin: 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
+  background: var(--accent-color);
+  color: #1c1c1e;
+  font-size: 0.875rem;
+}
+
+.online-only-action {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.unavailable-offline {
+  color: #6b6b70;
+}
+
+.install-prompt {
+  padding: 0.5rem 0.75rem;
+  background: #fff4dc;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.install-prompt h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.install-prompt p,
+.install-prompt ol {
+  margin: 0.25rem 0;
+}
+
+.install-prompt-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#first-open-offline {
+  padding: 2rem 1.5rem;
+}
+
+.map-screen {
+  position: absolute;
+  inset: 0;
+}
+
+/* MapLibre fija `position: relative` en el contenedor: el tamaño se da con ancho y alto. */
+.map-view {
+  width: 100%;
+  height: 100%;
+}
+
+.map-notice {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(20, 33, 61, 0.9);
+  color: #ffffff;
+  text-align: center;
+}
+
+.map-attribution {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  min-height: 0;
+  padding: 0.125rem 0.5rem;
+  border: 0;
+  border-top-right-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: #1c1c1e;
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+
+.map-sources {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.location-controls {
+  position: absolute;
+  right: 0.5rem;
+  bottom: calc(1.75rem + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-width: 75%;
+}
+
+.location-controls p,
+.location-help {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  font-size: 0.875rem;
+}
+
+.location-help p {
+  padding: 0;
+  box-shadow: none;
+}
+
+.own-position-marker {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #0a84ff;
+  box-shadow: 0 0 0 0.375rem rgba(10, 132, 255, 0.25);
+}
+
+.own-position-marker.is-last-known {
+  background: #8e8e93;
+  box-shadow: 0 0 0 0.375rem rgba(142, 142, 147, 0.25);
+}
+
+.offline-regions {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offline-region {
+  padding: 0.75rem 0;
+  border-top: 1px solid #d1d1d6;
+}
+
+.offline-region h3,
+.offline-regions-empty h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.offline-region p,
+.region-download p {
+  margin: 0.25rem 0;
+}
+
+.offline-region progress {
+  width: 100%;
+}
+
+.offline-region-actions,
+.region-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.region-download .field,
+.region-download p,
+.offline-region-actions p {
+  flex-basis: 100%;
+}
+
+.storage-warning {
+  padding: 0.5rem 0.75rem;
+  background: #ffe1df;
+  border-bottom: 1px solid #ff3b30;
+}
+
+.storage-warning p {
+  margin: 0 0 0.25rem;
+}
