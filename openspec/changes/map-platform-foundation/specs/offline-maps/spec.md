@@ -56,5 +56,5 @@ La aplicación SHALL conservar las zonas descargadas entre aperturas, incluso de
 - **THEN** la zona sigue disponible y el mapa se muestra dentro de ella
 
 #### Scenario: El celular necesita liberar espacio
-- **WHEN** el sistema operativo del celular avisa que el almacenamiento está por agotarse
+- **WHEN** el espacio disponible para la aplicación en el celular está por agotarse
 - **THEN** la aplicación muestra al Rider cuánto ocupan sus zonas y le ofrece borrar las que elija, sin borrar nada por su cuenta
