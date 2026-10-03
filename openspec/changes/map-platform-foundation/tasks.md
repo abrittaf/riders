@@ -49,4 +49,4 @@
 - [ ] 7.2 Descargar una zona en ambos celulares, activar el modo avión y verificar que el mapa se dibuja completo dentro de la zona con sus lugares, y vacío con aviso fuera de ella
 - [ ] 7.3 Dejar el iPhone cuatro días sin abrir la app y verificar que la zona descargada sigue disponible sin red; registrar el resultado y, si falla, abrir la revisión de D4
 - [ ] 7.4 Recorrer un trayecto corto con la app abierta en ambos celulares y verificar que la posición propia se actualiza y que la acción de centrar funciona; registrar el comportamiento del permiso de ubicación en iOS
-- [ ] 7.5 Verificar sobre la URL publicada que el navegador considera la app instalable (comprobación de instalabilidad de Chrome: manifiesto sin errores y service worker activo) y que abre sin red; correr Lighthouse y registrar sus puntajes y hallazgos en `docs/verificacion-dispositivos.md`
+- [x] 7.5 Verificar sobre la URL publicada que el navegador considera la app instalable (comprobación de instalabilidad de Chrome: manifiesto sin errores y service worker activo) y que abre sin red; correr Lighthouse y registrar sus puntajes y hallazgos en `docs/verificacion-dispositivos.md`
