@@ -54,11 +54,17 @@ context: |
   Cuando un design.md fija algo que aplica a todo el proyecto (framework, base de datos,
   backend, autenticación, hosting, proveedor concreto de teselas, ruteo o clima), se
   promueve a este bloque al archivar el change.
-  Fijado hasta ahora:
-  - PWA como forma de distribución.
-  - Datos de mapa de OpenStreetMap; mapa, lugares y rutas de proveedores existentes basados en esos datos.
+  Fijado hasta ahora (decisiones D1 a D9 del change map-platform-foundation, implementadas y publicadas):
+  - PWA como forma de distribución, publicada en GitHub Pages desde la rama main del repositorio público abrittaf/riders.
+  - Interfaz: React con TypeScript, construida con Vite; sin meta-framework ni renderizado en servidor.
+  - Mapa: MapLibre GL JS. Datos de OpenStreetMap servidos por la instancia pública de OpenFreeMap (esquema OpenMapTiles, zoom máximo 14), única fuente de teselas con y sin conexión.
+  - Sin conexión: teselas, glifos e íconos guardados en IndexedDB por la propia app; el service worker solo precachea la interfaz.
+  - Internacionalización: i18next, un archivo JSON por idioma (es-AR, en); ningún texto visible fijo en el código, con prueba automatizada que lo verifica.
+  - Módulo src/map-platform/ como único punto de contacto con proveedores de mapa (interfaces TileSource, OfflineRegionStore, MapView, Geolocation); ningún otro módulo importa MapLibre ni proveedores, con regla de linter que lo hace cumplir.
+  - Pruebas: Vitest con React Testing Library para unitarias; Playwright con emulación de celular para flujos completos; verificación manual en iPhone registrada en docs/verificacion-dispositivos.md.
   - Se priorizan proveedores sin costo y que no exijan registrar un medio de pago, ni siquiera para un nivel gratuito. Un proveedor que no cumpla esto requiere justificación explícita en el design.md.
   - Cálculo de rutas con alguno de los motores de código abierto OSRM, GraphHopper o Valhalla, consumido como servicio al planificar.
+  - Ningún secreto ni clave entra al repositorio; cuando exista backend, su configuración sensible vive en el servicio que lo aloja.
 
   ## Principios
   - Un change es una intención que se puede enunciar en una frase. Preferir varios changes chicos a uno grande.
@@ -70,9 +76,10 @@ context: |
 
   ## Decisiones pendientes
   - Nombre definitivo de la aplicación.
-  - Proveedor concreto de cada pieza de mapas: teselas y descarga de regiones para uso sin conexión, motor de ruteo (cuál de los tres y en qué modalidad), búsqueda de Points.
-  - Proveedor de información del clima.
-  - Stack: lenguaje, framework, base de datos, backend, hosting, autenticación.
+  - Motor de ruteo concreto (cuál de los tres y en qué modalidad) y búsqueda de Points por nombre: se deciden en roadmap-planning.
+  - Proveedor de información del clima: se decide en trip-weather-forecast.
+  - Backend, base de datos, autenticación y hosting del backend: se deciden en rider-onboarding, primer change que necesita servidor.
+  - Permiso de OpenFreeMap para la descarga de zonas (pedido por correo; ver design.md de map-platform-foundation).
 
 rules:
   proposal:

@@ -9,7 +9,7 @@ Todo lo que Riders hace ocurre sobre un mapa: armar un Roadmap, convocar un Trip
 - Se crea la aplicación como PWA instalable desde el navegador, con su interfaz disponible sin conexión una vez instalada y con soporte multilenguaje desde el primer día (español de Argentina como idioma inicial).
 - Se incorpora un mapa base con datos de OpenStreetMap que muestra la posición actual del Rider.
 - Se incorpora la descarga de zonas del mapa al celular para verlas sin conexión, con gestión de lo descargado (ver, borrar, saber cuánto ocupa).
-- Se define la interfaz interna que encapsula a los proveedores de mapa (teselas con conexión y archivo para uso sin conexión), de modo que los próximos changes la usen sin conocer qué proveedor hay detrás.
+- Se define la interfaz interna que encapsula a los proveedores de mapa (las mismas teselas con conexión y, guardadas en el celular, sin conexión), de modo que los próximos changes la usen sin conocer qué proveedor hay detrás.
 
 Fuera de alcance de este change:
 - Cuentas de Rider, Vehicles, Roadmaps y Trips.
@@ -32,6 +32,6 @@ Ninguna: el proyecto no tiene specs vigentes todavía.
 
 - Código: repositorio nuevo de la app. Se crea el módulo `map-platform`, único lugar que conoce a los proveedores de mapa; el resto de la app consume su interfaz.
 - Dependencias externas nuevas: framework de interfaz, renderizador de mapas vectoriales, lector del formato de archivo de teselas, herramienta de construcción de la PWA, biblioteca de internacionalización. Cada una se justifica en `design.md`.
-- Servicios externos: un proveedor de teselas sin costo y un archivo regional de teselas alojado en almacenamiento estático sin costo; hosting estático para la PWA.
+- Servicios externos: un proveedor de teselas sin costo, del que salen el mapa con conexión y las zonas que se descargan al celular; hosting estático para la PWA.
 - Datos: no hay datos de usuarios en este change. Lo único que se guarda en el celular son las zonas de mapa descargadas y la preferencia de idioma.
 - Specs: se crean las tres capabilities nuevas; ninguna existente se modifica.

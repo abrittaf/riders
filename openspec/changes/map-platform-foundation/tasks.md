@@ -16,7 +16,7 @@
 
 ## 3. PWA instalable y arranque sin conexión (`app-shell`)
 
-- [x] 3.1 Configurar el plugin de PWA de Vite con manifiesto (nombre, íconos, modo pantalla completa, color de tema) y service worker que precachea la interfaz, y verificar con Playwright que la app, ya cargada una vez, abre completa sin red
+- [x] 3.1 Configurar el plugin de PWA de Vite con manifiesto (nombre, íconos, apertura sin la interfaz del navegador, color de tema) y service worker que precachea la interfaz, y verificar con Playwright que la app, ya cargada una vez, abre completa sin red
 - [x] 3.2 Implementar la propuesta de instalación en Android y las instrucciones paso a paso en iOS, ocultas cuando la app ya corre instalada, y verificar con pruebas unitarias los tres casos del spec
 - [x] 3.3 Implementar la pantalla de primera apertura sin conexión y verificar con Playwright que aparece el mensaje del spec cuando no hay red ni caché
 - [x] 3.4 Implementar el indicador de conectividad y la señalización de acciones no disponibles sin conexión, y verificar con Playwright que aparece al cortar la red y desaparece al restaurarla sin recargar
@@ -45,8 +45,9 @@
 
 ## 7. Verificación en celulares reales
 
-- [ ] 7.1 Instalar la app desde GitHub Pages en un iPhone y en un celular Android, y verificar la instalación, la apertura a pantalla completa y la apertura sin red, registrando el resultado por dispositivo en `docs/verificacion-dispositivos.md`
-- [ ] 7.2 Descargar una zona en ambos celulares, activar el modo avión y verificar que el mapa se dibuja completo dentro de la zona con sus lugares, y vacío con aviso fuera de ella
+- [x] 7.1 Instalar la app desde GitHub Pages en dos iPhone (iPhone 17 Pro Max con iOS 27.2 e iPhone 11 Pro Max con iOS 27.0, ambos con Safari), y verificar la instalación, la apertura sin la interfaz del navegador y la apertura sin red, registrando el resultado en `docs/verificacion-dispositivos.md`
+- [x] 7.2 Descargar una zona en ambos iPhone, activar el modo avión y verificar que el mapa se dibuja completo dentro de la zona con sus lugares, y vacío con aviso fuera de ella
 - [ ] 7.3 Dejar el iPhone cuatro días sin abrir la app y verificar que la zona descargada sigue disponible sin red; registrar el resultado y, si falla, abrir la revisión de D4
-- [ ] 7.4 Recorrer un trayecto corto con la app abierta en ambos celulares y verificar que la posición propia se actualiza y que la acción de centrar funciona; registrar el comportamiento del permiso de ubicación en iOS
-- [ ] 7.5 Correr la auditoría de PWA del navegador (Lighthouse) sobre la URL publicada y verificar que la app es instalable y funciona sin conexión según la auditoría
+- [ ] 7.4 Recorrer un trayecto corto con la app abierta en ambos iPhone y verificar que la posición propia se actualiza y que la acción de centrar funciona; registrar el comportamiento del permiso de ubicación en iOS
+- [x] 7.5 Verificar sobre la URL publicada que el navegador considera la app instalable (comprobación de instalabilidad de Chrome: manifiesto sin errores y service worker activo) y que abre sin red; correr Lighthouse y registrar sus puntajes y hallazgos en `docs/verificacion-dispositivos.md`
+- [ ] 7.6 Verificar 7.1, 7.2 y 7.4 en un celular Android cuando se disponga de uno; mientras tanto la cobertura de Android es la de Playwright con emulación Chromium
