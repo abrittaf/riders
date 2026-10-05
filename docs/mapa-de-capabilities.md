@@ -24,13 +24,13 @@ El mapa base sobre el que se construye todo lo demás.
 
 ### `rider-account`
 Cuenta e identidad del Rider.
-- **Cubre:** registro e inicio de sesión, perfil, avatar, idioma preferido.
-- **No cubre:** vehículos (ver `rider-vehicles`), nada relativo a Trips.
+- **Cubre:** ingreso con cuenta de Google, perfil con nombre visible (apodo) y avatar armado por el Rider a partir del sistema de avatares de Riders, visibilidad del perfil ante otros Riders, cierre de sesión, eliminación de cuenta, perfil sin conexión.
+- **No cubre:** la moto (ver `rider-vehicles`), el idioma de la interfaz (lo cubre `app-shell`), nada relativo a Trips.
 - **Depende de:** nada.
 
 ### `rider-vehicles`
 Las motos de un Rider y su autonomía.
-- **Cubre:** alta y edición de Vehicles; autonomía en km; qué Vehicle usa el Rider en un Trip.
+- **Cubre:** la única moto del Rider: marca/modelo y autonomía como entero de km por tanque; carga al completar el perfil y edición posterior.
 - **No cubre:** la validación de autonomía sobre una ruta (ver `roadmap-planning`).
 - **Depende de:** `rider-account`.
 
@@ -75,7 +75,7 @@ Se cumplen en todos los specs; están en `openspec/config.yaml`:
 ## Orden propuesto de changes
 
 1. `map-platform-foundation`: crea la PWA y encapsula los proveedores de mapa detrás de una interfaz propia. Introduce `app-shell`, `map-view` y `offline-maps`. Es el change del que dependen todos los demás. El ruteo y la búsqueda de Points se deciden en `roadmap-planning`, cuando hay un requisito que los usa.
-2. `rider-onboarding`: `rider-account` y `rider-vehicles`.
+2. `rider-onboarding`: `rider-account` y `rider-vehicles`. Introduce el backend del proyecto (Firebase, plan sin costo) y mueve el hosting a Firebase Hosting.
 3. `roadmap-planning`: la capability homónima.
 4. `trip-convening`: `trip-management`.
 5. `trip-live-tracking`: `trip-tracking`.
