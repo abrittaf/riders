@@ -54,11 +54,9 @@ Si la zona se pierde, hay que revisar la decisión D4 de `design.md`.
 
 ## 7.4 Posición propia en movimiento
 
-Pendiente: falta registrar si la marca de posición se actualiza durante el trayecto.
-
 | Verificación | iPhone | Android |
 | --- | --- | --- |
-| La marca de posición se actualiza durante el trayecto | | Pendiente (7.6) |
+| La marca de posición se actualiza durante el trayecto | Ok, en un trayecto de 2 minutos | Pendiente (7.6) |
 | «Centrar en mi posición» lleva el mapa a la posición | Ok | Pendiente (7.6) |
 | Comportamiento del permiso de ubicación (¿lo vuelve a pedir? ¿cuándo?) | Al actualizarse la app | Pendiente (7.6) |
 
