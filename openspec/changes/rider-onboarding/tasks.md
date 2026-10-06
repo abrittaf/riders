@@ -6,7 +6,7 @@
 - [x] 1.2 Agregar el SDK de Firebase y crear `src/backend/` con la inicialización y una interfaz mínima `RiderAccountService` (ingresar, cerrar sesión, Rider actual); verificar con la regla del linter que ningún módulo fuera de `src/backend/` importa Firebase
 - [x] 1.3 Configurar Firebase Hosting con el sitio del proyecto, publicar manualmente una vez con la app actual, y verificar desde la Mac que la URL `*.web.app` carga el mapa y la app es instalable
 - [x] 1.4 Implementar el ingreso con Google por redirección con persistencia local y un botón provisorio, e instalar la app en el iPhone desde la URL nueva; verificar que el ingreso vuelve a la app instalada identificado y registrar el resultado en `docs/verificacion-dispositivos.md`; si falla, aplicar la alternativa de D3 y repetir
-- [ ] 1.5 Crear la acción de GitHub que publica `main` en Firebase Hosting con la credencial guardada como secreto del repositorio, eliminar el workflow de GitHub Pages, desactivar Pages y actualizar `README.md`; verificar que un merge en `main` publica y que la URL vieja ya no sirve la app
+- [x] 1.5 Crear la acción de GitHub que publica `main` en Firebase Hosting con la credencial guardada como secreto del repositorio, eliminar el workflow de GitHub Pages, desactivar Pages y actualizar `README.md`; verificar que un merge en `main` publica y que la URL vieja ya no sirve la app
 
 ## 2. Emulador y pruebas de base
 
