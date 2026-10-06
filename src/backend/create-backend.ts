@@ -6,7 +6,12 @@ import {
   indexedDBLocalPersistence,
   initializeAuth,
 } from 'firebase/auth'
-import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
+import {
+  connectFirestoreEmulator,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+} from 'firebase/firestore'
 import type { Backend, BackendConfig } from './backend.ts'
 import { FirebaseRiderAccountService } from './firebase/firebase-rider-account-service.ts'
 
@@ -17,7 +22,12 @@ export function createBackend(config: BackendConfig): Backend {
     persistence: [indexedDBLocalPersistence, browserLocalPersistence],
     popupRedirectResolver: browserPopupRedirectResolver,
   })
-  const firestore = getFirestore(app)
+  // Caché local: el perfil se lee sin conexión y las escrituras esperan a que vuelva (design.md, D6).
+  const firestore = initializeFirestore(app, {
+    localCache: persistentLocalCache({
+      tabManager: persistentMultipleTabManager(),
+    }),
+  })
   if (config.emulator) {
     const { host, authPort, firestorePort } = config.emulator
     connectAuthEmulator(auth, `http://${host}:${authPort}`, {

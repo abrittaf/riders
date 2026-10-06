@@ -77,6 +77,12 @@ El emulador corre sobre Java 21 o superior (`brew install openjdk@21`).
 
 `firestore.rules` implementa D4: cada Rider escribe solo su documento `riders/{id}` (nombre visible de 2 a 24 caracteres, avatar con opciones del sistema de avatares, fechas de creación y actualización) y su subdocumento privado `riders/{id}/private/vehicle` (marca/modelo de 2 a 40, autonomía entera de 50 a 1000). Cualquier Rider identificado lee los perfiles; nadie sin sesión lee nada; el Vehicle lo lee solo su dueño. Las reglas se publican junto con la app en cada merge en `main` y se prueban en `src/backend/firebase/firestore-rules.emulator.test.ts`.
 
+## Sin conexión y eliminación de la cuenta
+
+Firestore corre con caché local persistente (IndexedDB): el perfil se lee sin conexión y las escrituras hechas sin conexión quedan en cola y se envían al recuperarla; la app marca "pendiente de sincronizar" mientras haya escrituras sin confirmar por el servidor (D6). `saveProfile` da por hecho el cambio cuando queda aplicado en el celular, no cuando el servidor lo confirma: sin conexión, esperar al servidor bloquearía al Rider.
+
+Eliminar la cuenta borra primero los documentos de Firestore y después el usuario de Authentication; si el ingreso tiene más de cinco minutos, Firebase exige reconfirmar la identidad y la app lo pide antes de borrar nada. La reconfirmación va por redirección a Google; al volver, la app retoma la eliminación.
+
 ## Consumo
 
 Consola de Firebase → proyecto → **Uso y facturación**. Los límites diarios del plan Spark que importan acá: 50.000 lecturas y 20.000 escrituras de Firestore, 360 MB de transferencia de Hosting.

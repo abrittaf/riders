@@ -86,3 +86,18 @@ export async function givenCompletedProfile(
   )
   expect(response.ok, 'perfil guardado en el emulador').toBe(true)
 }
+
+/** El nombre visible tal como está guardado en el servidor; `null` si el perfil no existe. */
+export async function readStoredDisplayName(
+  riderId: string,
+): Promise<string | null> {
+  const response = await fetch(
+    `${firestoreEmulator}/v1/projects/${emulatorConfig.projectId}/databases/(default)/documents/riders/${riderId}`,
+    { headers: ownerHeaders },
+  )
+  if (response.status === 404) return null
+  const body = (await response.json()) as {
+    fields?: { displayName?: { stringValue?: string } }
+  }
+  return body.fields?.displayName?.stringValue ?? null
+}

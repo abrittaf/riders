@@ -7,13 +7,17 @@ import type {
   RiderProfile,
   SignedInRider,
 } from '../backend/index.ts'
+import { OnlineOnlyButton } from '../connectivity/OnlineOnlyButton.tsx'
 import type { Vehicle } from '../rider-vehicles/vehicle.ts'
 import { ProfileForm } from './ProfileForm.tsx'
+
+type DeletionStep = 'idle' | 'confirming' | 'requires-recent-sign-in'
 
 export function AccountPanel({
   rider,
   profile,
   vehicle,
+  pendingSync,
   riderAccount,
   onSignOut,
   onClose,
@@ -21,12 +25,23 @@ export function AccountPanel({
   rider: SignedInRider
   profile: RiderProfile
   vehicle: Vehicle | null
+  pendingSync: boolean
   riderAccount: RiderAccountService
   onSignOut: () => void
   onClose: () => void
 }) {
   const { t } = useTranslation()
   const [editing, setEditing] = useState(false)
+  const [deletion, setDeletion] = useState<DeletionStep>('idle')
+
+  async function deleteAccount() {
+    const result = await riderAccount.deleteAccount()
+    if (result.status === 'requires-recent-sign-in') {
+      setDeletion('requires-recent-sign-in')
+      return
+    }
+    onClose()
+  }
 
   return (
     <Panel title={t('riderAccount.accountTitle')} onClose={onClose}>
@@ -62,6 +77,11 @@ export function AccountPanel({
                 : t('vehicle.missing')}
             </dd>
           </dl>
+          {pendingSync && (
+            <p className="pending-sync" role="status">
+              {t('riderAccount.pendingSync')}
+            </p>
+          )}
           <button type="button" onClick={() => setEditing(true)}>
             {t('profile.edit')}
           </button>
@@ -73,6 +93,63 @@ export function AccountPanel({
               name: rider.accountName ?? rider.id,
             })}
           </p>
+          <section
+            className="account-deletion"
+            aria-label={t('riderAccount.deleteAccount.title')}
+          >
+            {deletion === 'idle' && (
+              <OnlineOnlyButton
+                onClick={() => setDeletion('confirming')}
+                unavailableMessage={t(
+                  'riderAccount.deleteAccount.requiresConnection',
+                )}
+              >
+                {t('riderAccount.deleteAccount.action')}
+              </OnlineOnlyButton>
+            )}
+            {deletion === 'confirming' && (
+              <div
+                className="notice"
+                role="alertdialog"
+                aria-label={t('riderAccount.deleteAccount.confirmTitle')}
+              >
+                <p>{t('riderAccount.deleteAccount.confirmText')}</p>
+                <div className="notice-actions">
+                  <OnlineOnlyButton
+                    onClick={() => void deleteAccount()}
+                    unavailableMessage={t(
+                      'riderAccount.deleteAccount.requiresConnection',
+                    )}
+                  >
+                    {t('riderAccount.deleteAccount.confirm')}
+                  </OnlineOnlyButton>
+                  <button type="button" onClick={() => setDeletion('idle')}>
+                    {t('riderAccount.deleteAccount.cancel')}
+                  </button>
+                </div>
+              </div>
+            )}
+            {deletion === 'requires-recent-sign-in' && (
+              <div className="notice" role="alert">
+                <p>{t('riderAccount.deleteAccount.reconfirmText')}</p>
+                <div className="notice-actions">
+                  <OnlineOnlyButton
+                    onClick={() =>
+                      void riderAccount.reconfirmIdentityAndDeleteAccount()
+                    }
+                    unavailableMessage={t(
+                      'riderAccount.deleteAccount.requiresConnection',
+                    )}
+                  >
+                    {t('riderAccount.deleteAccount.reconfirm')}
+                  </OnlineOnlyButton>
+                  <button type="button" onClick={() => setDeletion('idle')}>
+                    {t('riderAccount.deleteAccount.cancel')}
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
         </div>
       )}
     </Panel>

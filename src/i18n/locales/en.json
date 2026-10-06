@@ -114,6 +114,18 @@
       "title": "Complete your profile",
       "intro": "So other Riders can recognize you, choose your display name, build your avatar and add your motorcycle.",
       "submit": "Save and continue"
+    },
+    "pendingSync": "Pending sync: your changes will be sent when the connection is back.",
+    "deleteAccount": {
+      "title": "Account deletion",
+      "action": "Delete my account",
+      "requiresConnection": "Deleting the account requires a connection",
+      "confirmTitle": "Confirm deletion",
+      "confirmText": "Your profile, your motorcycle and the link to your Google account will be deleted. This cannot be undone.",
+      "confirm": "Yes, delete my account",
+      "cancel": "Cancel",
+      "reconfirmText": "It has been a while since you signed in. To delete the account, confirm your identity with Google again.",
+      "reconfirm": "Confirm with Google"
     }
   },
   "avatar": {

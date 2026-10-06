@@ -1,4 +1,5 @@
 import type {
+  DeleteAccountResult,
   RiderAccountService,
   RiderProfile,
   RiderSession,
@@ -34,6 +35,9 @@ export class FakeRiderAccountService implements RiderAccountService {
   storedVehicle: Vehicle | null = null
   /** Perfiles públicos de otros Riders, por id. */
   readonly otherProfiles = new Map<string, RiderProfile>()
+  /** Simula un ingreso viejo: eliminar la cuenta pide reconfirmar la identidad. */
+  signInIsRecent = true
+  reconfirmations = 0
 
   constructor(
     session: RiderSession = { status: 'signed-out', signInFailed: false },
@@ -47,7 +51,23 @@ export class FakeRiderAccountService implements RiderAccountService {
       rider: sampleRider,
       profile: this.storedProfile,
       vehicle: this.storedVehicle,
+      pendingSync: false,
     })
+    return Promise.resolve()
+  }
+
+  deleteAccount(): Promise<DeleteAccountResult> {
+    if (!this.signInIsRecent) {
+      return Promise.resolve({ status: 'requires-recent-sign-in' })
+    }
+    this.storedProfile = null
+    this.storedVehicle = null
+    this.setSession({ status: 'signed-out', signInFailed: false })
+    return Promise.resolve({ status: 'deleted' })
+  }
+
+  reconfirmIdentityAndDeleteAccount(): Promise<void> {
+    this.reconfirmations += 1
     return Promise.resolve()
   }
 

@@ -114,6 +114,18 @@
       "title": "Completá tu perfil",
       "intro": "Para que otros Riders te reconozcan, elegí tu nombre visible, armá tu avatar y cargá tu moto.",
       "submit": "Guardar y seguir"
+    },
+    "pendingSync": "Pendiente de sincronizar: tus cambios se enviarán cuando vuelva la conexión.",
+    "deleteAccount": {
+      "title": "Eliminación de la cuenta",
+      "action": "Eliminar mi cuenta",
+      "requiresConnection": "Eliminar la cuenta requiere conexión",
+      "confirmTitle": "Confirmar la eliminación",
+      "confirmText": "Se van a borrar tu perfil, tu moto y el vínculo con tu cuenta de Google. No se puede deshacer.",
+      "confirm": "Sí, eliminar mi cuenta",
+      "cancel": "Cancelar",
+      "reconfirmText": "Pasó un tiempo desde que ingresaste. Para borrar la cuenta, volvé a confirmar tu identidad con Google.",
+      "reconfirm": "Confirmar con Google"
     }
   },
   "avatar": {

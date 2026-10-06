@@ -376,3 +376,17 @@ input {
 .profile-summary dd {
   margin: 0;
 }
+
+.pending-sync {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #fff4d6;
+}
+
+.account-deletion {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #d1d1d6;
+  align-self: stretch;
+}

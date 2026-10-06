@@ -45,6 +45,7 @@ describe('Sesión del Rider', () => {
         rider: sampleRider,
         profile: sampleProfile,
         vehicle: sampleVehicle,
+        pendingSync: false,
       }),
     )
 
@@ -71,6 +72,7 @@ describe('Sesión del Rider', () => {
       rider: sampleRider,
       profile: sampleProfile,
       vehicle: sampleVehicle,
+      pendingSync: false,
     })
     renderApp({ riderAccount })
 

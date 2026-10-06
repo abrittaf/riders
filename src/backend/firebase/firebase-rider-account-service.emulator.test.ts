@@ -1,4 +1,9 @@
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore'
+import {
+  doc,
+  getDocFromServer,
+  serverTimestamp,
+  setDoc,
+} from 'firebase/firestore'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import type { AvatarOptions } from '../../avatar/avatar-options.ts'
 import type { RiderSession } from '../rider-account-service.ts'
@@ -17,6 +22,11 @@ const sampleAvatar: AvatarOptions = {
   neckwearColor: 'blue',
   glasses: false,
   beard: true,
+}
+
+function sessionPending(service: FirebaseRiderAccountService) {
+  const session = service.currentSession()
+  return session.status === 'signed-in' && session.pendingSync
 }
 
 function sessionProfile(service: FirebaseRiderAccountService) {
@@ -99,7 +109,11 @@ describe('FirebaseRiderAccountService contra el emulador', () => {
       { model: 'Honda XR 250', rangeKm: 300 },
     )
     await waitFor(() => sessionProfile(service)?.displayName === 'Fer')
-    const created = await getDoc(doc(clients.firestore, 'riders', rider.id))
+    // `saveProfile` resuelve con la escritura aplicada en el celular; la fecha la pone el servidor.
+    await waitFor(() => !sessionPending(service))
+    const created = await getDocFromServer(
+      doc(clients.firestore, 'riders', rider.id),
+    )
 
     await service.saveProfile(
       { displayName: 'Fernando', avatar: sampleAvatar },
@@ -109,7 +123,10 @@ describe('FirebaseRiderAccountService contra el emulador', () => {
 
     const session = await waitForSession(service, 'signed-in')
     expect(session.vehicle).toEqual({ model: 'Honda XR 250', rangeKm: 350 })
-    const updated = await getDoc(doc(clients.firestore, 'riders', rider.id))
+    await waitFor(() => !sessionPending(service))
+    const updated = await getDocFromServer(
+      doc(clients.firestore, 'riders', rider.id),
+    )
     expect(updated.get('createdAt')).toEqual(created.get('createdAt'))
     expect(updated.get('updatedAt')).not.toEqual(created.get('updatedAt'))
   })

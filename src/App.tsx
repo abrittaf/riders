@@ -101,6 +101,7 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
               rider={session.rider}
               profile={session.profile}
               vehicle={session.vehicle}
+              pendingSync={session.pendingSync}
               riderAccount={riderAccount}
               onSignOut={() => {
                 setOpenPanel('none')

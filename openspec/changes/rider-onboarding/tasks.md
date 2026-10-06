@@ -35,8 +35,8 @@
 
 ## 6. Sin conexión y eliminación de cuenta (`rider-account`)
 
-- [ ] 6.1 Habilitar la persistencia local de Firestore y el indicador "pendiente de sincronizar"; verificar con Playwright que un cambio de nombre hecho sin red se ve de inmediato, queda marcado como pendiente y se envía al restaurar la red
-- [ ] 6.2 Implementar la eliminación de cuenta con confirmación explícita, reconfirmación de identidad cuando el ingreso no es reciente, y señalada como no disponible sin conectividad; verificar con Playwright contra el emulador que tras eliminar, un nuevo ingreso se trata como primer ingreso
+- [x] 6.1 Habilitar la persistencia local de Firestore y el indicador "pendiente de sincronizar"; verificar con Playwright que un cambio de nombre hecho sin red se ve de inmediato, queda marcado como pendiente y se envía al restaurar la red
+- [x] 6.2 Implementar la eliminación de cuenta con confirmación explícita, reconfirmación de identidad cuando el ingreso no es reciente, y señalada como no disponible sin conectividad; verificar con Playwright contra el emulador que tras eliminar, un nuevo ingreso se trata como primer ingreso
 
 ## 7. Verificación en iPhone sobre la URL publicada
 

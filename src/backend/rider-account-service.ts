@@ -24,7 +24,14 @@ export type RiderSession =
       profile: RiderProfile | null
       /** La moto del Rider; solo él la ve. */
       vehicle: Vehicle | null
+      /** Hay cambios hechos sin conexión que todavía no llegaron al servidor. */
+      pendingSync: boolean
     }
+
+export type DeleteAccountResult =
+  | { status: 'deleted' }
+  /** El ingreso no es reciente: hay que volver a confirmar la identidad con Google. */
+  | { status: 'requires-recent-sign-in' }
 
 export interface RiderAccountService {
   /** Lleva al Rider a ingresar con Google; la app se recarga al volver. */
@@ -38,4 +45,8 @@ export interface RiderAccountService {
   saveProfile(profile: RiderProfile, vehicle: Vehicle): Promise<void>
   /** Nombre visible y avatar de otro Rider; `null` si no existe. */
   readPublicProfile(riderId: string): Promise<RiderProfile | null>
+  /** Borra perfil, moto y el vínculo con la cuenta de Google; requiere conexión. */
+  deleteAccount(): Promise<DeleteAccountResult>
+  /** Vuelve a confirmar la identidad con Google; la app se recarga al volver y retoma la eliminación. */
+  reconfirmIdentityAndDeleteAccount(): Promise<void>
 }
