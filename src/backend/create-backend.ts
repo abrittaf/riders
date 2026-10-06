@@ -2,9 +2,11 @@ import { initializeApp } from 'firebase/app'
 import {
   browserLocalPersistence,
   browserPopupRedirectResolver,
+  connectAuthEmulator,
   indexedDBLocalPersistence,
   initializeAuth,
 } from 'firebase/auth'
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import type { Backend, BackendConfig } from './backend.ts'
 import { FirebaseRiderAccountService } from './firebase/firebase-rider-account-service.ts'
 
@@ -15,5 +17,13 @@ export function createBackend(config: BackendConfig): Backend {
     persistence: [indexedDBLocalPersistence, browserLocalPersistence],
     popupRedirectResolver: browserPopupRedirectResolver,
   })
+  const firestore = getFirestore(app)
+  if (config.emulator) {
+    const { host, authPort, firestorePort } = config.emulator
+    connectAuthEmulator(auth, `http://${host}:${authPort}`, {
+      disableWarnings: true,
+    })
+    connectFirestoreEmulator(firestore, host, firestorePort)
+  }
   return { riderAccount: new FirebaseRiderAccountService(auth) }
 }

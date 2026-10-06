@@ -10,8 +10,8 @@
 
 ## 2. Emulador y pruebas de base
 
-- [ ] 2.1 Configurar Firebase Emulator Suite (Authentication y Firestore) con un script `npm run emulators`, y hacer que Vitest y Playwright apunten al emulador; verificar que una prueba crea un usuario en el emulador y lo lee
-- [ ] 2.2 Escribir las reglas de seguridad de Firestore según D4 y sus pruebas con `@firebase/rules-unit-testing`; verificar que fallan las escrituras ajenas, las lecturas sin sesión y la lectura de `vehicle` por otro Rider, y que pasan las permitidas
+- [x] 2.1 Configurar Firebase Emulator Suite (Authentication y Firestore) con un script `npm run emulators`, y hacer que Vitest y Playwright apunten al emulador; verificar que una prueba crea un usuario en el emulador y lo lee
+- [x] 2.2 Escribir las reglas de seguridad de Firestore según D4 y sus pruebas con `@firebase/rules-unit-testing`; verificar que fallan las escrituras ajenas, las lecturas sin sesión y la lectura de `vehicle` por otro Rider, y que pasan las permitidas
 
 ## 3. Ingreso, sesión y uso sin cuenta (`rider-account`)
 

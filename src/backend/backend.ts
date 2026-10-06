@@ -1,3 +1,4 @@
+import type { EmulatorConfig } from './emulator-config.ts'
 import type { RiderAccountService } from './rider-account-service.ts'
 
 export interface Backend {
@@ -14,4 +15,6 @@ export interface BackendConfig {
     messagingSenderId: string
     storageBucket: string
   }
+  /** Si está presente, la app habla con el emulador local en lugar del proyecto real. */
+  emulator?: EmulatorConfig
 }

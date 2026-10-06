@@ -55,12 +55,13 @@ test('tras descargar una zona y cortar la red, el mapa se dibuja completo dentro
   await reopenWithoutNetwork(page)
 
   await expect(page.getByText('Sin conexión', { exact: true })).toBeVisible()
-  expect(await readMapNumber(page, 'data-rendered-roads')).toBe(
-    roadsWithNetwork,
-  )
-  expect(
-    await readMapNumber(page, 'data-rendered-place-names'),
-  ).toBeGreaterThan(0)
+  // El conteo se lee cuando el mapa queda quieto, pero puede faltarle el último dibujado: se reintenta.
+  await expect
+    .poll(() => readMapNumber(page, 'data-rendered-roads'))
+    .toBe(roadsWithNetwork)
+  await expect
+    .poll(() => readMapNumber(page, 'data-rendered-place-names'))
+    .toBeGreaterThan(0)
   await expect(page.getByText(UNAVAILABLE_NOTICE)).toHaveCount(0)
 
   await openMapAt(page, { zoom: 14, ...BUENOS_AIRES })
@@ -71,9 +72,9 @@ test('tras descargar una zona y cortar la red, el mapa se dibuja completo dentro
   // El resto del mapa sigue respondiendo: al volver a la zona descargada, el aviso desaparece.
   await openMapAt(page, { zoom: 14, ...CACHI })
   await expect(page.getByText(UNAVAILABLE_NOTICE)).toHaveCount(0)
-  expect(await readMapNumber(page, 'data-rendered-roads')).toBe(
-    roadsWithNetwork,
-  )
+  await expect
+    .poll(() => readMapNumber(page, 'data-rendered-roads'))
+    .toBe(roadsWithNetwork)
 })
 
 test('al recuperar la conectividad el mapa completa la zona que no estaba disponible', async ({

@@ -1,10 +1,66 @@
 rules_version = '2';
 
+// Reglas de acceso de Riders (design.md de rider-onboarding, D4). Se prueban en
+// src/backend/firebase/firestore-rules.emulator.test.ts.
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Reglas iniciales: nadie lee ni escribe. Las reglas de D4 llegan con la tarea 2.2.
-    match /{document=**} {
-      allow read, write: if false;
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(riderId) {
+      return isSignedIn() && request.auth.uid == riderId;
+    }
+
+    function isTextBetween(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max;
+    }
+
+    function isValidAvatar(avatar) {
+      return avatar is map
+        && avatar.keys().hasOnly(['helmetType', 'helmetColor', 'neckwear', 'neckwearColor', 'glasses', 'beard'])
+        && avatar.helmetType in ['full-face', 'modular']
+        && avatar.helmetColor in ['white', 'black', 'gray']
+        && avatar.neckwear in ['bandana', 'buff', 'tube', 'checkered-flag']
+        && avatar.neckwearColor in ['blue', 'green', 'red', 'orange', 'yellow', 'light-blue']
+        && avatar.glasses is bool
+        && avatar.beard is bool;
+    }
+
+    function isValidRider(rider) {
+      return rider.keys().hasOnly(['displayName', 'avatar', 'createdAt', 'updatedAt'])
+        && isTextBetween(rider.displayName, 2, 24)
+        && isValidAvatar(rider.avatar)
+        && rider.createdAt is timestamp
+        && rider.updatedAt == request.time;
+    }
+
+    function isValidVehicle(vehicle) {
+      return vehicle.keys().hasOnly(['model', 'rangeKm', 'updatedAt'])
+        && isTextBetween(vehicle.model, 2, 40)
+        && vehicle.rangeKm is int
+        && vehicle.rangeKm >= 50
+        && vehicle.rangeKm <= 1000
+        && vehicle.updatedAt == request.time;
+    }
+
+    // Perfil público: nombre visible y avatar, legibles por cualquier Rider identificado.
+    match /riders/{riderId} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(riderId)
+        && isValidRider(request.resource.data)
+        && request.resource.data.createdAt == request.time;
+      allow update: if isOwner(riderId)
+        && isValidRider(request.resource.data)
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isOwner(riderId);
+
+      // El Vehicle es privado: solo su dueño lo lee y lo escribe.
+      match /private/vehicle {
+        allow read, delete: if isOwner(riderId);
+        allow create, update: if isOwner(riderId) && isValidVehicle(request.resource.data);
+      }
     }
   }
 }
