@@ -3,11 +3,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { defineConfig } from 'vitest/config'
 import { firstOpenOfflineNotice } from './vite-plugins/first-open-offline-notice.ts'
 
-// GitHub Pages publica la app bajo /<repositorio>/; la acción de publicación define BASE_PATH.
-const basePath = process.env.BASE_PATH ?? '/'
-
 export default defineConfig({
-  base: basePath,
   assetsInclude: ['**/*.pmtiles'],
   // El renderizador de mapas pesa más que el límite de aviso por defecto.
   build: { chunkSizeWarningLimit: 1500 },

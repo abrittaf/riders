@@ -36,7 +36,8 @@ origen. No hay registro, clave ni límite declarado de peticiones. Una tesela si
 normal.
 
 Verificación de CORS y HTTPS: comprobado el 3 de octubre de 2026 desde la app publicada
-en `https://abrittaf.github.io/riders/`, con un navegador Chromium en emulación de
+en `https://abrittaf.github.io/riders/` (y repetido el 5 de octubre de 2026 desde
+`https://riders-65821.web.app`, la dirección actual, con el mismo resultado), con un navegador Chromium en emulación de
 celular. Desde ese origen el navegador obtuvo el TileJSON, las teselas de la compilación
 `20260927_080001_pt`, los glifos y los íconos, todos por HTTPS con respuesta 200 y sin
 ninguna petición rechazada; una tesela pedida con `fetch` desde la página llegó como

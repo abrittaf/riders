@@ -1,7 +1,9 @@
 # Verificación en celulares reales
 
-Registro de las pruebas de la sección 7 de `openspec/changes/map-platform-foundation/tasks.md`.
-Se completa a mano, por dispositivo, sobre la app publicada en GitHub Pages. Cada resultado
+Registro de las pruebas en celulares de cada change (sección 7 de `openspec/changes/map-platform-foundation/tasks.md`
+y las de `rider-onboarding`). Se completa a mano, por dispositivo, sobre la app publicada:
+hasta el 2026-10-05 en GitHub Pages (`https://abrittaf.github.io/riders/`), desde entonces
+en Firebase Hosting (`https://riders-65821.web.app`). Cada resultado
 lleva fecha, versión del sistema operativo y del navegador, y lo observado.
 
 ## Dispositivos
