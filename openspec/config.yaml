@@ -13,49 +13,48 @@ context: |
   All artifacts must be written in Spanish (Argentina).
   Keep OpenSpec structural headings and SHALL/MUST keywords in English.
   Identificadores en inglés y kebab-case: change-id, nombres de capability y rutas de archivos.
-  Las entidades del dominio se nombran en inglés tal como figuran en el glosario (Rider, Vehicle, Point, Roadmap, Trip).
+  Las entidades del dominio se nombran en inglés tal como figuran en el glosario (Rider, Vehicle, Point, Roadmap).
 
   ## Producto
   Riders (nombre provisorio) es una aplicación para usar desde el celular que ayuda a
-  grupos de viajeros en moto a planificar y realizar viajes. Un Rider arma Roadmaps
-  (plantillas de ruta compuestas por Points), convoca Trips a partir de ellos e invita a
-  otros Riders; durante el Trip, cada miembro ve en el mapa el avatar de sus compañeros
-  y la información del clima sobre la ruta.
+  grupos de viajeros en moto a planificar y realizar viajes. Un Rider arma un Roadmap
+  eligiendo Points ("quiero ir a Córdoba y hacer noche en La Boulaye"), la app calcula la
+  ruta y las paradas de carga de combustible según la autonomía de las motos, el Rider
+  convoca a otros Riders, y durante el viaje cada miembro ve en el mapa el avatar de sus
+  compañeros y la información del clima sobre la ruta.
 
   La app no desarrolla funcionalidad de mapas. El mapa, los lugares y el cálculo de rutas
   se toman de proveedores existentes basados en OpenStreetMap. La app agrega lo que esos
-  proveedores no ofrecen: Trips, posición de los miembros en vivo, autonomía de los
+  proveedores no ofrecen: Roadmaps, posición de los miembros en vivo, autonomía de los
   vehículos y clima sobre la ruta.
 
   ## Glosario del dominio
   - Rider: usuario de la app. Tiene cuenta, perfil y avatar.
-  - Vehicle: la moto de un Rider. Su atributo central es la autonomía (km máximos entre cargas de combustible; por ejemplo 200 km o 300 km). La autonomía condiciona la planificación de un Roadmap.
-  - Point: un lugar en el mapa, con características propias según su tipo: estación de servicio (carga de combustible), punto de interés, restaurante, alojamiento, entre otros. Proviene del proveedor de mapas.
-  - Roadmap: plantilla de ruta. Secuencia ordenada de Points más la ruta calculada entre ellos. El Roadmap más simple es un segmento entre dos Points. No tiene fechas ni participantes. Lo crea un Rider.
-  - Trip: un viaje concreto creado a partir de un Roadmap. Toma una copia del Roadmap y desde ese momento sigue su propia suerte: puede divergir de la plantilla. Agrega fecha, hora de salida, hora de llegada, admin y miembros. Durante el Trip se ve la posición en vivo de los miembros y el clima sobre la ruta, en especial viento y lluvia.
-  - admin: rol dentro de un Trip. El Rider que crea el Trip es su admin, invita a otros Riders y puede nombrar admins a otros miembros. No existe una entidad "grupo": la membresía vive en el Trip.
+  - Vehicle: la moto de un Rider. Su atributo central es la autonomía (km máximos entre cargas de combustible; por ejemplo 200 km o 300 km). La menor autonomía entre los miembros de un Roadmap determina sus paradas de carga.
+  - Point: un lugar en el mapa elegido por un Rider: un lugar conocido del proveedor de mapas (con tipo: estación de servicio, punto de interés, restaurante, alojamiento, entre otros) o cualquier posición tocada en el mapa. Tiene nombre y posición; conserva el tipo cuando proviene de un lugar conocido; puede tener una fecha asociada.
+  - Roadmap: el viaje, única entidad de planificación y realización. Secuencia ordenada de Points más la ruta calculada entre ellos (geometría, distancia, tiempo y superficie por tramo), con nombre, descripción y kilómetros aproximados. Ciclo de vida: en planificación (lo arma su autor), convocado (fechas y horarios, admin, miembros, paradas de carga según la menor autonomía), en curso (posición en vivo de los miembros, clima) y finalizado (se puede duplicar como base de otro Roadmap). Nada en un Roadmap es inamovible: todo se edita. No existe una plantilla separada del viaje; para repetir un viaje se duplica un Roadmap anterior.
+  - admin: rol dentro de un Roadmap. El Rider que lo crea es su admin, invita a otros Riders y puede nombrar admins a otros miembros. No existe una entidad "grupo": la membresía vive en el Roadmap.
 
   ## Usuarios y datos
-  - Todo Rider tiene una cuenta. Los Trips se conforman únicamente con Riders que tienen la app instalada.
-  - Lo que proviene del proveedor de mapas (mapa, Points, cálculo de rutas) es información compartida por todos los usuarios.
-  - Un Roadmap lo ve su autor y los miembros de los Trips que lo usan.
-  - Lo privado es el Trip y la posición de las personas: visibles solo para los miembros de ese Trip. Quien no es miembro no accede a ninguna información del Trip.
+  - Todo Rider tiene una cuenta. Los Roadmaps se conforman únicamente con Riders que tienen la app instalada.
+  - Lo que proviene del proveedor de mapas (mapa, lugares, cálculo de rutas) es información compartida por todos los usuarios.
+  - Lo privado es el Roadmap y la posición de las personas: visibles solo para el autor y los miembros de ese Roadmap. Quien no es miembro no accede a ninguna información del Roadmap.
 
   ## Plataforma y conectividad
   - Aplicación móvil distribuida como PWA (Progressive Web App), por la facilidad de instalación. La PWA debe ofrecer una experiencia fluida; toda limitación de la plataforma que afecte una funcionalidad central se identifica y resuelve en el design.md del change correspondiente.
   - El seguimiento en vivo funciona con la app abierta en primer plano y la pantalla encendida (la app evita que se apague). Una web app instalada no ejecuta código en segundo plano en iOS, y en Android con restricciones: si el Rider cambia de app o bloquea el teléfono, deja de enviar su posición. Por eso la posición de cada compañero se muestra siempre con la antigüedad del dato, también con conectividad.
-  - La ruta de un Roadmap se calcula con conectividad, al planificar, y se guarda con el Roadmap (y con la copia que toma el Trip). Sin conexión no se recalcula la ruta ante un desvío.
+  - La ruta de un Roadmap se calcula con conectividad, al planificar, y se guarda con el Roadmap. Política de superficie fija, sin opciones: asfalto siempre que exista; caminos sin pavimentar únicamente para llegar a un Point que no tiene otro acceso. Sin conexión no se recalcula la ruta ante un desvío.
   - Con conectividad la funcionalidad es completa.
-  - Sin conectividad la app se degrada de forma controlada: el GPS sigue funcionando; si el mapa de la zona del Trip ya fue descargado, el Rider se ve a sí mismo sobre el mapa con la ruta planificada dibujada; los demás miembros se muestran en su última posición conocida, cada uno con un pequeño indicador de la antigüedad de ese dato.
-  - La app soporta múltiples idiomas. Idioma inicial: español (Argentina). Ningún texto visible al usuario se escribe fijo en el código.
+  - Sin conectividad la app se degrada de forma controlada: el GPS sigue funcionando; si el mapa de la zona del Roadmap ya fue descargado, el Rider se ve a sí mismo sobre el mapa con la ruta planificada dibujada; los demás miembros se muestran en su última posición conocida, cada uno con un pequeño indicador de la antigüedad de ese dato.
+  - La app soporta múltiples idiomas. Idioma inicial: español (Argentina). Ningún texto visible al usuario se escribe fijo en el código. Los nombres de lugares se muestran en español cuando el dato existe y en su idioma de origen si no.
 
   ## Stack tecnológico
   Lo innegociable se fija acá; lo demás lo propone y justifica el design.md de cada change.
   Cuando un design.md fija algo que aplica a todo el proyecto (framework, base de datos,
   backend, autenticación, hosting, proveedor concreto de teselas, ruteo o clima), se
   promueve a este bloque al archivar el change.
-  Fijado hasta ahora (decisiones D1 a D9 del change map-platform-foundation, implementadas y publicadas):
-  - PWA como forma de distribución, publicada en GitHub Pages desde la rama main del repositorio público abrittaf/riders.
+  Fijado por map-platform-foundation (implementado y publicado):
+  - PWA como forma de distribución, desde la rama main del repositorio público abrittaf/riders.
   - Interfaz: React con TypeScript, construida con Vite; sin meta-framework ni renderizado en servidor.
   - Mapa: MapLibre GL JS. Datos de OpenStreetMap servidos por la instancia pública de OpenFreeMap (esquema OpenMapTiles, zoom máximo 14), única fuente de teselas con y sin conexión.
   - Sin conexión: teselas, glifos e íconos guardados en IndexedDB por la propia app; el service worker solo precachea la interfaz.
@@ -63,8 +62,12 @@ context: |
   - Módulo src/map-platform/ como único punto de contacto con proveedores de mapa (interfaces TileSource, OfflineRegionStore, MapView, Geolocation); ningún otro módulo importa MapLibre ni proveedores, con regla de linter que lo hace cumplir.
   - Pruebas: Vitest con React Testing Library para unitarias; Playwright con emulación de celular para flujos completos; verificación manual en iPhone registrada en docs/verificacion-dispositivos.md.
   - Se priorizan proveedores sin costo y que no exijan registrar un medio de pago, ni siquiera para un nivel gratuito. Un proveedor que no cumpla esto requiere justificación explícita en el design.md.
-  - Cálculo de rutas con alguno de los motores de código abierto OSRM, GraphHopper o Valhalla, consumido como servicio al planificar.
-  - Ningún secreto ni clave entra al repositorio; cuando exista backend, su configuración sensible vive en el servicio que lo aloja.
+  - Ningún secreto ni clave entra al repositorio; la configuración sensible vive en el servicio que la usa (secretos del repositorio en GitHub para despliegues).
+  Fijado por rider-onboarding (implementado y publicado):
+  - Backend: Firebase en plan Spark (Authentication con Google, Cloud Firestore con persistencia local). Hosting de la PWA: Firebase Hosting, publicado por GitHub Actions al integrar en main. Módulo src/backend/ como único punto de contacto con Firebase, con la misma regla de linter.
+  - Identidad: ingreso con Google por redirección; cada Rider tiene un documento en la colección riders (nombre visible y avatar, legibles por cualquier Rider identificado) y un subdocumento privado con su Vehicle.
+  - Avatar paramétrico: se guardan las opciones (casco, color, accesorio de cuello, gafas, barba) y se dibuja como SVG en la app; ninguna imagen se sube ni se almacena.
+  - Reglas de seguridad de Firestore versionadas en el repositorio y probadas con el emulador local de Firebase.
 
   ## Principios
   - Un change es una intención que se puede enunciar en una frase. Preferir varios changes chicos a uno grande.
@@ -76,14 +79,14 @@ context: |
 
   ## Decisiones pendientes
   - Nombre definitivo de la aplicación.
-  - Motor de ruteo concreto (cuál de los tres y en qué modalidad) y búsqueda de Points por nombre: se deciden en roadmap-planning.
-  - Proveedor de información del clima: se decide en trip-weather-forecast.
-  - Backend, base de datos, autenticación y hosting del backend: se deciden en rider-onboarding, primer change que necesita servidor.
+  - Motor de ruteo y buscador de lugares: Valhalla (perfil de motocicleta) y Photon, propuestos en roadmap-planning; se fijan al archivarlo.
+  - Point a partir de un enlace compartido desde Google Maps: fuera de alcance mientras no haya dónde resolver la redirección del enlace corto fuera del navegador (ver design.md de roadmap-planning).
+  - Proveedor de información del clima: se decide en roadmap-weather-forecast.
   - Permiso de OpenFreeMap para la descarga de zonas (pedido por correo; ver design.md de map-platform-foundation).
 
 rules:
   proposal:
-    - Redactar el "Why" desde la necesidad del Rider o de los miembros del Trip, no desde la tecnología.
+    - Redactar el "Why" desde la necesidad del Rider o de los miembros del Roadmap, no desde la tecnología.
     - Incluir una lista explícita de lo que queda fuera de alcance del change.
   specs:
     - Cada requisito tiene, además del camino feliz, al menos un escenario de error o caso límite cuando aplique.
