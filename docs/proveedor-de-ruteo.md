@@ -58,7 +58,7 @@ revocarse sin aviso.
 | User-Agent válido que identifique a la aplicación (el de un navegador sin modificar es aceptable) y Referer cuando sea posible | La app corre en el navegador: van el User-Agent y el Origin del navegador |
 | Máximo dos conexiones de descarga; scripts, una | Las consultas van en serie |
 | Sin uso comercial sustancial, sin sitios de alto tráfico, sin descarga masiva | Un grupo de viajeros, dos consultas por cálculo de ruta |
-| Un correo electrónico del operador fácil de identificar en el sitio de la app (o en su ficha de tienda) | Pendiente: la app todavía no muestra un contacto. Se decide qué correo publicar y dónde (ver tareas del change) |
+| Un correo electrónico del operador fácil de identificar en el sitio de la app (o en su ficha de tienda) | El panel «Fuentes del mapa» muestra «Contacto del operador de la app: `pattern-realism.72@icloud.com`» (`src/config/contact-config.ts`) |
 | Recomendado: no fijar las direcciones de los servicios en la app | Están en `src/config/map-config.ts`, el único lugar que las conoce |
 
 No hay registro, clave ni medio de pago.

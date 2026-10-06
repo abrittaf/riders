@@ -7,6 +7,7 @@ import type { MapAttribution } from '../map-provider.ts'
 import { PhotonPlaceSearch } from './photon/photon-place-search.ts'
 import { RequestPacer } from './request-pacer.ts'
 import { ValhallaRouteProvider } from './valhalla/valhalla-route-provider.ts'
+import { contactEmail } from '../../config/contact-config.ts'
 import { mapConfig } from '../../config/map-config.ts'
 
 function spanishText(key: string): string {
@@ -46,6 +47,10 @@ describe('docs/proveedor-de-ruteo.md', () => {
     for (const attribution of provider.attributions) {
       expect(routingDocument).toContain(documentedAttributionRow(attribution))
     }
+  })
+
+  it('documenta el correo de contacto que muestra la app, como exige FOSSGIS', () => {
+    expect(routingDocument).toContain(`\`${contactEmail}\``)
   })
 
   it('la atribución del ruteo enlaza a dónde corregir el mapa, como exige FOSSGIS', () => {

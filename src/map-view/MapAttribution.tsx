@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Panel } from '../app-shell/Panel.tsx'
+import { contactEmail } from '../config/contact-config.ts'
 import type { MapAttribution as Attribution } from '../map-platform/index.ts'
 
 /** Atribución permanente sobre el mapa, con acceso al detalle de cada fuente. */
@@ -38,6 +39,10 @@ export function MapAttribution({
               </li>
             ))}
           </ul>
+          <p className="map-sources-contact">
+            {t('map.sources.contact')}{' '}
+            <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          </p>
         </Panel>
       )}
     </>

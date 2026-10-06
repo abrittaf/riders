@@ -49,7 +49,8 @@
       "valhalla": "Cálculo de rutas con el motor de código abierto Valhalla, sobre datos de OpenStreetMap.",
       "fossgis": "Servicio de ruteo provisto por FOSSGIS e.V. en su instancia comunitaria.",
       "photon": "Búsqueda de lugares con Photon, geocodificador de código abierto sobre datos de OpenStreetMap, en la instancia pública de komoot.",
-      "routeData": "Datos de las rutas © colaboradores de OpenStreetMap (ODbL). Un camino mal cargado se corrige en openstreetmap.org/fixthemap."
+      "routeData": "Datos de las rutas © colaboradores de OpenStreetMap (ODbL). Un camino mal cargado se corrige en openstreetmap.org/fixthemap.",
+      "contact": "Contacto del operador de la app:"
     }
   },
   "location": {

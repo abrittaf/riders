@@ -112,4 +112,8 @@ test('la atribución está siempre visible y abre el detalle de las fuentes', as
     sources.getByRole('link', { name: 'OpenStreetMap' }),
   ).toHaveAttribute('href', 'https://www.openstreetmap.org/copyright')
   await expect(sources.getByText('Open Database License')).toBeVisible()
+  // Condición de uso de los servidores de FOSSGIS: el contacto del operador, a la vista.
+  await expect(
+    sources.getByRole('link', { name: 'pattern-realism.72@icloud.com' }),
+  ).toHaveAttribute('href', 'mailto:pattern-realism.72@icloud.com')
 })

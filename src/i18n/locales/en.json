@@ -49,7 +49,8 @@
       "valhalla": "Routes computed with the open-source Valhalla engine on OpenStreetMap data.",
       "fossgis": "Routing service provided by FOSSGIS e.V. on its community instance.",
       "photon": "Place search with Photon, an open-source geocoder on OpenStreetMap data, on the public komoot instance.",
-      "routeData": "Route data © OpenStreetMap contributors (ODbL). A wrongly mapped road is fixed at openstreetmap.org/fixthemap."
+      "routeData": "Route data © OpenStreetMap contributors (ODbL). A wrongly mapped road is fixed at openstreetmap.org/fixthemap.",
+      "contact": "App operator contact:"
     }
   },
   "location": {
