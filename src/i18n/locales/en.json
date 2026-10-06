@@ -99,5 +99,10 @@
   "storageWarning": {
     "text": "Your phone storage is running out. Your downloaded areas take up {{size}}. You can delete the ones you no longer need; Riders does not delete anything by itself.",
     "manage": "Choose areas to delete"
+  },
+  "riderAccount": {
+    "signInWithGoogle": "Sign in with Google",
+    "signedInAs": "Signed in as {{name}}",
+    "signOut": "Sign out"
   }
 }

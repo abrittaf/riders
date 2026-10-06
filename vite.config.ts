@@ -44,6 +44,8 @@ export default defineConfig({
       workbox: {
         // Solo la interfaz: las teselas del mapa las guarda la app en IndexedDB (design.md, D4 y D5).
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        // El ingreso con Google pasa por /__/auth/, que sirve el hosting y no la app.
+        navigateFallbackDenylist: [/^\/__\//],
       },
     }),
   ],

@@ -99,5 +99,10 @@
   "storageWarning": {
     "text": "El almacenamiento del celular está por agotarse. Tus zonas descargadas ocupan {{size}}. Podés borrar las que ya no necesites; Riders no borra nada por su cuenta.",
     "manage": "Elegir zonas para borrar"
+  },
+  "riderAccount": {
+    "signInWithGoogle": "Ingresar con Google",
+    "signedInAs": "Ingresaste como {{name}}",
+    "signOut": "Cerrar sesión"
   }
 }

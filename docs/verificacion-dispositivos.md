@@ -103,6 +103,16 @@ Hallazgos:
 - GitHub Pages sirve los archivos con vida de caché corta; no es configurable ahí y el
   service worker lo compensa.
 
+## Ingreso con Google en la app instalada (rider-onboarding, tarea 1.4)
+
+Verificado el 2026-10-05 sobre `https://riders-65821.web.app`, con la app instalada en la pantalla de inicio desde Safari y abierta desde su ícono.
+
+| Verificación | iPhone | Android |
+| --- | --- | --- |
+| «Ingresar con Google» abre el ingreso de Google y, al completarlo, vuelve a la app instalada | Ok | Pendiente (7.6) |
+| Al volver, la app muestra al Rider identificado («Ingresaste como …») | Ok | Pendiente (7.6) |
+| Hizo falta la alternativa de D3 (`signInWithPopup`) | No | Pendiente (7.6) |
+
 ## Medición para fijar el límite de teselas por zona
 
 `design.md` deja abierto el límite de teselas por zona (hoy 12000, provisorio). Para

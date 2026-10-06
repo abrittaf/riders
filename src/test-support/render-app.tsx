@@ -7,6 +7,7 @@ import {
   FakeGeolocation,
 } from './fake-map-platform.tsx'
 import { FakeOfflineRegionStore } from './fake-offline-region-store.ts'
+import { FakeRiderAccountService } from './fake-rider-account-service.ts'
 import { FakeConnectivity, notInstallablePlatform } from './fakes.ts'
 import { renderInSpanish } from './render-with-i18n.tsx'
 
@@ -26,6 +27,7 @@ export function renderApp(
         ),
         connectivity,
         installPlatform: notInstallablePlatform,
+        riderAccount: new FakeRiderAccountService(),
         mapPlatform: {
           MapView: map.MapView,
           tileSource: { getTile: () => Promise.reject(new Error('sin uso')) },
