@@ -10,10 +10,12 @@ import {
   useConnectivity,
 } from './connectivity/online-context.ts'
 import type { LanguagePreference } from './i18n/language-preference.ts'
+import type { RiderAccountService } from './backend/index.ts'
 import type { MapPlatform, MapViewHandle } from './map-platform/index.ts'
 import { MapScreen } from './map-view/MapScreen.tsx'
 import { OfflineRegionsPanel } from './offline-maps/OfflineRegionsPanel.tsx'
 import { StorageWarning } from './offline-maps/StorageWarning.tsx'
+import { ProvisionalSignIn } from './rider-account/ProvisionalSignIn.tsx'
 import { useOfflineRegions } from './offline-maps/use-offline-regions.ts'
 
 export interface AppDependencies {
@@ -21,6 +23,7 @@ export interface AppDependencies {
   connectivity: Connectivity
   installPlatform: InstallPlatform
   mapPlatform: MapPlatform
+  riderAccount: RiderAccountService
 }
 
 type OpenPanel = 'none' | 'options' | 'offline-regions'
@@ -55,6 +58,7 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
             </button>
           </nav>
         </header>
+        <ProvisionalSignIn riderAccount={dependencies.riderAccount} />
         <InstallPrompt platform={dependencies.installPlatform} />
         <StorageWarning
           snapshot={offlineRegions}

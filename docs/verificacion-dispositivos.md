@@ -1,7 +1,9 @@
 # Verificación en celulares reales
 
-Registro de las pruebas de la sección 7 de `openspec/changes/map-platform-foundation/tasks.md`.
-Se completa a mano, por dispositivo, sobre la app publicada en GitHub Pages. Cada resultado
+Registro de las pruebas en celulares de cada change (sección 7 de `openspec/changes/map-platform-foundation/tasks.md`
+y las de `rider-onboarding`). Se completa a mano, por dispositivo, sobre la app publicada:
+hasta el 2026-10-05 en GitHub Pages (`https://abrittaf.github.io/riders/`), desde entonces
+en Firebase Hosting (`https://riders-65821.web.app`). Cada resultado
 lleva fecha, versión del sistema operativo y del navegador, y lo observado.
 
 ## Dispositivos
@@ -102,6 +104,16 @@ Hallazgos:
 - No se publican source maps del archivo de JavaScript.
 - GitHub Pages sirve los archivos con vida de caché corta; no es configurable ahí y el
   service worker lo compensa.
+
+## Ingreso con Google en la app instalada (rider-onboarding, tarea 1.4)
+
+Verificado el 2026-10-05 sobre `https://riders-65821.web.app`, con la app instalada en la pantalla de inicio desde Safari y abierta desde su ícono.
+
+| Verificación | iPhone | Android |
+| --- | --- | --- |
+| «Ingresar con Google» abre el ingreso de Google y, al completarlo, vuelve a la app instalada | Ok | Pendiente (7.6) |
+| Al volver, la app muestra al Rider identificado («Ingresaste como …») | Ok | Pendiente (7.6) |
+| Hizo falta la alternativa de D3 (`signInWithPopup`) | No | Pendiente (7.6) |
 
 ## Medición para fijar el límite de teselas por zona
 

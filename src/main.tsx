@@ -4,7 +4,9 @@ import { I18nextProvider } from 'react-i18next'
 import { registerSW } from 'virtual:pwa-register'
 import './index.css'
 import { App, type AppDependencies } from './App.tsx'
+import { createBackend } from './backend/create-backend.ts'
 import { BrowserInstallPlatform } from './app-shell/install/install-platform.ts'
+import { backendConfig } from './config/backend-config.ts'
 import { mapConfig } from './config/map-config.ts'
 import { BrowserConnectivity } from './connectivity/connectivity.ts'
 import { createI18n } from './i18n/i18n.ts'
@@ -29,6 +31,7 @@ const dependencies: AppDependencies = {
   connectivity,
   installPlatform: new BrowserInstallPlatform(),
   mapPlatform,
+  riderAccount: createBackend(backendConfig).riderAccount,
 }
 
 createRoot(document.getElementById('root')!).render(

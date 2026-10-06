@@ -47,6 +47,15 @@ input {
   gap: 0.5rem;
 }
 
+.provisional-sign-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: #e5e5e5;
+}
+
 .app-content {
   position: relative;
   flex: 1;

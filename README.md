@@ -84,19 +84,35 @@ npm run format
 
 ## Publicar
 
-La app se publica en GitHub Pages con la acción `.github/workflows/publicar-en-pages.yml`,
+La app se publica en Firebase Hosting con la acción `.github/workflows/publicar-en-firebase.yml`,
 que corre en cada cambio en la rama `main`: verifica formato y linter, corre todas las
-pruebas, construye la app y la publica. No hay un comando local de publicación: publicar
-es integrar el cambio en `main`.
+pruebas, construye la app y la publica junto con las reglas de Firestore. Publicar es
+integrar el cambio en `main`.
 
-La app publicada está en https://abrittaf.github.io/riders/.
+La app publicada está en https://riders-65821.web.app.
 
-Preparación, ya hecha para este repositorio y necesaria una sola vez en uno nuevo: en
-GitHub, en Settings → Pages, elegir «GitHub Actions» como origen (Source). La dirección
-publicada tiene la forma `https://<usuario>.github.io/<repositorio>/`.
+Preparación, ya hecha para este repositorio y necesaria una sola vez en uno nuevo: crear
+el proyecto de Firebase como indica `docs/backend.md`, crear una cuenta de servicio de
+despliegue y guardar su clave como secreto del repositorio:
+
+```sh
+gcloud iam service-accounts create github-deploy --project <proyecto>
+for rol in roles/firebasehosting.admin roles/firebaserules.admin roles/firebaseauth.admin \
+  roles/serviceusage.apiKeysViewer roles/run.viewer roles/serviceusage.serviceUsageConsumer; do
+  gcloud projects add-iam-policy-binding <proyecto> \
+    --member serviceAccount:github-deploy@<proyecto>.iam.gserviceaccount.com --role $rol
+done
+gcloud iam service-accounts keys create clave.json \
+  --iam-account github-deploy@<proyecto>.iam.gserviceaccount.com
+gh secret set FIREBASE_SERVICE_ACCOUNT_RIDERS < clave.json && rm clave.json
+```
+
+La clave no entra nunca al repositorio. Publicar a mano desde la Mac, con la sesión del
+CLI de Firebase, sigue siendo posible: `npm run build && npx firebase deploy`.
 
 Para volver a una versión anterior se vuelve a publicar su commit: en la pestaña Actions,
-abrir la corrida de ese commit y elegir «Re-run all jobs».
+abrir la corrida de ese commit y elegir «Re-run all jobs». Firebase Hosting también guarda
+cada versión publicada: en la consola, Hosting → historial de versiones → «Revertir».
 
 ## Estructura
 
