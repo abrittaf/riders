@@ -1,8 +1,10 @@
 import type { EmulatorConfig } from './emulator-config.ts'
 import type { RiderAccountService } from './rider-account-service.ts'
+import type { RoadmapService } from './roadmap-service.ts'
 
 export interface Backend {
   riderAccount: RiderAccountService
+  roadmaps: RoadmapService
 }
 
 /** Configuración pública del proyecto de Firebase: no es un secreto (design.md, D7). */

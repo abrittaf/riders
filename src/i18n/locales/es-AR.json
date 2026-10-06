@@ -5,7 +5,8 @@
   "nav": {
     "options": "Opciones",
     "close": "Cerrar",
-    "offlineRegions": "Zonas sin conexión"
+    "offlineRegions": "Zonas sin conexión",
+    "roadmaps": "Roadmaps"
   },
   "options": {
     "title": "Opciones",
@@ -44,7 +45,12 @@
       "title": "Fuentes de datos del mapa",
       "openStreetMap": "Datos del mapa © colaboradores de OpenStreetMap, disponibles bajo la licencia Open Database License (ODbL).",
       "openMapTiles": "Esquema de las teselas vectoriales © OpenMapTiles.",
-      "openFreeMap": "Servicio de teselas y estilo del mapa provistos por OpenFreeMap."
+      "openFreeMap": "Servicio de teselas y estilo del mapa provistos por OpenFreeMap.",
+      "valhalla": "Cálculo de rutas con el motor de código abierto Valhalla, sobre datos de OpenStreetMap.",
+      "fossgis": "Servicio de ruteo provisto por FOSSGIS e.V. en su instancia comunitaria.",
+      "photon": "Búsqueda de lugares con Photon, geocodificador de código abierto sobre datos de OpenStreetMap, en la instancia pública de komoot.",
+      "routeData": "Datos de las rutas © colaboradores de OpenStreetMap (ODbL). Un camino mal cargado se corrige en openstreetmap.org/fixthemap.",
+      "contact": "Contacto del operador de la app:"
     }
   },
   "location": {
@@ -194,5 +200,54 @@
         "tooHigh": "La autonomía máxima es de 1000 km."
       }
     }
+  },
+  "roadmaps": {
+    "editor": {
+      "title": "Nuevo Roadmap",
+      "addPoint": "Agregar Point",
+      "noPoints": "Todavía no hay Points. Agregá la salida y la llegada.",
+      "points": "Points del Roadmap"
+    }
+  },
+  "pointLookup": {
+    "title": "Elegir un Point",
+    "cancel": "Cancelar",
+    "choose": "Elegir",
+    "modes": {
+      "search": "Buscar por nombre",
+      "byType": "Lugares por tipo"
+    },
+    "longPressHint": "También podés mantener el dedo sobre el mapa para elegir cualquier posición.",
+    "search": {
+      "label": "Nombre del lugar",
+      "submit": "Buscar",
+      "searching": "Buscando…",
+      "unavailable": "La búsqueda por nombre requiere conexión",
+      "noMatches": "No encontramos ningún lugar con ese nombre. Mantené el dedo sobre el mapa para elegir la posición a mano.",
+      "failed": "No se pudo consultar el buscador. Probá de nuevo."
+    },
+    "byType": {
+      "label": "Tipo de lugar",
+      "hint": "Elegí un tipo para ver los lugares de la zona visible del mapa.",
+      "none": "No hay {{type}} en la zona visible. Alejá el mapa o desplazalo."
+    },
+    "chosenPosition": {
+      "title": "Posición elegida",
+      "name": "Nombre del Point",
+      "confirm": "Confirmar",
+      "proposing": "Buscando el lugar más cercano…"
+    }
+  },
+  "placeTypes": {
+    "fuel": "Estación de servicio",
+    "lodging": "Alojamiento",
+    "restaurant": "Restaurante",
+    "point-of-interest": "Punto de interés"
+  },
+  "placeTypesPlural": {
+    "fuel": "estaciones de servicio",
+    "lodging": "alojamientos",
+    "restaurant": "restaurantes",
+    "point-of-interest": "puntos de interés"
   }
 }

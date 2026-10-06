@@ -1,0 +1,64 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 1547921747,
+        "osm_key": "amenity",
+        "osm_value": "fuel",
+        "type": "house",
+        "name": "YPF",
+        "street": "María Torres Frías",
+        "locality": "San Bernardo",
+        "city": "Rosario de Lerma",
+        "county": "Rosario de Lerma",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "4405",
+        "countrycode": "AR",
+        "extent": [-65.5754392, -24.9839974, -65.5748927, -24.9845396]
+      },
+      "geometry": { "type": "Point", "coordinates": [-65.5751835, -24.9842211] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 3453183483,
+        "osm_key": "amenity",
+        "osm_value": "fuel",
+        "type": "house",
+        "name": "YPF",
+        "street": "25 de Mayo",
+        "city": "Chicoana",
+        "county": "Chicoana",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "4423",
+        "countrycode": "AR"
+      },
+      "geometry": { "type": "Point", "coordinates": [-65.53392, -25.10483] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 3453181019,
+        "osm_key": "amenity",
+        "osm_value": "fuel",
+        "type": "house",
+        "name": "YPF",
+        "street": "Avenida Hipólito Yrigoyen",
+        "city": "La Merced",
+        "county": "San José de los Cerrillos",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "4421",
+        "countrycode": "AR"
+      },
+      "geometry": { "type": "Point", "coordinates": [-65.4886493, -24.9640673] }
+    }
+  ]
+}

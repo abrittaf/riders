@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 2124604526,
+        "osm_key": "place",
+        "osm_value": "house",
+        "type": "house",
+        "housenumber": "1500",
+        "street": "Caseros",
+        "district": "B Campo Caseros",
+        "city": "Salta",
+        "county": "Capital",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "4400",
+        "countrycode": "AR"
+      },
+      "geometry": { "type": "Point", "coordinates": [-65.42357, -24.7889005] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 11186894737,
+        "osm_key": "place",
+        "osm_value": "house",
+        "type": "house",
+        "housenumber": "1500",
+        "street": "Salta",
+        "city": "Arequito",
+        "county": "Departamento Caseros",
+        "state": "Santa Fe",
+        "country": "Argentina",
+        "postcode": "S2183",
+        "countrycode": "AR"
+      },
+      "geometry": { "type": "Point", "coordinates": [-61.4690767, -33.1513398] }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "R",
+        "osm_id": 2292041,
+        "osm_key": "place",
+        "osm_value": "village",
+        "type": "city",
+        "name": "Cachi",
+        "county": "Cachi",
+        "state": "Salta",
+        "country": "Argentina",
+        "countrycode": "AR",
+        "extra": { "admin_level": "8" },
+        "extent": [-66.1767529, -25.1145128, -66.1400342, -25.1287535]
+      },
+      "geometry": { "type": "Point", "coordinates": [-66.1619367, -25.1198873] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "R",
+        "osm_id": 3059840,
+        "osm_key": "boundary",
+        "osm_value": "administrative",
+        "type": "county",
+        "name": "Cachi",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "A4419",
+        "countrycode": "AR",
+        "extra": { "admin_level": "5" },
+        "extent": [-66.5990295, -24.7390752, -65.8324344, -25.2965423]
+      },
+      "geometry": { "type": "Point", "coordinates": [-66.235654, -25.0185357] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 125769898,
+        "osm_key": "highway",
+        "osm_value": "living_street",
+        "type": "street",
+        "name": "Cachi",
+        "locality": "El Tipal",
+        "district": "El Tipal",
+        "county": "Capital",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "4401",
+        "countrycode": "AR",
+        "extent": [-65.4795822, -24.7553747, -65.4686454, -24.7656875]
+      },
+      "geometry": { "type": "Point", "coordinates": [-65.474402, -24.76052] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 134191493,
+        "osm_key": "highway",
+        "osm_value": "residential",
+        "type": "street",
+        "name": "Cachi",
+        "district": "Ramón Abdala",
+        "city": "Rosario de la Frontera",
+        "county": "Rosario de la Frontera",
+        "state": "Salta",
+        "country": "Argentina",
+        "postcode": "A4190",
+        "countrycode": "AR",
+        "extent": [-64.9581428, -25.774806, -64.9538594, -25.7797018]
+      },
+      "geometry": { "type": "Point", "coordinates": [-64.956184, -25.7769699] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 198441311,
+        "osm_key": "place",
+        "osm_value": "hamlet",
+        "type": "district",
+        "name": "Cachi Adentro",
+        "city": "Cachi",
+        "county": "Cachi",
+        "state": "Salta",
+        "country": "Argentina",
+        "countrycode": "AR"
+      },
+      "geometry": { "type": "Point", "coordinates": [-66.217862, -25.1003444] }
+    }
+  ]
+}

@@ -1,0 +1,2151 @@
+{
+  "units": "kilometers",
+  "edges": [
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1,
+      "begin_shape_index": 0,
+      "length": 0.11,
+      "source_percent_along": 0.244
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3,
+      "begin_shape_index": 1,
+      "length": 0.141
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 4,
+      "begin_shape_index": 3,
+      "length": 0.137
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 5,
+      "begin_shape_index": 4,
+      "length": 0.14
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 6,
+      "begin_shape_index": 5,
+      "length": 0.14
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 7,
+      "begin_shape_index": 6,
+      "length": 0.128
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 8,
+      "begin_shape_index": 7,
+      "length": 0.007
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 9,
+      "begin_shape_index": 8,
+      "length": 0.013
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 10,
+      "begin_shape_index": 9,
+      "length": 0.008
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 11,
+      "begin_shape_index": 10,
+      "length": 0.12
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 12,
+      "begin_shape_index": 11,
+      "length": 0.009
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 13,
+      "begin_shape_index": 12,
+      "length": 0.007
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 14,
+      "begin_shape_index": 13,
+      "length": 0.009
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 15,
+      "begin_shape_index": 14,
+      "length": 0.126
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 16,
+      "begin_shape_index": 15,
+      "length": 0.007
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 17,
+      "begin_shape_index": 16,
+      "length": 0.008
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 18,
+      "begin_shape_index": 17,
+      "length": 0.124
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 19,
+      "begin_shape_index": 18,
+      "length": 0.013
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 20,
+      "begin_shape_index": 19,
+      "length": 0.006
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 21,
+      "begin_shape_index": 20,
+      "length": 0.102
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 22,
+      "begin_shape_index": 21,
+      "length": 0.017
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 23,
+      "begin_shape_index": 22,
+      "length": 0.013
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 25,
+      "begin_shape_index": 23,
+      "length": 0.059
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 26,
+      "begin_shape_index": 25,
+      "length": 0.065
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 27,
+      "begin_shape_index": 26,
+      "length": 0.014
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 28,
+      "begin_shape_index": 27,
+      "length": 0.014
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 29,
+      "begin_shape_index": 28,
+      "length": 0.118
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 30,
+      "begin_shape_index": 29,
+      "length": 0.001
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 31,
+      "begin_shape_index": 30,
+      "length": 0.012
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 32,
+      "begin_shape_index": 31,
+      "length": 0.009
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 33,
+      "begin_shape_index": 32,
+      "length": 0.002
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 34,
+      "begin_shape_index": 33,
+      "length": 0.102
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 35,
+      "begin_shape_index": 34,
+      "length": 0.008
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 36,
+      "begin_shape_index": 35,
+      "length": 0.01
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 37,
+      "begin_shape_index": 36,
+      "length": 0.007
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 38,
+      "begin_shape_index": 37,
+      "length": 0.065
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 39,
+      "begin_shape_index": 38,
+      "length": 0.061
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 40,
+      "begin_shape_index": 39,
+      "length": 0.011
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 41,
+      "begin_shape_index": 40,
+      "length": 0.012
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 42,
+      "begin_shape_index": 41,
+      "length": 0.063
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 43,
+      "begin_shape_index": 42,
+      "length": 0.058
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 44,
+      "begin_shape_index": 43,
+      "length": 0.014
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 45,
+      "begin_shape_index": 44,
+      "length": 0.015
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 47,
+      "begin_shape_index": 45,
+      "length": 0.114
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 48,
+      "begin_shape_index": 47,
+      "length": 0.013
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 51,
+      "begin_shape_index": 48,
+      "length": 0.061
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 52,
+      "begin_shape_index": 51,
+      "length": 0.032
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 53,
+      "begin_shape_index": 52,
+      "length": 0.024
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 54,
+      "begin_shape_index": 53,
+      "length": 0.032
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 55,
+      "begin_shape_index": 54,
+      "length": 0.146
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 56,
+      "begin_shape_index": 55,
+      "length": 0.032
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 58,
+      "begin_shape_index": 56,
+      "length": 0.098
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 59,
+      "begin_shape_index": 58,
+      "length": 0.006
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 62,
+      "begin_shape_index": 59,
+      "length": 0.081
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 63,
+      "begin_shape_index": 62,
+      "length": 0.014
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 68,
+      "begin_shape_index": 63,
+      "length": 0.076
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 72,
+      "begin_shape_index": 68,
+      "length": 0.255
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 75,
+      "begin_shape_index": 72,
+      "length": 0.34
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 76,
+      "begin_shape_index": 75,
+      "length": 0.251
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 77,
+      "begin_shape_index": 76,
+      "length": 0.191
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 79,
+      "begin_shape_index": 77,
+      "length": 0.078
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 82,
+      "begin_shape_index": 79,
+      "length": 0.076
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 83,
+      "begin_shape_index": 82,
+      "length": 0.005
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 87,
+      "begin_shape_index": 83,
+      "length": 0.584
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 88,
+      "begin_shape_index": 87,
+      "length": 0.023
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 89,
+      "begin_shape_index": 88,
+      "length": 0.101
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 92,
+      "begin_shape_index": 89,
+      "length": 0.092
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 93,
+      "begin_shape_index": 92,
+      "length": 0.144
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 94,
+      "begin_shape_index": 93,
+      "length": 0.044
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 95,
+      "begin_shape_index": 94,
+      "length": 0.185
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 98,
+      "begin_shape_index": 95,
+      "length": 0.217
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 127,
+      "begin_shape_index": 98,
+      "length": 0.448,
+      "sign": {}
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 128,
+      "begin_shape_index": 127,
+      "length": 0.046
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 129,
+      "begin_shape_index": 128,
+      "length": 0.055
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 130,
+      "begin_shape_index": 129,
+      "length": 0.083
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 131,
+      "begin_shape_index": 130,
+      "length": 0.015
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 132,
+      "begin_shape_index": 131,
+      "length": 0.01
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 133,
+      "begin_shape_index": 132,
+      "length": 0.088
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 136,
+      "begin_shape_index": 133,
+      "length": 0.303
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 139,
+      "begin_shape_index": 136,
+      "length": 0.729
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 140,
+      "begin_shape_index": 139,
+      "length": 0.198
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 141,
+      "begin_shape_index": 140,
+      "length": 0.048
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 143,
+      "begin_shape_index": 141,
+      "length": 0.155
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 154,
+      "begin_shape_index": 143,
+      "length": 1.145
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 158,
+      "begin_shape_index": 154,
+      "length": 0.25
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 159,
+      "begin_shape_index": 158,
+      "length": 0.269
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 160,
+      "begin_shape_index": 159,
+      "length": 0.158
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 161,
+      "begin_shape_index": 160,
+      "length": 0.093
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 164,
+      "begin_shape_index": 161,
+      "length": 0.211
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 165,
+      "begin_shape_index": 164,
+      "length": 0.205
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 166,
+      "begin_shape_index": 165,
+      "length": 0.118
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 169,
+      "begin_shape_index": 166,
+      "length": 0.411
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 172,
+      "begin_shape_index": 169,
+      "length": 0.198
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 173,
+      "begin_shape_index": 172,
+      "length": 0.031
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 175,
+      "begin_shape_index": 173,
+      "length": 0.267
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 187,
+      "begin_shape_index": 175,
+      "length": 1.057
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 189,
+      "begin_shape_index": 187,
+      "length": 0.237
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 190,
+      "begin_shape_index": 189,
+      "length": 0.045
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 192,
+      "begin_shape_index": 190,
+      "length": 0.229
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 202,
+      "begin_shape_index": 192,
+      "length": 1.628
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 203,
+      "begin_shape_index": 202,
+      "length": 0.183
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 204,
+      "begin_shape_index": 203,
+      "length": 0.044
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 205,
+      "begin_shape_index": 204,
+      "length": 0.196
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 212,
+      "begin_shape_index": 205,
+      "length": 0.544
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 215,
+      "begin_shape_index": 212,
+      "length": 0.152
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 217,
+      "begin_shape_index": 215,
+      "length": 0.24
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 218,
+      "begin_shape_index": 217,
+      "length": 0.249
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 220,
+      "begin_shape_index": 218,
+      "length": 0.36
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 235,
+      "begin_shape_index": 220,
+      "length": 0.967
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 237,
+      "begin_shape_index": 235,
+      "length": 0.239
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 238,
+      "begin_shape_index": 237,
+      "length": 0.04
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 240,
+      "begin_shape_index": 238,
+      "length": 0.283
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 251,
+      "begin_shape_index": 240,
+      "length": 0.563
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 252,
+      "begin_shape_index": 251,
+      "length": 0.246
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 253,
+      "begin_shape_index": 252,
+      "length": 0.018
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 255,
+      "begin_shape_index": 253,
+      "length": 0.222
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 264,
+      "begin_shape_index": 255,
+      "length": 1.299
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 266,
+      "begin_shape_index": 264,
+      "length": 0.214
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 267,
+      "begin_shape_index": 266,
+      "length": 0.018
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 270,
+      "begin_shape_index": 267,
+      "length": 0.228
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 273,
+      "begin_shape_index": 270,
+      "length": 0.798
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 283,
+      "begin_shape_index": 273,
+      "length": 0.523
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 284,
+      "begin_shape_index": 283,
+      "length": 0.071
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 289,
+      "begin_shape_index": 284,
+      "length": 0.242
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 299,
+      "begin_shape_index": 289,
+      "length": 1.45
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 300,
+      "begin_shape_index": 299,
+      "length": 0.058
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 310,
+      "begin_shape_index": 300,
+      "length": 1.172
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 320,
+      "begin_shape_index": 310,
+      "length": 0.372
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 321,
+      "begin_shape_index": 320,
+      "length": 0.005
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 322,
+      "begin_shape_index": 321,
+      "length": 0.015
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 325,
+      "begin_shape_index": 322,
+      "length": 0.038
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 326,
+      "begin_shape_index": 325,
+      "length": 0.025
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 330,
+      "begin_shape_index": 326,
+      "length": 0.713
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 335,
+      "begin_shape_index": 330,
+      "length": 0.18
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 338,
+      "begin_shape_index": 335,
+      "length": 0.4
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 339,
+      "begin_shape_index": 338,
+      "length": 0.091
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 340,
+      "begin_shape_index": 339,
+      "length": 0.049
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 345,
+      "begin_shape_index": 340,
+      "length": 0.25
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 346,
+      "begin_shape_index": 345,
+      "length": 0.057
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 347,
+      "begin_shape_index": 346,
+      "length": 0.114
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 348,
+      "begin_shape_index": 347,
+      "length": 0.143
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 349,
+      "begin_shape_index": 348,
+      "length": 0.157
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 350,
+      "begin_shape_index": 349,
+      "length": 0.154
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 351,
+      "begin_shape_index": 350,
+      "length": 0.015
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 352,
+      "begin_shape_index": 351,
+      "length": 0.157
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 353,
+      "begin_shape_index": 352,
+      "length": 0.2
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 354,
+      "begin_shape_index": 353,
+      "length": 0.063
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 357,
+      "begin_shape_index": 354,
+      "length": 0.131
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 358,
+      "begin_shape_index": 357,
+      "length": 0.14
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 359,
+      "begin_shape_index": 358,
+      "length": 0.111
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 360,
+      "begin_shape_index": 359,
+      "length": 0.031
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 361,
+      "begin_shape_index": 360,
+      "length": 0.086
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 362,
+      "begin_shape_index": 361,
+      "length": 0.094
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 365,
+      "begin_shape_index": 362,
+      "length": 0.155
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 366,
+      "begin_shape_index": 365,
+      "length": 0.069
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 367,
+      "begin_shape_index": 366,
+      "length": 0.096
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 368,
+      "begin_shape_index": 367,
+      "length": 0.158
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 369,
+      "begin_shape_index": 368,
+      "length": 0.047
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 370,
+      "begin_shape_index": 369,
+      "length": 0.165
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 371,
+      "begin_shape_index": 370,
+      "length": 0.19
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 373,
+      "begin_shape_index": 371,
+      "length": 0.067
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 377,
+      "begin_shape_index": 373,
+      "length": 0.157
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 378,
+      "begin_shape_index": 377,
+      "length": 0.077
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 379,
+      "begin_shape_index": 378,
+      "length": 0.134
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 384,
+      "begin_shape_index": 379,
+      "length": 0.356
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 390,
+      "begin_shape_index": 384,
+      "length": 0.295
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 391,
+      "begin_shape_index": 390,
+      "length": 0.126
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 399,
+      "begin_shape_index": 391,
+      "length": 0.367
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 400,
+      "begin_shape_index": 399,
+      "length": 0.149
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 401,
+      "begin_shape_index": 400,
+      "length": 0.083
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 402,
+      "begin_shape_index": 401,
+      "length": 0.078
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 404,
+      "begin_shape_index": 402,
+      "length": 0.462
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 408,
+      "begin_shape_index": 404,
+      "length": 0.378
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 412,
+      "begin_shape_index": 408,
+      "length": 0.336
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 414,
+      "begin_shape_index": 412,
+      "length": 0.363
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 434,
+      "begin_shape_index": 414,
+      "length": 1.914
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 435,
+      "begin_shape_index": 434,
+      "length": 0.107
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 436,
+      "begin_shape_index": 435,
+      "length": 0.142
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 437,
+      "begin_shape_index": 436,
+      "length": 0.139
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 438,
+      "begin_shape_index": 437,
+      "length": 0.136
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 439,
+      "begin_shape_index": 438,
+      "length": 0.149
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 440,
+      "begin_shape_index": 439,
+      "length": 0.053
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 441,
+      "begin_shape_index": 440,
+      "length": 0.051
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 442,
+      "begin_shape_index": 441,
+      "length": 0.07
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 445,
+      "begin_shape_index": 442,
+      "length": 0.153
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 447,
+      "begin_shape_index": 445,
+      "length": 0.122
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 448,
+      "begin_shape_index": 447,
+      "length": 0.112
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 449,
+      "begin_shape_index": 448,
+      "length": 0.009
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 450,
+      "begin_shape_index": 449,
+      "length": 0.216
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 451,
+      "begin_shape_index": 450,
+      "length": 0.109
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 457,
+      "begin_shape_index": 451,
+      "length": 0.555
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 458,
+      "begin_shape_index": 457,
+      "length": 0.063
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 461,
+      "begin_shape_index": 458,
+      "length": 0.256
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 475,
+      "begin_shape_index": 461,
+      "length": 1.696
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 506,
+      "begin_shape_index": 475,
+      "length": 3.334
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 511,
+      "begin_shape_index": 506,
+      "length": 0.351
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 517,
+      "begin_shape_index": 511,
+      "length": 1.096
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 521,
+      "begin_shape_index": 517,
+      "length": 0.33
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 522,
+      "begin_shape_index": 521,
+      "length": 0.119
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 523,
+      "begin_shape_index": 522,
+      "length": 1.036
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 525,
+      "begin_shape_index": 523,
+      "length": 0.366
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 526,
+      "begin_shape_index": 525,
+      "length": 0.114
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 527,
+      "begin_shape_index": 526,
+      "length": 0.535
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 528,
+      "begin_shape_index": 527,
+      "length": 0.013
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 529,
+      "begin_shape_index": 528,
+      "length": 0.137
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 530,
+      "begin_shape_index": 529,
+      "length": 0.161
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 537,
+      "begin_shape_index": 530,
+      "length": 0.269
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 540,
+      "begin_shape_index": 537,
+      "length": 0.325
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 541,
+      "begin_shape_index": 540,
+      "length": 0.114
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 543,
+      "begin_shape_index": 541,
+      "length": 0.238
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 546,
+      "begin_shape_index": 543,
+      "length": 0.249
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 548,
+      "begin_shape_index": 546,
+      "length": 0.042
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 551,
+      "begin_shape_index": 548,
+      "length": 0.105
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 552,
+      "begin_shape_index": 551,
+      "length": 0.07
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 553,
+      "begin_shape_index": 552,
+      "length": 0.039
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 554,
+      "begin_shape_index": 553,
+      "length": 0.135
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 556,
+      "begin_shape_index": 554,
+      "length": 0.129
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 557,
+      "begin_shape_index": 556,
+      "length": 0.134
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 559,
+      "begin_shape_index": 557,
+      "length": 0.14
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 562,
+      "begin_shape_index": 559,
+      "length": 0.839
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 563,
+      "begin_shape_index": 562,
+      "length": 0.387
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 568,
+      "begin_shape_index": 563,
+      "length": 0.733
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 569,
+      "begin_shape_index": 568,
+      "length": 0.049
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 570,
+      "begin_shape_index": 569,
+      "length": 0.396
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 571,
+      "begin_shape_index": 570,
+      "length": 0.234
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 572,
+      "begin_shape_index": 571,
+      "length": 0.456
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 573,
+      "begin_shape_index": 572,
+      "length": 0.186
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 574,
+      "begin_shape_index": 573,
+      "length": 0.073
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 575,
+      "begin_shape_index": 574,
+      "length": 0.098
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 576,
+      "begin_shape_index": 575,
+      "length": 0.021
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 577,
+      "begin_shape_index": 576,
+      "length": 0.113
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 578,
+      "begin_shape_index": 577,
+      "length": 0.102
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 579,
+      "begin_shape_index": 578,
+      "length": 0.046
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 581,
+      "begin_shape_index": 579,
+      "length": 0.038
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 584,
+      "begin_shape_index": 581,
+      "length": 0.04
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 585,
+      "begin_shape_index": 584,
+      "length": 0.023
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 587,
+      "begin_shape_index": 585,
+      "length": 0.196
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 588,
+      "begin_shape_index": 587,
+      "length": 0.064
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 589,
+      "begin_shape_index": 588,
+      "length": 0.127
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 591,
+      "begin_shape_index": 589,
+      "length": 0.295
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 602,
+      "begin_shape_index": 591,
+      "length": 1.737
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 606,
+      "begin_shape_index": 602,
+      "length": 1.152
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 607,
+      "begin_shape_index": 606,
+      "length": 0.02
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 609,
+      "begin_shape_index": 607,
+      "length": 1.265
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 632,
+      "begin_shape_index": 609,
+      "length": 2.674
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 633,
+      "begin_shape_index": 632,
+      "length": 0.032
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 752,
+      "begin_shape_index": 633,
+      "length": 5.842
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 753,
+      "begin_shape_index": 752,
+      "length": 0.096
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 769,
+      "begin_shape_index": 753,
+      "length": 0.688
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 777,
+      "begin_shape_index": 769,
+      "length": 0.772
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 778,
+      "begin_shape_index": 777,
+      "length": 0.127
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 782,
+      "begin_shape_index": 778,
+      "length": 0.341
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 854,
+      "begin_shape_index": 782,
+      "length": 2.157
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 886,
+      "begin_shape_index": 854,
+      "length": 1.091
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 893,
+      "begin_shape_index": 886,
+      "length": 0.261
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 896,
+      "begin_shape_index": 893,
+      "length": 0.05
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 897,
+      "begin_shape_index": 896,
+      "length": 0.009
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 901,
+      "begin_shape_index": 897,
+      "length": 0.106
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 925,
+      "begin_shape_index": 901,
+      "length": 1.004
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 990,
+      "begin_shape_index": 925,
+      "length": 2.508
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 997,
+      "begin_shape_index": 990,
+      "length": 0.269
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1072,
+      "begin_shape_index": 997,
+      "length": 3.701
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1076,
+      "begin_shape_index": 1072,
+      "length": 0.131
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1077,
+      "begin_shape_index": 1076,
+      "length": 0.051
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1243,
+      "begin_shape_index": 1077,
+      "length": 4.196
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1313,
+      "begin_shape_index": 1243,
+      "length": 1.345
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1391,
+      "begin_shape_index": 1313,
+      "length": 1.483
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1418,
+      "begin_shape_index": 1391,
+      "length": 0.573
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1466,
+      "begin_shape_index": 1418,
+      "length": 1.187
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1497,
+      "begin_shape_index": 1466,
+      "length": 0.903
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1509,
+      "begin_shape_index": 1497,
+      "length": 0.332
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1516,
+      "begin_shape_index": 1509,
+      "length": 0.175
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1520,
+      "begin_shape_index": 1516,
+      "length": 0.083
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1529,
+      "begin_shape_index": 1520,
+      "length": 0.295
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1533,
+      "begin_shape_index": 1529,
+      "length": 0.074
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1544,
+      "begin_shape_index": 1533,
+      "length": 0.698
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1549,
+      "begin_shape_index": 1544,
+      "length": 0.279
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1550,
+      "begin_shape_index": 1549,
+      "length": 0.085
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1552,
+      "begin_shape_index": 1550,
+      "length": 0.711
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 1561,
+      "begin_shape_index": 1552,
+      "length": 0.292
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 1746,
+      "begin_shape_index": 1561,
+      "length": 4.265
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 1854,
+      "begin_shape_index": 1746,
+      "length": 2.735
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 1868,
+      "begin_shape_index": 1854,
+      "length": 0.385
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 1880,
+      "begin_shape_index": 1868,
+      "length": 0.295
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 1894,
+      "begin_shape_index": 1880,
+      "length": 0.28
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 2002,
+      "begin_shape_index": 1894,
+      "length": 2.688
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 2095,
+      "begin_shape_index": 2002,
+      "length": 1.927
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 2167,
+      "begin_shape_index": 2095,
+      "length": 1.845
+    },
+    {
+      "surface": "compacted",
+      "end_shape_index": 2224,
+      "begin_shape_index": 2167,
+      "length": 1.266
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2243,
+      "begin_shape_index": 2224,
+      "length": 0.327
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2244,
+      "begin_shape_index": 2243,
+      "length": 0.023
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2304,
+      "begin_shape_index": 2244,
+      "length": 1.3
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2312,
+      "begin_shape_index": 2304,
+      "length": 0.251
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2344,
+      "begin_shape_index": 2312,
+      "length": 0.738
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2418,
+      "begin_shape_index": 2344,
+      "length": 1.644
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2422,
+      "begin_shape_index": 2418,
+      "length": 0.086
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2423,
+      "begin_shape_index": 2422,
+      "length": 0.026
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2433,
+      "begin_shape_index": 2423,
+      "length": 1.159
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2439,
+      "begin_shape_index": 2433,
+      "length": 0.373
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2442,
+      "begin_shape_index": 2439,
+      "length": 0.151
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2486,
+      "begin_shape_index": 2442,
+      "length": 4.889
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2570,
+      "begin_shape_index": 2486,
+      "length": 7.884
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2600,
+      "begin_shape_index": 2570,
+      "length": 1.576
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2604,
+      "begin_shape_index": 2600,
+      "length": 1.901
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2605,
+      "begin_shape_index": 2604,
+      "length": 0.181
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2606,
+      "begin_shape_index": 2605,
+      "length": 0.166
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2608,
+      "begin_shape_index": 2606,
+      "length": 1.531
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2609,
+      "begin_shape_index": 2608,
+      "length": 0.475
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2614,
+      "begin_shape_index": 2609,
+      "length": 1.684
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2615,
+      "begin_shape_index": 2614,
+      "length": 0.009
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2624,
+      "begin_shape_index": 2615,
+      "length": 5.024
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2631,
+      "begin_shape_index": 2624,
+      "length": 0.45
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2637,
+      "begin_shape_index": 2631,
+      "length": 0.347
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2639,
+      "begin_shape_index": 2637,
+      "length": 0.207
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2640,
+      "begin_shape_index": 2639,
+      "length": 0.022
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2824,
+      "begin_shape_index": 2640,
+      "length": 14.265
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2825,
+      "begin_shape_index": 2824,
+      "length": 0.044
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2827,
+      "begin_shape_index": 2825,
+      "length": 0.443
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2830,
+      "begin_shape_index": 2827,
+      "length": 0.105
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2832,
+      "begin_shape_index": 2830,
+      "length": 0.275
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2833,
+      "begin_shape_index": 2832,
+      "length": 0.109
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2834,
+      "begin_shape_index": 2833,
+      "length": 0.09
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2835,
+      "begin_shape_index": 2834,
+      "length": 0.131
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2841,
+      "begin_shape_index": 2835,
+      "length": 0.223
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2843,
+      "begin_shape_index": 2841,
+      "length": 0.083
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2849,
+      "begin_shape_index": 2843,
+      "length": 0.135
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2851,
+      "begin_shape_index": 2849,
+      "length": 0.019
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2852,
+      "begin_shape_index": 2851,
+      "length": 0.022
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2853,
+      "begin_shape_index": 2852,
+      "length": 0.036
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2855,
+      "begin_shape_index": 2853,
+      "length": 0.046
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2857,
+      "begin_shape_index": 2855,
+      "length": 0.075
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2859,
+      "begin_shape_index": 2857,
+      "length": 0.053
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2866,
+      "begin_shape_index": 2859,
+      "length": 0.456
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2877,
+      "begin_shape_index": 2866,
+      "length": 0.42
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2915,
+      "begin_shape_index": 2877,
+      "length": 2.142
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2918,
+      "begin_shape_index": 2915,
+      "length": 0.256
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2953,
+      "begin_shape_index": 2918,
+      "length": 1.541
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2966,
+      "begin_shape_index": 2953,
+      "length": 0.292
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2969,
+      "begin_shape_index": 2966,
+      "length": 0.032
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2977,
+      "begin_shape_index": 2969,
+      "length": 0.43
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2979,
+      "begin_shape_index": 2977,
+      "length": 0.017
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 2988,
+      "begin_shape_index": 2979,
+      "length": 0.354
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3009,
+      "begin_shape_index": 2988,
+      "length": 1.446
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3031,
+      "begin_shape_index": 3009,
+      "length": 1.635
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3044,
+      "begin_shape_index": 3031,
+      "length": 0.465
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3054,
+      "begin_shape_index": 3044,
+      "length": 0.484
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3055,
+      "begin_shape_index": 3054,
+      "length": 0.195
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3059,
+      "begin_shape_index": 3055,
+      "length": 0.13
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3060,
+      "begin_shape_index": 3059,
+      "length": 0.137
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3061,
+      "begin_shape_index": 3060,
+      "length": 0.108
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3062,
+      "begin_shape_index": 3061,
+      "length": 0.076
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3065,
+      "begin_shape_index": 3062,
+      "length": 0.065
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3066,
+      "begin_shape_index": 3065,
+      "length": 0.049
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3067,
+      "begin_shape_index": 3066,
+      "length": 0.15
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3068,
+      "begin_shape_index": 3067,
+      "length": 0.107
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3071,
+      "begin_shape_index": 3068,
+      "length": 0.089
+    },
+    {
+      "surface": "paved_smooth",
+      "end_shape_index": 3075,
+      "begin_shape_index": 3071,
+      "length": 0.112,
+      "target_percent_along": 0.738
+    }
+  ],
+  "alternate_paths": []
+}

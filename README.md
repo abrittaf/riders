@@ -5,8 +5,10 @@ viajeros en moto a planificar y realizar viajes. Se distribuye como PWA (Progres
 App). Este repositorio contiene la base de la app: la PWA instalable, el mapa con la
 posición del Rider y la descarga de zonas del mapa para usarlas sin conexión.
 
-La especificación vive en `openspec/` (ver `docs/mapa-de-capabilities.md`). El proveedor
-del mapa y cómo reemplazarlo están documentados en `docs/proveedor-de-mapa.md`.
+La especificación vive en `openspec/` (ver `docs/mapa-de-capabilities.md`). Los proveedores
+externos y cómo reemplazarlos están documentados en `docs/proveedor-de-mapa.md` (teselas),
+`docs/proveedor-de-ruteo.md` (cálculo de rutas) y `docs/proveedor-de-busqueda.md`
+(búsqueda de lugares).
 
 ## Requisitos
 

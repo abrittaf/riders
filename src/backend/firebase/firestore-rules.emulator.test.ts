@@ -38,6 +38,39 @@ function newRider(overrides: Record<string, unknown> = {}) {
   }
 }
 
+const storedPoint = {
+  name: 'Salta',
+  latitude: -24.7859,
+  longitude: -65.4117,
+  source: 'known-place',
+  type: null,
+  date: null,
+}
+
+const storedLeg = {
+  distanceM: 167273,
+  durationS: 18547,
+  unpavedM: 15686,
+  geometry: 'abc',
+  surfaces: [{ fromIndex: 0, toIndex: 10, surface: 'paved' }],
+}
+
+function newRoadmap(overrides: Record<string, unknown> = {}) {
+  return {
+    ownerId: OWNER,
+    name: 'Ida a Cachi',
+    description: '',
+    status: 'planning',
+    points: [storedPoint, { ...storedPoint, name: 'Cachi' }],
+    legs: [storedLeg],
+    totalDistanceM: 167273,
+    totalDurationS: 18547,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    ...overrides,
+  }
+}
+
 function newVehicle(overrides: Record<string, unknown> = {}) {
   return {
     model: 'Honda XR 250',
@@ -193,6 +226,94 @@ describe('Reglas de Firestore', () => {
       await assertSucceeds(
         setDoc(vehicleDoc(OWNER), newVehicle({ rangeKm: 1000 })),
       )
+    })
+  })
+
+  describe('Roadmaps en planificación', () => {
+    const roadmapDoc = (uid: string | null, id = 'r1') =>
+      doc(context(uid), 'roadmaps', id)
+
+    async function givenOwnerRoadmap() {
+      await env.withSecurityRulesDisabled(async (admin) => {
+        await setDoc(doc(admin.firestore(), 'roadmaps', 'r1'), newRoadmap())
+      })
+    }
+
+    it('el autor crea un Roadmap válido a su nombre', async () => {
+      await assertSucceeds(setDoc(roadmapDoc(OWNER), newRoadmap()))
+    })
+
+    it('nadie crea un Roadmap a nombre de otro Rider', async () => {
+      await assertFails(setDoc(roadmapDoc(OTHER), newRoadmap()))
+      await assertFails(setDoc(roadmapDoc(null), newRoadmap()))
+    })
+
+    it('otro Rider identificado no lee, ni modifica, ni borra un Roadmap ajeno', async () => {
+      await givenOwnerRoadmap()
+      await assertFails(getDoc(roadmapDoc(OTHER)))
+      await assertFails(
+        updateDoc(roadmapDoc(OTHER), {
+          name: 'Robado',
+          updatedAt: serverTimestamp(),
+        }),
+      )
+      await assertFails(deleteDoc(roadmapDoc(OTHER)))
+    })
+
+    it('sin sesión no se lee ningún Roadmap', async () => {
+      await givenOwnerRoadmap()
+      await assertFails(getDoc(roadmapDoc(null)))
+    })
+
+    it('el autor lee, actualiza y borra su Roadmap', async () => {
+      await givenOwnerRoadmap()
+      await assertSucceeds(getDoc(roadmapDoc(OWNER)))
+      const stored = (await getDoc(roadmapDoc(OWNER))).data()!
+      await assertSucceeds(
+        setDoc(
+          roadmapDoc(OWNER),
+          newRoadmap({ name: 'Vuelta', createdAt: stored['createdAt'] }),
+        ),
+      )
+      await assertSucceeds(deleteDoc(roadmapDoc(OWNER)))
+    })
+
+    it('rechaza un Roadmap con un solo Point', async () => {
+      await assertFails(
+        setDoc(
+          roadmapDoc(OWNER),
+          newRoadmap({ points: [storedPoint], legs: [] }),
+        ),
+      )
+    })
+
+    it('rechaza tramos que no se corresponden con los Points', async () => {
+      await assertFails(setDoc(roadmapDoc(OWNER), newRoadmap({ legs: [] })))
+      await assertFails(
+        setDoc(roadmapDoc(OWNER), newRoadmap({ legs: [storedLeg, storedLeg] })),
+      )
+    })
+
+    it('rechaza nombres fuera de 2 a 60 caracteres y estados que no son planificación', async () => {
+      await assertFails(setDoc(roadmapDoc(OWNER), newRoadmap({ name: 'A' })))
+      await assertFails(
+        setDoc(roadmapDoc(OWNER), newRoadmap({ name: 'a'.repeat(61) })),
+      )
+      await assertFails(
+        setDoc(roadmapDoc(OWNER), newRoadmap({ status: 'convened' })),
+      )
+    })
+
+    it('el autor no puede cambiar el dueño ni la fecha de creación al actualizar', async () => {
+      await givenOwnerRoadmap()
+      const stored = (await getDoc(roadmapDoc(OWNER))).data()!
+      await assertFails(
+        setDoc(
+          roadmapDoc(OWNER),
+          newRoadmap({ ownerId: OTHER, createdAt: stored['createdAt'] }),
+        ),
+      )
+      await assertFails(setDoc(roadmapDoc(OWNER), newRoadmap()))
     })
   })
 })

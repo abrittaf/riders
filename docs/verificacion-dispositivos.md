@@ -149,6 +149,23 @@ Planilla de las tareas 7.1 a 7.3 de `openspec/changes/rider-onboarding/tasks.md`
 
 La 7.3 necesita una pantalla donde un Rider vea a otro, que llega con los próximos changes; mientras tanto se verifica con `readPublicProfile` desde la consola del navegador o se deja para el change que la use.
 
+## roadmap-planning en iPhone
+
+### 4.1 Toque sostenido sobre el mapa (antes de construir el resto del editor)
+
+Pantalla mínima: ingresar, tocar «Roadmaps», «Agregar Point» y mantener el dedo sobre el mapa medio segundo sin moverlo. Se completa a mano; "Pendiente" hasta que se haga.
+
+| Verificación | iPhone 17 Pro Max | iPhone 11 Pro Max |
+| --- | --- | --- |
+| Fecha, versión de iOS y dirección probada | Pendiente | Pendiente |
+| Al sostener el dedo aparece «Posición elegida» con las coordenadas del punto tocado | Pendiente | Pendiente |
+| No aparece el menú contextual de Safari (vista previa, copiar, compartir) | Pendiente | Pendiente |
+| No se selecciona texto ni se resalta el mapa | Pendiente | Pendiente |
+| Arrastrar y hacer zoom con dos dedos siguen funcionando igual | Pendiente | Pendiente |
+| Lo mismo con la app instalada en la pantalla de inicio | Pendiente | Pendiente |
+
+Si falla, se ajusta D6 del design antes de seguir con el editor (tarea 4.1).
+
 ## Medición para fijar el límite de teselas por zona
 
 `design.md` deja abierto el límite de teselas por zona (hoy 12000, provisorio). Para

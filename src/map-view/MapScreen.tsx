@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useIsOnline } from '../connectivity/online-context.ts'
 import {
   boundsIntersect,
+  type GeoPosition,
+  type MapMarker,
   type MapPlatform,
   type MapViewHandle,
   type OfflineRegion,
@@ -19,10 +21,14 @@ export function MapScreen({
   mapPlatform,
   mapRef,
   offlineRegions,
+  markers,
+  onLongPress,
 }: {
   mapPlatform: Pick<MapPlatform, 'MapView' | 'geolocation' | 'attributions'>
   mapRef: RefObject<MapViewHandle | null>
   offlineRegions: readonly OfflineRegion[]
+  markers?: readonly MapMarker[]
+  onLongPress?: (position: GeoPosition) => void
 }) {
   const { t, i18n } = useTranslation()
   const isOnline = useIsOnline()
@@ -72,6 +78,8 @@ export function MapScreen({
         ref={mapRef}
         language={i18n.language}
         ownPosition={ownPosition}
+        markers={markers}
+        onLongPress={onLongPress}
         onUnavailableAreaChange={(hasUnavailableArea) =>
           setUnavailableArea(
             hasUnavailableArea && mapRef.current

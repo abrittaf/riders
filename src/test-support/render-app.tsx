@@ -8,6 +8,7 @@ import {
   FakeGeolocation,
 } from './fake-map-platform.tsx'
 import { FakeOfflineRegionStore } from './fake-offline-region-store.ts'
+import { FakePlaceSearch } from './fake-place-search.ts'
 import { FakeRiderAccountService } from './fake-rider-account-service.ts'
 import { FakeConnectivity, notInstallablePlatform } from './fakes.ts'
 import { renderInSpanish } from './render-with-i18n.tsx'
@@ -18,11 +19,14 @@ export function renderApp(
     regions?: OfflineRegion[]
     storageRunningLow?: boolean
     riderAccount?: FakeRiderAccountService
+    placeSearch?: FakePlaceSearch
   } = {},
 ) {
   const connectivity = new FakeConnectivity()
   const riderAccount = options.riderAccount ?? new FakeRiderAccountService()
   const map = createFakeMapView()
+  const placeSearch = options.placeSearch ?? new FakePlaceSearch()
+  const geolocation = new FakeGeolocation()
   const offlineRegions = new FakeOfflineRegionStore(options.regions)
   offlineRegions.isRunningLow = options.storageRunningLow ?? false
   const rendered = renderInSpanish(
@@ -39,7 +43,12 @@ export function renderApp(
           MapView: map.MapView,
           tileSource: { getTile: () => Promise.reject(new Error('sin uso')) },
           offlineRegions,
-          geolocation: new FakeGeolocation(),
+          geolocation,
+          routeProvider: {
+            attributions: [],
+            calculateRoute: () => Promise.reject(new Error('sin uso')),
+          },
+          placeSearch,
           attributions: fakeAttributions,
         },
       }}
@@ -48,6 +57,8 @@ export function renderApp(
   return {
     connectivity,
     map,
+    geolocation,
+    placeSearch,
     offlineRegions,
     riderAccount,
     unmount: rendered.unmount,
