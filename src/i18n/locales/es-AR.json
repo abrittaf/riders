@@ -101,8 +101,18 @@
     "manage": "Elegir zonas para borrar"
   },
   "riderAccount": {
-    "signInWithGoogle": "Ingresar con Google",
+    "signIn": "Ingresar",
+    "retrySignIn": "Volver a ingresar",
+    "signOut": "Cerrar sesión",
+    "account": "Cuenta",
+    "accountTitle": "Tu cuenta",
     "signedInAs": "Ingresaste como {{name}}",
-    "signOut": "Cerrar sesión"
+    "signInRequiresConnection": "Ingresar requiere conexión",
+    "signInFailed": "El ingreso no se completó. Podés volver a intentarlo.",
+    "dismiss": "Cerrar",
+    "completeProfile": {
+      "title": "Completá tu perfil",
+      "intro": "Para que otros Riders te reconozcan, elegí tu nombre visible, armá tu avatar y cargá tu moto."
+    }
   }
 }

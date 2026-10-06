@@ -7,6 +7,7 @@ export type { Backend, BackendConfig } from './backend.ts'
 export type { EmulatorConfig } from './emulator-config.ts'
 export type {
   RiderAccountService,
+  RiderProfile,
   RiderSession,
   SignedInRider,
 } from './rider-account-service.ts'

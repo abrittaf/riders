@@ -15,10 +15,10 @@
 
 ## 3. Ingreso, sesión y uso sin cuenta (`rider-account`)
 
-- [ ] 3.1 Implementar el estado de sesión en la app (sin cuenta, identificado con perfil incompleto, identificado con perfil completo) y el acceso a ingresar desde la barra de la app; verificar con pruebas unitarias las transiciones entre los tres estados
-- [ ] 3.2 Implementar ingreso cancelado o fallido con su aviso, e ingreso señalado como no disponible sin conectividad; verificar con Playwright contra el emulador los dos escenarios
-- [ ] 3.3 Implementar cierre de sesión y verificar con Playwright que tras cerrar sesión la app vuelve al estado sin cuenta y que al reingresar el perfil está intacto
-- [ ] 3.4 Verificar con Playwright que sin cuenta el mapa, la posición propia y las zonas descargadas siguen funcionando y que la acción de ingresar está visible
+- [x] 3.1 Implementar el estado de sesión en la app (sin cuenta, identificado con perfil incompleto, identificado con perfil completo) y el acceso a ingresar desde la barra de la app; verificar con pruebas unitarias las transiciones entre los tres estados
+- [x] 3.2 Implementar ingreso cancelado o fallido con su aviso, e ingreso señalado como no disponible sin conectividad; verificar con Playwright contra el emulador los dos escenarios
+- [x] 3.3 Implementar cierre de sesión y verificar con Playwright que tras cerrar sesión la app vuelve al estado sin cuenta y que al reingresar el perfil está intacto
+- [x] 3.4 Verificar con Playwright que sin cuenta el mapa, la posición propia y las zonas descargadas siguen funcionando y que la acción de ingresar está visible
 
 ## 4. Avatar (`rider-account`)
 

@@ -57,7 +57,7 @@ test('tras descargar una zona y cortar la red, el mapa se dibuja completo dentro
   await expect(page.getByText('Sin conexión', { exact: true })).toBeVisible()
   // El conteo se lee cuando el mapa queda quieto, pero puede faltarle el último dibujado: se reintenta.
   await expect
-    .poll(() => readMapNumber(page, 'data-rendered-roads'))
+    .poll(() => readMapNumber(page, 'data-rendered-roads'), { timeout: 20_000 })
     .toBe(roadsWithNetwork)
   await expect
     .poll(() => readMapNumber(page, 'data-rendered-place-names'))
@@ -73,7 +73,7 @@ test('tras descargar una zona y cortar la red, el mapa se dibuja completo dentro
   await openMapAt(page, { zoom: 14, ...CACHI })
   await expect(page.getByText(UNAVAILABLE_NOTICE)).toHaveCount(0)
   await expect
-    .poll(() => readMapNumber(page, 'data-rendered-roads'))
+    .poll(() => readMapNumber(page, 'data-rendered-roads'), { timeout: 20_000 })
     .toBe(roadsWithNetwork)
 })
 

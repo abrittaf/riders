@@ -101,8 +101,18 @@
     "manage": "Choose areas to delete"
   },
   "riderAccount": {
-    "signInWithGoogle": "Sign in with Google",
+    "signIn": "Sign in",
+    "retrySignIn": "Sign in again",
+    "signOut": "Sign out",
+    "account": "Account",
+    "accountTitle": "Your account",
     "signedInAs": "Signed in as {{name}}",
-    "signOut": "Sign out"
+    "signInRequiresConnection": "Signing in requires a connection",
+    "signInFailed": "Sign-in did not complete. You can try again.",
+    "dismiss": "Close",
+    "completeProfile": {
+      "title": "Complete your profile",
+      "intro": "So other Riders can recognize you, choose your display name, build your avatar and add your motorcycle."
+    }
   }
 }

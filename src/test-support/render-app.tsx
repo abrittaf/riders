@@ -13,9 +13,14 @@ import { renderInSpanish } from './render-with-i18n.tsx'
 
 /** La app completa, con el mapa, el almacenamiento y la conectividad simulados. */
 export function renderApp(
-  options: { regions?: OfflineRegion[]; storageRunningLow?: boolean } = {},
+  options: {
+    regions?: OfflineRegion[]
+    storageRunningLow?: boolean
+    riderAccount?: FakeRiderAccountService
+  } = {},
 ) {
   const connectivity = new FakeConnectivity()
+  const riderAccount = options.riderAccount ?? new FakeRiderAccountService()
   const map = createFakeMapView()
   const offlineRegions = new FakeOfflineRegionStore(options.regions)
   offlineRegions.isRunningLow = options.storageRunningLow ?? false
@@ -27,7 +32,7 @@ export function renderApp(
         ),
         connectivity,
         installPlatform: notInstallablePlatform,
-        riderAccount: new FakeRiderAccountService(),
+        riderAccount,
         mapPlatform: {
           MapView: map.MapView,
           tileSource: { getTile: () => Promise.reject(new Error('sin uso')) },
@@ -38,5 +43,5 @@ export function renderApp(
       }}
     />,
   )
-  return { connectivity, map, offlineRegions }
+  return { connectivity, map, offlineRegions, riderAccount }
 }

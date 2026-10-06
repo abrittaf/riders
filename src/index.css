@@ -47,13 +47,19 @@ input {
   gap: 0.5rem;
 }
 
-.provisional-sign-in {
+.notice {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background: #fff4d6;
+}
+
+.notice p {
+  margin: 0 0 0.5rem;
+}
+
+.notice-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  background: #e5e5e5;
 }
 
 .app-content {
@@ -114,6 +120,23 @@ input {
 
 .unavailable-offline {
   color: #6b6b70;
+}
+
+/* En la barra no hay lugar para una línea más: la explicación flota debajo, sin mover el mapa. */
+.app-bar .online-only-action {
+  position: relative;
+}
+
+.app-bar .unavailable-offline {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  z-index: 5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
 }
 
 .install-prompt {

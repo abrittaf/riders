@@ -15,7 +15,11 @@ import type { MapPlatform, MapViewHandle } from './map-platform/index.ts'
 import { MapScreen } from './map-view/MapScreen.tsx'
 import { OfflineRegionsPanel } from './offline-maps/OfflineRegionsPanel.tsx'
 import { StorageWarning } from './offline-maps/StorageWarning.tsx'
-import { ProvisionalSignIn } from './rider-account/ProvisionalSignIn.tsx'
+import { AccountButton } from './rider-account/AccountButton.tsx'
+import { AccountPanel } from './rider-account/AccountPanel.tsx'
+import { ProfileIncompleteGate } from './rider-account/ProfileIncompleteGate.tsx'
+import { SignInFailedNotice } from './rider-account/SignInFailedNotice.tsx'
+import { useRiderSession } from './rider-account/use-rider-session.ts'
 import { useOfflineRegions } from './offline-maps/use-offline-regions.ts'
 
 export interface AppDependencies {
@@ -26,14 +30,15 @@ export interface AppDependencies {
   riderAccount: RiderAccountService
 }
 
-type OpenPanel = 'none' | 'options' | 'offline-regions'
+type OpenPanel = 'none' | 'options' | 'offline-regions' | 'account'
 
 export function App({ dependencies }: { dependencies: AppDependencies }) {
   const { t, i18n } = useTranslation()
   const [openPanel, setOpenPanel] = useState<OpenPanel>('none')
   const isOnline = useConnectivity(dependencies.connectivity)
   const mapRef = useRef<MapViewHandle>(null)
-  const { mapPlatform } = dependencies
+  const { mapPlatform, riderAccount } = dependencies
+  const session = useRiderSession(riderAccount)
   const offlineRegions = useOfflineRegions(mapPlatform.offlineRegions)
 
   useEffect(() => {
@@ -47,6 +52,11 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
           <h1>{t('app.name')}</h1>
           <ConnectivityIndicator />
           <nav>
+            <AccountButton
+              session={session}
+              onSignIn={() => void riderAccount.signIn()}
+              onOpenAccount={() => setOpenPanel('account')}
+            />
             <button
               type="button"
               onClick={() => setOpenPanel('offline-regions')}
@@ -58,7 +68,12 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
             </button>
           </nav>
         </header>
-        <ProvisionalSignIn riderAccount={dependencies.riderAccount} />
+        {session.status === 'signed-out' && session.signInFailed && (
+          <SignInFailedNotice
+            onRetry={() => void riderAccount.signIn()}
+            onDismiss={() => riderAccount.dismissSignInFailure()}
+          />
+        )}
         <InstallPrompt platform={dependencies.installPlatform} />
         <StorageWarning
           snapshot={offlineRegions}
@@ -75,6 +90,22 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
           <OptionsPanel
             languagePreference={dependencies.languagePreference}
             onClose={() => setOpenPanel('none')}
+          />
+        )}
+        {openPanel === 'account' && session.status === 'signed-in' && (
+          <AccountPanel
+            rider={session.rider}
+            profile={session.profile}
+            onSignOut={() => {
+              setOpenPanel('none')
+              void riderAccount.signOut()
+            }}
+            onClose={() => setOpenPanel('none')}
+          />
+        )}
+        {session.status === 'signed-in' && session.profile === null && (
+          <ProfileIncompleteGate
+            onSignOut={() => void riderAccount.signOut()}
           />
         )}
         {openPanel === 'offline-regions' && (

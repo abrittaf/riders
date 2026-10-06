@@ -25,5 +25,11 @@ export function createBackend(config: BackendConfig): Backend {
     })
     connectFirestoreEmulator(firestore, host, firestorePort)
   }
-  return { riderAccount: new FirebaseRiderAccountService(auth) }
+  return {
+    riderAccount: new FirebaseRiderAccountService(
+      auth,
+      firestore,
+      window.localStorage,
+    ),
+  }
 }
