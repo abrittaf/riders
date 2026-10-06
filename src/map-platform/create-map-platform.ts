@@ -16,7 +16,10 @@ import { OfflineFirstTileSource } from './offline/offline-first-tile-source.ts'
 import { StoredFirstMapResourceSource } from './offline/stored-first-map-resource-source.ts'
 import { OpenFreeMapProvider } from './providers/openfreemap/openfreemap-provider.ts'
 import { OPEN_MAP_TILES_VECTOR_SOURCE_ID } from './providers/openfreemap/openfreemap-style.ts'
+import { PhotonPlaceSearch } from './providers/photon/photon-place-search.ts'
 import { PmtilesSampleProvider } from './providers/pmtiles/pmtiles-sample-provider.ts'
+import { RequestPacer } from './providers/request-pacer.ts'
+import { ValhallaRouteProvider } from './providers/valhalla/valhalla-route-provider.ts'
 
 function createProvider(config: MapPlatformConfig): MapProvider {
   switch (config.tileProvider) {
@@ -74,6 +77,14 @@ export function createMapPlatform(
       ...config.offlineRegions,
     }),
     geolocation,
+    routeProvider: new ValhallaRouteProvider(
+      config.routing,
+      new RequestPacer(config.routing.minIntervalBetweenRequestsInMs),
+    ),
+    placeSearch: new PhotonPlaceSearch(
+      config.placeSearch,
+      new RequestPacer(config.placeSearch.minIntervalBetweenRequestsInMs),
+    ),
     attributions: provider.attributions,
   }
 }

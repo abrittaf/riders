@@ -1,6 +1,7 @@
 import { useEffect, useImperativeHandle } from 'react'
 import { vi } from 'vitest'
 import type {
+  GeoPosition,
   Geolocation,
   GeolocationState,
   MapAttribution,
@@ -45,6 +46,7 @@ export function createFakeMapView() {
     })),
     zoomIn: vi.fn(),
     retryUnavailableTiles: vi.fn(),
+    placesInView: vi.fn(() => []),
   } satisfies MapViewHandle
   let lastProps: MapViewProps | null = null
 
@@ -72,6 +74,9 @@ export function createFakeMapView() {
     handle,
     reportUnavailableArea(hasUnavailableArea: boolean) {
       lastProps?.onUnavailableAreaChange?.(hasUnavailableArea)
+    },
+    longPress(position: GeoPosition) {
+      lastProps?.onLongPress?.(position)
     },
   }
 }

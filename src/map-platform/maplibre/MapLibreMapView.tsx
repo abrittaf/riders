@@ -10,8 +10,14 @@ import { useEffect, useImperativeHandle, useRef } from 'react'
 import { boundsIntersect, type GeoBounds, type GeoPosition } from '../geo.ts'
 import type { MapProvider } from '../map-provider.ts'
 import type { MapView, MapViewProps } from '../map-view.ts'
+import type { Place, PlaceType } from '../place.ts'
+import {
+  placesInBounds,
+  POI_SOURCE_LAYER,
+} from '../providers/openfreemap/openmaptiles-places.ts'
 import { tileBounds } from '../tile-math.ts'
 import { type TileCoordinates, tileKey } from '../tile-source.ts'
+import { watchLongPress } from './long-press.ts'
 import type { MapLibreResourceProtocol } from './maplibre-resource-protocol.ts'
 
 export interface MapLibreMapViewDependencies {
@@ -33,7 +39,25 @@ function visibleBounds(map: MapLibreMap): GeoBounds {
   }
 }
 
-function exposeRenderDiagnostics(map: MapLibreMap, container: HTMLElement) {
+function queryPlacesInView(
+  map: MapLibreMap,
+  vectorSourceId: string,
+  types: readonly PlaceType[],
+  language: string,
+): Place[] {
+  if (!map.getSource(vectorSourceId)) return []
+  const features = map.querySourceFeatures(vectorSourceId, {
+    sourceLayer: POI_SOURCE_LAYER,
+  })
+  return placesInBounds(features, types, visibleBounds(map), language)
+}
+
+function exposeRenderDiagnostics(
+  map: MapLibreMap,
+  container: HTMLElement,
+  vectorSourceId: string,
+  language: () => string,
+) {
   map.on('movestart', () => {
     container.dataset.mapIdle = 'false'
   })
@@ -47,6 +71,11 @@ function exposeRenderDiagnostics(map: MapLibreMap, container: HTMLElement) {
     container.dataset.renderedRoads = countIn('transportation')
     container.dataset.renderedRoadNames = countIn('transportation_name')
     container.dataset.renderedPlaceNames = countIn('place')
+    container.dataset.fuelPlacesInView = JSON.stringify(
+      queryPlacesInView(map, vectorSourceId, ['fuel'], language()).map(
+        (place) => place.name,
+      ),
+    )
     container.dataset.zoom = String(map.getZoom())
     container.dataset.centerLatitude = String(map.getCenter().lat)
     container.dataset.centerLongitude = String(map.getCenter().lng)
@@ -71,6 +100,7 @@ export function createMapLibreMapView(
     language,
     ownPosition,
     onUnavailableAreaChange,
+    onLongPress,
   }: MapViewProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     const mapRef = useRef<MapLibreMap>(null)
@@ -80,6 +110,8 @@ export function createMapLibreMapView(
     const reportedUnavailableAreaRef = useRef(false)
     const onUnavailableAreaChangeRef = useRef(onUnavailableAreaChange)
     onUnavailableAreaChangeRef.current = onUnavailableAreaChange
+    const onLongPressRef = useRef(onLongPress)
+    onLongPressRef.current = onLongPress
 
     function reportUnavailableArea() {
       const map = mapRef.current
@@ -122,9 +154,22 @@ export function createMapLibreMapView(
       map.on('error', () => map.triggerRepaint())
       map.on('moveend', reportUnavailableArea)
       if (dependencies.exposeRenderDiagnostics) {
-        exposeRenderDiagnostics(map, container)
+        exposeRenderDiagnostics(
+          map,
+          container,
+          vectorSourceId,
+          () => styleLanguageRef.current,
+        )
       }
       mapRef.current = map
+      const stopWatchingLongPress = watchLongPress(container, (point) => {
+        const { lat, lng } = map.unproject([point.x, point.y])
+        const position = { latitude: lat, longitude: lng }
+        if (dependencies.exposeRenderDiagnostics) {
+          container.dataset.longPressPosition = `${lat},${lng}`
+        }
+        onLongPressRef.current?.(position)
+      })
 
       const unavailableTiles = unavailableTilesRef.current
       const unsubscribe = protocol.subscribeToTileOutcomes(
@@ -139,6 +184,7 @@ export function createMapLibreMapView(
       )
 
       return () => {
+        stopWatchingLongPress()
         unsubscribe()
         unavailableTiles.clear()
         markerRef.current = null
@@ -199,6 +245,16 @@ export function createMapLibreMapView(
           map.refreshTiles(vectorSourceId, unavailableTiles)
         }
         reportUnavailableArea()
+      },
+      placesInView(types) {
+        const map = mapRef.current
+        if (!map) return []
+        return queryPlacesInView(
+          map,
+          vectorSourceId,
+          types,
+          styleLanguageRef.current,
+        )
       },
     }))
 

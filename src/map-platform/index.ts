@@ -27,5 +27,25 @@ export type {
   StorageUsage,
 } from './offline-region-store.ts'
 export { DownloadNotAllowedError } from './offline-region-store.ts'
+export type { Place, PlaceType } from './place.ts'
+export type { PlaceSearch } from './place-search.ts'
+export { PlaceSearchUnavailableError } from './place-search.ts'
+export type { PolylinePrecision } from './polyline.ts'
+export { decodePolyline, encodePolyline } from './polyline.ts'
+export type {
+  RoadPreference,
+  RoadSurface,
+  Route,
+  RouteLeg,
+  RouteLimit,
+  RouteProvider,
+  RouteRequest,
+  SurfaceSegment,
+} from './route-provider.ts'
+export {
+  NoRouteError,
+  RouteLimitExceededError,
+  RouteServiceUnavailableError,
+} from './route-provider.ts'
 export type { Tile, TileCoordinates, TileSource } from './tile-source.ts'
 export { TileUnavailableError } from './tile-source.ts'

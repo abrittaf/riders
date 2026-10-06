@@ -1,5 +1,6 @@
 import type { ComponentType, Ref } from 'react'
 import type { GeoBounds, GeoPosition } from './geo.ts'
+import type { Place, PlaceType } from './place.ts'
 
 export interface MapViewHandle {
   /** Deja la posición en el centro del mapa manteniendo el nivel de detalle actual. */
@@ -8,6 +9,11 @@ export interface MapViewHandle {
   zoomIn(levels: number): void
   /** Vuelve a pedir las teselas que no se pudieron obtener (por ejemplo, al recuperar la conectividad). */
   retryUnavailableTiles(): void
+  /**
+   * Lugares de los tipos pedidos dentro de la zona visible, leídos de las teselas ya cargadas:
+   * funciona también sin conexión en una zona descargada. Con el mapa muy alejado no hay lugares.
+   */
+  placesInView(types: readonly PlaceType[]): Place[]
 }
 
 export interface OwnPositionMarker {
@@ -23,6 +29,8 @@ export interface MapViewProps {
   ownPosition: OwnPositionMarker | null
   /** Avisa si en la zona visible hay partes del mapa que no se pudieron obtener. */
   onUnavailableAreaChange?: (hasUnavailableArea: boolean) => void
+  /** Toque sostenido sobre el mapa: el gesto para elegir una posición cualquiera. */
+  onLongPress?: (position: GeoPosition) => void
 }
 
 /**

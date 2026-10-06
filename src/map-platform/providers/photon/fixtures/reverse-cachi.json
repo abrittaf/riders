@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 201704895,
+        "osm_key": "highway",
+        "osm_value": "residential",
+        "type": "street",
+        "name": "Sarmiento",
+        "city": "Cachi",
+        "county": "Cachi",
+        "state": "Salta",
+        "country": "Argentina",
+        "countrycode": "AR",
+        "extent": [-66.1665155, -25.1191946, -66.1647554, -25.1210836]
+      },
+      "geometry": { "type": "Point", "coordinates": [-66.1653822, -25.1203676] }
+    }
+  ]
+}

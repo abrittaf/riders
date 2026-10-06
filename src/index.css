@@ -173,6 +173,10 @@ input {
 .map-view {
   width: 100%;
   height: 100%;
+  /* El toque sostenido es un gesto del mapa: sin menú contextual ni selección de texto. */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .map-notice {

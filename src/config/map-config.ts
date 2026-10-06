@@ -2,7 +2,7 @@ import type { MapPlatformConfig } from '../map-platform/index.ts'
 
 /**
  * Configuración del mapa. El proveedor de teselas, su servidor y el estilo se cambian acá,
- * sin tocar el resto de la app. Ver docs/proveedor-de-mapa.md.
+ * sin tocar el resto de la app. Ver docs/proveedor-de-mapa.md, docs/proveedor-de-ruteo.md y docs/proveedor-de-busqueda.md.
  */
 export const mapConfig: MapPlatformConfig = {
   tileProvider:
@@ -16,6 +16,16 @@ export const mapConfig: MapPlatformConfig = {
   },
   pmtilesSample: {
     archiveUrl: `${import.meta.env.BASE_URL}sample-tiles/cachi.pmtiles`,
+  },
+  routing: {
+    serverUrl: 'https://valhalla1.openstreetmap.de',
+    costing: 'motorcycle',
+    minIntervalBetweenRequestsInMs: 1000,
+  },
+  placeSearch: {
+    serverUrl: 'https://photon.komoot.io',
+    maxResults: 10,
+    minIntervalBetweenRequestsInMs: 1000,
   },
   initialView: {
     center: { latitude: -38.4, longitude: -63.6 },

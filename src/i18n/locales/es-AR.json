@@ -44,7 +44,11 @@
       "title": "Fuentes de datos del mapa",
       "openStreetMap": "Datos del mapa © colaboradores de OpenStreetMap, disponibles bajo la licencia Open Database License (ODbL).",
       "openMapTiles": "Esquema de las teselas vectoriales © OpenMapTiles.",
-      "openFreeMap": "Servicio de teselas y estilo del mapa provistos por OpenFreeMap."
+      "openFreeMap": "Servicio de teselas y estilo del mapa provistos por OpenFreeMap.",
+      "valhalla": "Cálculo de rutas con el motor de código abierto Valhalla, sobre datos de OpenStreetMap.",
+      "fossgis": "Servicio de ruteo provisto por FOSSGIS e.V. en su instancia comunitaria.",
+      "photon": "Búsqueda de lugares con Photon, geocodificador de código abierto sobre datos de OpenStreetMap, en la instancia pública de komoot.",
+      "routeData": "Datos de las rutas © colaboradores de OpenStreetMap (ODbL). Un camino mal cargado se corrige en openstreetmap.org/fixthemap."
     }
   },
   "location": {

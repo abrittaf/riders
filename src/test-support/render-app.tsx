@@ -40,6 +40,15 @@ export function renderApp(
           tileSource: { getTile: () => Promise.reject(new Error('sin uso')) },
           offlineRegions,
           geolocation: new FakeGeolocation(),
+          routeProvider: {
+            attributions: [],
+            calculateRoute: () => Promise.reject(new Error('sin uso')),
+          },
+          placeSearch: {
+            attributions: [],
+            searchByName: () => Promise.reject(new Error('sin uso')),
+            findNearestPlace: () => Promise.reject(new Error('sin uso')),
+          },
           attributions: fakeAttributions,
         },
       }}
