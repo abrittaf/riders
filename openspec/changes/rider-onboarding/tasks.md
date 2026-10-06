@@ -22,9 +22,9 @@
 
 ## 4. Avatar (`rider-account`)
 
-- [ ] 4.1 Dibujar las capas SVG del sistema de avatares siguiendo `docs/rider-avatars-no-background.png` (cascos integral y rebatible en tres colores, visor con ojos, gafas, barba, cuatro accesorios de cuello) en `src/avatar/`; verificar con una prueba que toda combinación válida de opciones renderiza sin error y que la bandera a cuadros ignora el color
-- [ ] 4.2 Implementar el componente de armado del avatar con vista previa inmediata y propuesta inicial al azar; verificar con pruebas unitarias que cambiar una opción actualiza la vista previa y que la propuesta inicial es una combinación válida
-- [ ] 4.3 Implementar el componente de avatar en tamaño de perfil y en tamaño de marcador (el que usará el mapa); verificar visualmente en Playwright con capturas de referencia por combinación representativa
+- [x] 4.1 Dibujar las capas SVG del sistema de avatares siguiendo `docs/rider-avatars-no-background.png` (cascos integral y rebatible en tres colores, visor con ojos, gafas, barba, cuatro accesorios de cuello) en `src/avatar/`; verificar con una prueba que toda combinación válida de opciones renderiza sin error y que la bandera a cuadros ignora el color
+- [x] 4.2 Implementar el componente de armado del avatar con vista previa inmediata y propuesta inicial al azar; verificar con pruebas unitarias que cambiar una opción actualiza la vista previa y que la propuesta inicial es una combinación válida
+- [x] 4.3 Implementar el componente de avatar en tamaño de perfil y en tamaño de marcador (el que usará el mapa); verificar visualmente en Playwright con capturas de referencia por combinación representativa
 
 ## 5. Perfil y moto (`rider-account`, `rider-vehicles`)
 

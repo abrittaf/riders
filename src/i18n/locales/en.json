@@ -114,5 +114,39 @@
       "title": "Complete your profile",
       "intro": "So other Riders can recognize you, choose your display name, build your avatar and add your motorcycle."
     }
+  },
+  "avatar": {
+    "preview": "Preview of your avatar",
+    "helmetType": {
+      "label": "Helmet",
+      "full-face": "Full-face",
+      "modular": "Modular"
+    },
+    "helmetColor": {
+      "label": "Helmet color"
+    },
+    "neckwear": {
+      "label": "Neckwear",
+      "bandana": "Bandana",
+      "buff": "Buff",
+      "tube": "Tube",
+      "checkered-flag": "Checkered flag"
+    },
+    "neckwearColor": {
+      "label": "Neckwear color"
+    },
+    "colors": {
+      "white": "White",
+      "black": "Black",
+      "gray": "Gray",
+      "blue": "Blue",
+      "green": "Green",
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "light-blue": "Light blue"
+    },
+    "glasses": "Glasses",
+    "beard": "Beard"
   }
 }

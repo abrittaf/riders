@@ -114,5 +114,39 @@
       "title": "Completá tu perfil",
       "intro": "Para que otros Riders te reconozcan, elegí tu nombre visible, armá tu avatar y cargá tu moto."
     }
+  },
+  "avatar": {
+    "preview": "Vista previa de tu avatar",
+    "helmetType": {
+      "label": "Casco",
+      "full-face": "Integral",
+      "modular": "Rebatible"
+    },
+    "helmetColor": {
+      "label": "Color del casco"
+    },
+    "neckwear": {
+      "label": "Cuello",
+      "bandana": "Pañuelo",
+      "buff": "Buff",
+      "tube": "Cilindro",
+      "checkered-flag": "Bandera a cuadros"
+    },
+    "neckwearColor": {
+      "label": "Color del cuello"
+    },
+    "colors": {
+      "white": "Blanco",
+      "black": "Negro",
+      "gray": "Gris",
+      "blue": "Azul",
+      "green": "Verde",
+      "red": "Rojo",
+      "orange": "Naranja",
+      "yellow": "Amarillo",
+      "light-blue": "Celeste"
+    },
+    "glasses": "Gafas",
+    "beard": "Barba"
   }
 }

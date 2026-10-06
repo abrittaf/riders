@@ -132,6 +132,10 @@ cada versión publicada: en la consola, Hosting → historial de versiones → �
 ## Estructura
 
 - `src/app-shell/`: instalación, opciones e idioma.
+- `src/avatar/`: sistema de avatares de los Riders, dibujado en SVG a partir de opciones
+  (`docs/rider-avatars-no-background.png` es la referencia). Las capturas de referencia de
+  Playwright están en `e2e/capturas/`; se regeneran con
+  `npx playwright test e2e/avatares.spec.ts --update-snapshots`.
 - `src/backend/`: único módulo que conoce al proveedor de autenticación y de base de datos
   (Firebase). Expone `RiderAccountService`. Ver `docs/backend.md`.
 - `src/rider-account/`: ingreso y sesión del Rider.

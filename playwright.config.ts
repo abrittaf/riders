@@ -16,6 +16,10 @@ export default defineConfig({
     locale: 'es-AR',
     trace: 'on-first-retry',
   },
+  // Las capturas de referencia son las mismas en todas las plataformas, con una tolerancia mínima
+  // para diferencias de rasterizado entre versiones de Chromium.
+  snapshotPathTemplate: '{testDir}/capturas/{arg}{ext}',
+  expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.02 } },
   projects: [
     {
       name: 'celular-chromium',
