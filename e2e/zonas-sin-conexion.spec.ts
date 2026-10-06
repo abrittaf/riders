@@ -89,9 +89,12 @@ test('al recuperar la conectividad el mapa completa la zona que no estaba dispon
 
   await context.setOffline(false)
 
-  await expect(page.getByText(UNAVAILABLE_NOTICE)).toHaveCount(0)
+  // Las teselas se reintentan cada 3 s y en la máquina de GitHub tardan en llegar y dibujarse.
+  await expect(page.getByText(UNAVAILABLE_NOTICE)).toHaveCount(0, {
+    timeout: 20_000,
+  })
   await expect
-    .poll(() => readMapNumber(page, 'data-rendered-roads'))
+    .poll(() => readMapNumber(page, 'data-rendered-roads'), { timeout: 20_000 })
     .toBeGreaterThan(0)
 })
 
