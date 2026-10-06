@@ -115,6 +115,40 @@ Verificado el 2026-10-05 sobre `https://riders-65821.web.app`, con la app instal
 | Al volver, la app muestra al Rider identificado («Ingresaste como …») | Ok | Pendiente (7.6) |
 | Hizo falta la alternativa de D3 (`signInWithPopup`) | No | Pendiente (7.6) |
 
+## rider-onboarding en iPhone, sobre `https://riders-65821.web.app`
+
+Planilla de las tareas 7.1 a 7.3 de `openspec/changes/rider-onboarding/tasks.md`. Se completa a mano; "Pendiente" hasta que se haga.
+
+### 7.1 Instalación y zona descargada sobre la URL de Firebase Hosting
+
+| Verificación | iPhone 17 Pro Max | iPhone 11 Pro Max |
+| --- | --- | --- |
+| Fecha y versión de iOS | Pendiente | Pendiente |
+| Se instala desde Safari y abre sin la interfaz del navegador | Pendiente | Pendiente |
+| Abre sin red una vez instalada | Pendiente | Pendiente |
+| Una zona descargada se ve completa en modo avión y fuera de ella aparece el aviso | Pendiente | Pendiente |
+
+### 7.2 Flujo entero de la cuenta
+
+| Paso | iPhone 17 Pro Max | iPhone 11 Pro Max |
+| --- | --- | --- |
+| Ingresar con Google vuelve a la app instalada identificado | Pendiente | Pendiente |
+| Completar el perfil (nombre, avatar, moto) y volver al mapa | Pendiente | Pendiente |
+| Cerrar sesión y reingresar con el perfil intacto | Pendiente | Pendiente |
+| Editar el perfil en modo avión: se ve el cambio y "pendiente de sincronizar" | Pendiente | Pendiente |
+| Al volver la red el cambio se envía y el aviso desaparece | Pendiente | Pendiente |
+
+### 7.3 Segunda cuenta de Google
+
+| Verificación | Resultado |
+| --- | --- |
+| La segunda cuenta figura como usuario de prueba de la pantalla de consentimiento (si está en estado "Prueba") | Pendiente |
+| Ingresa y completa su perfil | Pendiente |
+| Ve el nombre y el avatar del primer Rider | Pendiente |
+| No ve la moto del primer Rider | Pendiente |
+
+La 7.3 necesita una pantalla donde un Rider vea a otro, que llega con los próximos changes; mientras tanto se verifica con `readPublicProfile` desde la consola del navegador o se deja para el change que la use.
+
 ## Medición para fijar el límite de teselas por zona
 
 `design.md` deja abierto el límite de teselas por zona (hoy 12000, provisorio). Para
