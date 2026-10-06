@@ -1,5 +1,6 @@
 import { App } from '../App.tsx'
 import { LocalStorageLanguagePreference } from '../i18n/language-preference.ts'
+import { LocalStorageProfileDraftStore } from '../rider-account/profile-draft-store.ts'
 import type { OfflineRegion } from '../map-platform/index.ts'
 import {
   createFakeMapView,
@@ -24,7 +25,7 @@ export function renderApp(
   const map = createFakeMapView()
   const offlineRegions = new FakeOfflineRegionStore(options.regions)
   offlineRegions.isRunningLow = options.storageRunningLow ?? false
-  renderInSpanish(
+  const rendered = renderInSpanish(
     <App
       dependencies={{
         languagePreference: new LocalStorageLanguagePreference(
@@ -33,6 +34,7 @@ export function renderApp(
         connectivity,
         installPlatform: notInstallablePlatform,
         riderAccount,
+        profileDrafts: new LocalStorageProfileDraftStore(window.localStorage),
         mapPlatform: {
           MapView: map.MapView,
           tileSource: { getTile: () => Promise.reject(new Error('sin uso')) },
@@ -43,5 +45,11 @@ export function renderApp(
       }}
     />,
   )
-  return { connectivity, map, offlineRegions, riderAccount }
+  return {
+    connectivity,
+    map,
+    offlineRegions,
+    riderAccount,
+    unmount: rendered.unmount,
+  }
 }

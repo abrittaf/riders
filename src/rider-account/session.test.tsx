@@ -5,6 +5,7 @@ import {
   FakeRiderAccountService,
   sampleProfile,
   sampleRider,
+  sampleVehicle,
 } from '../test-support/fake-rider-account-service.ts'
 import { renderApp } from '../test-support/render-app.tsx'
 
@@ -43,6 +44,7 @@ describe('Sesión del Rider', () => {
         status: 'signed-in',
         rider: sampleRider,
         profile: sampleProfile,
+        vehicle: sampleVehicle,
       }),
     )
 
@@ -68,6 +70,7 @@ describe('Sesión del Rider', () => {
       status: 'signed-in',
       rider: sampleRider,
       profile: sampleProfile,
+      vehicle: sampleVehicle,
     })
     renderApp({ riderAccount })
 

@@ -7,12 +7,22 @@ import {
   signOut,
   type User,
 } from 'firebase/auth'
-import { doc, type Firestore, onSnapshot } from 'firebase/firestore'
+import {
+  doc,
+  type DocumentReference,
+  type Firestore,
+  getDoc,
+  onSnapshot,
+  serverTimestamp,
+  writeBatch,
+} from 'firebase/firestore'
 import { isAvatarOptions } from '../../avatar/avatar-options.ts'
+import { isVehicle, type Vehicle } from '../../rider-vehicles/vehicle.ts'
 import type {
   RiderAccountService,
   RiderProfile,
   RiderSession,
+  SignedInRider,
 } from '../rider-account-service.ts'
 
 /** Marca que hay un ingreso en curso: se escribe al ir a Google y se borra al volver. */
@@ -25,7 +35,7 @@ export class FirebaseRiderAccountService implements RiderAccountService {
   private readonly listeners = new Set<() => void>()
   private session: RiderSession = { status: 'resolving' }
   private signInFailed = false
-  private stopWatchingProfile: (() => void) | null = null
+  private stopWatchingRider: (() => void) | null = null
 
   constructor(auth: Auth, firestore: Firestore, storage: Storage) {
     this.auth = auth
@@ -60,6 +70,42 @@ export class FirebaseRiderAccountService implements RiderAccountService {
     return () => this.listeners.delete(listener)
   }
 
+  async saveProfile(profile: RiderProfile, vehicle: Vehicle): Promise<void> {
+    if (this.session.status !== 'signed-in') {
+      throw new Error('No hay un Rider identificado')
+    }
+    const { rider, profile: storedProfile } = this.session
+    // Perfil y moto se guardan juntos (design.md, D4): el documento del Rider y su subdocumento privado.
+    const batch = writeBatch(this.firestore)
+    batch.set(
+      this.riderDoc(rider.id),
+      {
+        ...profile,
+        ...(storedProfile === null ? { createdAt: serverTimestamp() } : {}),
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    )
+    batch.set(this.vehicleDoc(rider.id), {
+      ...vehicle,
+      updatedAt: serverTimestamp(),
+    })
+    await batch.commit()
+  }
+
+  async readPublicProfile(riderId: string): Promise<RiderProfile | null> {
+    const snapshot = await getDoc(this.riderDoc(riderId))
+    return toRiderProfile(snapshot.data())
+  }
+
+  private riderDoc(riderId: string): DocumentReference {
+    return doc(this.firestore, 'riders', riderId)
+  }
+
+  private vehicleDoc(riderId: string): DocumentReference {
+    return doc(this.firestore, 'riders', riderId, 'private', 'vehicle')
+  }
+
   /**
    * Al volver de Google, un ingreso cancelado o fallido llega como rechazo de la redirección. Solo
    * cuenta si este dispositivo había iniciado un ingreso: sin red, la consulta también rechaza.
@@ -78,25 +124,36 @@ export class FirebaseRiderAccountService implements RiderAccountService {
   }
 
   private onUserChanged(user: User | null) {
-    this.stopWatchingProfile?.()
-    this.stopWatchingProfile = null
+    this.stopWatchingRider?.()
+    this.stopWatchingRider = null
     if (!user) {
       this.publish({ status: 'signed-out', signInFailed: this.signInFailed })
       return
     }
-    const rider = { id: user.uid, accountName: user.displayName }
+    const rider: SignedInRider = { id: user.uid, accountName: user.displayName }
     // La sesión se publica recién con el perfil leído, para no mostrarla incompleta por un instante.
-    this.stopWatchingProfile = onSnapshot(
-      doc(this.firestore, 'riders', user.uid),
-      (snapshot) => {
-        this.signInFailed = false
-        this.publish({
-          status: 'signed-in',
-          rider,
-          profile: toRiderProfile(snapshot.data()),
-        })
-      },
-    )
+    let profile: RiderProfile | null | undefined
+    let vehicle: Vehicle | null | undefined
+    const publishWhenRead = () => {
+      if (profile === undefined || vehicle === undefined) return
+      this.signInFailed = false
+      this.publish({ status: 'signed-in', rider, profile, vehicle })
+    }
+    const stopProfile = onSnapshot(this.riderDoc(user.uid), (snapshot) => {
+      profile = toRiderProfile(snapshot.data())
+      publishWhenRead()
+    })
+    const stopVehicle = onSnapshot(this.vehicleDoc(user.uid), (snapshot) => {
+      const data = snapshot.data()
+      vehicle = isVehicle(data)
+        ? { model: data.model, rangeKm: data.rangeKm }
+        : null
+      publishWhenRead()
+    })
+    this.stopWatchingRider = () => {
+      stopProfile()
+      stopVehicle()
+    }
   }
 
   private publish(session: RiderSession) {

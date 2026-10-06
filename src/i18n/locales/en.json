@@ -112,7 +112,8 @@
     "dismiss": "Close",
     "completeProfile": {
       "title": "Complete your profile",
-      "intro": "So other Riders can recognize you, choose your display name, build your avatar and add your motorcycle."
+      "intro": "So other Riders can recognize you, choose your display name, build your avatar and add your motorcycle.",
+      "submit": "Save and continue"
     }
   },
   "avatar": {
@@ -148,5 +149,38 @@
     },
     "glasses": "Glasses",
     "beard": "Beard"
+  },
+  "profile": {
+    "displayName": "Display name",
+    "save": "Save",
+    "edit": "Edit profile",
+    "avatarOf": "Avatar of {{name}}",
+    "errors": {
+      "displayName": {
+        "required": "Choose a display name.",
+        "tooShort": "The name needs at least 2 characters.",
+        "tooLong": "The name can have up to 24 characters."
+      }
+    }
+  },
+  "vehicle": {
+    "model": "Motorcycle make and model",
+    "rangeKm": "Range (km per tank)",
+    "rangeWithUnit": "{{value}} km",
+    "missing": "Not set",
+    "errors": {
+      "model": {
+        "required": "Enter the make and model.",
+        "tooShort": "The make and model need at least 2 characters.",
+        "tooLong": "The make and model can have up to 40 characters."
+      },
+      "rangeKm": {
+        "required": "Enter the range in kilometres.",
+        "notANumber": "The range must be a number.",
+        "notAnInteger": "The range must be a whole number, without decimals.",
+        "tooLow": "The minimum range is 50 km.",
+        "tooHigh": "The maximum range is 1000 km."
+      }
+    }
   }
 }

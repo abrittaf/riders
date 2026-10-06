@@ -17,7 +17,8 @@ import { OfflineRegionsPanel } from './offline-maps/OfflineRegionsPanel.tsx'
 import { StorageWarning } from './offline-maps/StorageWarning.tsx'
 import { AccountButton } from './rider-account/AccountButton.tsx'
 import { AccountPanel } from './rider-account/AccountPanel.tsx'
-import { ProfileIncompleteGate } from './rider-account/ProfileIncompleteGate.tsx'
+import type { ProfileDraftStore } from './rider-account/profile-draft-store.ts'
+import { ProfileSetupScreen } from './rider-account/ProfileSetupScreen.tsx'
 import { SignInFailedNotice } from './rider-account/SignInFailedNotice.tsx'
 import { useRiderSession } from './rider-account/use-rider-session.ts'
 import { useOfflineRegions } from './offline-maps/use-offline-regions.ts'
@@ -28,6 +29,7 @@ export interface AppDependencies {
   installPlatform: InstallPlatform
   mapPlatform: MapPlatform
   riderAccount: RiderAccountService
+  profileDrafts: ProfileDraftStore
 }
 
 type OpenPanel = 'none' | 'options' | 'offline-regions' | 'account'
@@ -92,19 +94,26 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
             onClose={() => setOpenPanel('none')}
           />
         )}
-        {openPanel === 'account' && session.status === 'signed-in' && (
-          <AccountPanel
-            rider={session.rider}
-            profile={session.profile}
-            onSignOut={() => {
-              setOpenPanel('none')
-              void riderAccount.signOut()
-            }}
-            onClose={() => setOpenPanel('none')}
-          />
-        )}
+        {openPanel === 'account' &&
+          session.status === 'signed-in' &&
+          session.profile !== null && (
+            <AccountPanel
+              rider={session.rider}
+              profile={session.profile}
+              vehicle={session.vehicle}
+              riderAccount={riderAccount}
+              onSignOut={() => {
+                setOpenPanel('none')
+                void riderAccount.signOut()
+              }}
+              onClose={() => setOpenPanel('none')}
+            />
+          )}
         {session.status === 'signed-in' && session.profile === null && (
-          <ProfileIncompleteGate
+          <ProfileSetupScreen
+            rider={session.rider}
+            riderAccount={riderAccount}
+            drafts={dependencies.profileDrafts}
             onSignOut={() => void riderAccount.signOut()}
           />
         )}

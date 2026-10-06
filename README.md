@@ -138,7 +138,8 @@ cada versión publicada: en la consola, Hosting → historial de versiones → �
   `npx playwright test e2e/avatares.spec.ts --update-snapshots`.
 - `src/backend/`: único módulo que conoce al proveedor de autenticación y de base de datos
   (Firebase). Expone `RiderAccountService`. Ver `docs/backend.md`.
-- `src/rider-account/`: ingreso y sesión del Rider.
+- `src/rider-account/`: ingreso, sesión, perfil inicial y edición del perfil del Rider.
+- `src/rider-vehicles/`: la moto del Rider (marca/modelo y autonomía) y sus validaciones.
 - `src/connectivity/`: estado de conectividad y acciones que la requieren.
 - `src/i18n/`: textos por idioma (`locales/es-AR.json`, `locales/en.json`). Ningún
   componente lleva texto visible fijo; una prueba lo verifica.

@@ -12,6 +12,7 @@ import { BrowserConnectivity } from './connectivity/connectivity.ts'
 import { createI18n } from './i18n/i18n.ts'
 import { LocalStorageLanguagePreference } from './i18n/language-preference.ts'
 import { createMapPlatform } from './map-platform/create-map-platform.ts'
+import { LocalStorageProfileDraftStore } from './rider-account/profile-draft-store.ts'
 
 registerSW({ immediate: true })
 
@@ -32,6 +33,7 @@ const dependencies: AppDependencies = {
   installPlatform: new BrowserInstallPlatform(),
   mapPlatform,
   riderAccount: createBackend(backendConfig).riderAccount,
+  profileDrafts: new LocalStorageProfileDraftStore(window.localStorage),
 }
 
 createRoot(document.getElementById('root')!).render(

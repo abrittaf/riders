@@ -1,4 +1,5 @@
 import type { AvatarOptions } from '../avatar/avatar-options.ts'
+import type { Vehicle } from '../rider-vehicles/vehicle.ts'
 
 /** El Rider identificado, tal como lo conoce la cuenta con la que ingresó. */
 export interface SignedInRider {
@@ -21,6 +22,8 @@ export type RiderSession =
       rider: SignedInRider
       /** `null` mientras el Rider no completó su perfil. */
       profile: RiderProfile | null
+      /** La moto del Rider; solo él la ve. */
+      vehicle: Vehicle | null
     }
 
 export interface RiderAccountService {
@@ -31,4 +34,8 @@ export interface RiderAccountService {
   dismissSignInFailure(): void
   currentSession(): RiderSession
   subscribe(listener: () => void): () => void
+  /** Guarda perfil y moto del Rider identificado; crea el perfil si es el primero. */
+  saveProfile(profile: RiderProfile, vehicle: Vehicle): Promise<void>
+  /** Nombre visible y avatar de otro Rider; `null` si no existe. */
+  readPublicProfile(riderId: string): Promise<RiderProfile | null>
 }

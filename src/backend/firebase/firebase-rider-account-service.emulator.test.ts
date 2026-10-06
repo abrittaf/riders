@@ -1,5 +1,6 @@
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import type { AvatarOptions } from '../../avatar/avatar-options.ts'
 import type { RiderSession } from '../rider-account-service.ts'
 import {
   createEmulatedClients,
@@ -8,6 +9,20 @@ import {
   signInWithGoogleAccount,
 } from './emulator-test-support.ts'
 import { FirebaseRiderAccountService } from './firebase-rider-account-service.ts'
+
+const sampleAvatar: AvatarOptions = {
+  helmetType: 'full-face',
+  helmetColor: 'white',
+  neckwear: 'bandana',
+  neckwearColor: 'blue',
+  glasses: false,
+  beard: true,
+}
+
+function sessionProfile(service: FirebaseRiderAccountService) {
+  const session = service.currentSession()
+  return session.status === 'signed-in' ? session.profile : null
+}
 
 const googleAccount = {
   sub: 'google-123',
@@ -73,6 +88,54 @@ describe('FirebaseRiderAccountService contra el emulador', () => {
     const session = await waitForSession(service, 'signed-in')
     expect(session.profile?.displayName).toBe('Fer')
     expect(session.profile?.avatar.helmetType).toBe('modular')
+  })
+
+  it('guarda perfil y moto juntos, y después los actualiza conservando la fecha de creación', async () => {
+    await signInWithGoogleAccount(clients.auth, googleAccount)
+    const { rider } = await waitForSession(service, 'signed-in')
+
+    await service.saveProfile(
+      { displayName: 'Fer', avatar: sampleAvatar },
+      { model: 'Honda XR 250', rangeKm: 300 },
+    )
+    await waitFor(() => sessionProfile(service)?.displayName === 'Fer')
+    const created = await getDoc(doc(clients.firestore, 'riders', rider.id))
+
+    await service.saveProfile(
+      { displayName: 'Fernando', avatar: sampleAvatar },
+      { model: 'Honda XR 250', rangeKm: 350 },
+    )
+    await waitFor(() => sessionProfile(service)?.displayName === 'Fernando')
+
+    const session = await waitForSession(service, 'signed-in')
+    expect(session.vehicle).toEqual({ model: 'Honda XR 250', rangeKm: 350 })
+    const updated = await getDoc(doc(clients.firestore, 'riders', rider.id))
+    expect(updated.get('createdAt')).toEqual(created.get('createdAt'))
+    expect(updated.get('updatedAt')).not.toEqual(created.get('updatedAt'))
+  })
+
+  it('el perfil público de otro Rider trae nombre y avatar, sin correo ni moto', async () => {
+    await signInWithGoogleAccount(clients.auth, googleAccount)
+    const { rider: ana } = await waitForSession(service, 'signed-in')
+    await service.saveProfile(
+      { displayName: 'Ana', avatar: sampleAvatar },
+      { model: 'BMW GS 310', rangeKm: 400 },
+    )
+    await waitFor(() => sessionProfile(service)?.displayName === 'Ana')
+    await service.signOut()
+    await waitForSession(service, 'signed-out')
+
+    await signInWithGoogleAccount(clients.auth, {
+      sub: 'google-456',
+      email: 'beto@example.com',
+      name: 'Beto',
+    })
+    await waitForSession(service, 'signed-in')
+    const publicProfile = await service.readPublicProfile(ana.id)
+
+    expect(publicProfile).toEqual({ displayName: 'Ana', avatar: sampleAvatar })
+    expect(Object.keys(publicProfile!)).toEqual(['displayName', 'avatar'])
+    expect(await service.readPublicProfile('nadie')).toBeNull()
   })
 
   it('al cerrar sesión la sesión queda sin cuenta y el usuario sigue existiendo', async () => {

@@ -4,6 +4,7 @@ import type {
   RiderSession,
   SignedInRider,
 } from '../backend/index.ts'
+import type { Vehicle } from '../rider-vehicles/vehicle.ts'
 
 export const sampleRider: SignedInRider = {
   id: 'rider-1',
@@ -22,12 +23,17 @@ export const sampleProfile: RiderProfile = {
   },
 }
 
+export const sampleVehicle: Vehicle = { model: 'Honda XR 250', rangeKm: 300 }
+
 /** Cuenta simulada: ingresar identifica a `sampleRider` con el perfil que se le haya dado. */
 export class FakeRiderAccountService implements RiderAccountService {
   private session: RiderSession
   private readonly listeners = new Set<() => void>()
-  /** Perfil que "encuentra" el próximo ingreso; `null` simula un primer ingreso. */
+  /** Perfil y moto que "encuentra" el próximo ingreso; `null` simula un primer ingreso. */
   storedProfile: RiderProfile | null = null
+  storedVehicle: Vehicle | null = null
+  /** Perfiles públicos de otros Riders, por id. */
+  readonly otherProfiles = new Map<string, RiderProfile>()
 
   constructor(
     session: RiderSession = { status: 'signed-out', signInFailed: false },
@@ -40,8 +46,23 @@ export class FakeRiderAccountService implements RiderAccountService {
       status: 'signed-in',
       rider: sampleRider,
       profile: this.storedProfile,
+      vehicle: this.storedVehicle,
     })
     return Promise.resolve()
+  }
+
+  saveProfile(profile: RiderProfile, vehicle: Vehicle): Promise<void> {
+    if (this.session.status !== 'signed-in') {
+      return Promise.reject(new Error('No hay un Rider identificado'))
+    }
+    this.storedProfile = profile
+    this.storedVehicle = vehicle
+    this.setSession({ ...this.session, profile, vehicle })
+    return Promise.resolve()
+  }
+
+  readPublicProfile(riderId: string): Promise<RiderProfile | null> {
+    return Promise.resolve(this.otherProfiles.get(riderId) ?? null)
   }
 
   signOut(): Promise<void> {

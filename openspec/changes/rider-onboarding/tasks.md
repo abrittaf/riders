@@ -28,10 +28,10 @@
 
 ## 5. Perfil y moto (`rider-account`, `rider-vehicles`)
 
-- [ ] 5.1 Implementar la pantalla de perfil inicial obligatorio: nombre visible propuesto desde Google y editable, armado del avatar, marca/modelo y autonomía, con las validaciones del spec junto a cada campo; verificar con pruebas unitarias cada validación (nombre 2 a 24, modelo 2 a 40, autonomía entero 50 a 1000)
-- [ ] 5.2 Guardar el perfil según D4 (documento del Rider y subdocumento privado del Vehicle) y conservar lo cargado si el Rider abandona a medias; verificar con Playwright contra el emulador que al reabrir se retoma el perfil incompleto y que al completarlo se vuelve al mapa
-- [ ] 5.3 Implementar la pantalla de perfil con edición de nombre, avatar, marca/modelo y autonomía, mostrando la autonomía con su unidad; verificar con Playwright que un cambio se refleja en una segunda sesión con la misma cuenta
-- [ ] 5.4 Implementar la lectura del perfil público de otro Rider (nombre y avatar) en `RiderAccountService` para los próximos changes; verificar con pruebas contra el emulador que no expone correo ni Vehicle
+- [x] 5.1 Implementar la pantalla de perfil inicial obligatorio: nombre visible propuesto desde Google y editable, armado del avatar, marca/modelo y autonomía, con las validaciones del spec junto a cada campo; verificar con pruebas unitarias cada validación (nombre 2 a 24, modelo 2 a 40, autonomía entero 50 a 1000)
+- [x] 5.2 Guardar el perfil según D4 (documento del Rider y subdocumento privado del Vehicle) y conservar lo cargado si el Rider abandona a medias; verificar con Playwright contra el emulador que al reabrir se retoma el perfil incompleto y que al completarlo se vuelve al mapa
+- [x] 5.3 Implementar la pantalla de perfil con edición de nombre, avatar, marca/modelo y autonomía, mostrando la autonomía con su unidad; verificar con Playwright que un cambio se refleja en una segunda sesión con la misma cuenta
+- [x] 5.4 Implementar la lectura del perfil público de otro Rider (nombre y avatar) en `RiderAccountService` para los próximos changes; verificar con pruebas contra el emulador que no expone correo ni Vehicle
 
 ## 6. Sin conexión y eliminación de cuenta (`rider-account`)
 
