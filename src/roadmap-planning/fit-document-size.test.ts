@@ -108,7 +108,8 @@ describe('tamaño del documento del Roadmap', () => {
     expect(geometry[paved!.toIndex]).toEqual(
       decodeGeometry(encodeGeometry([road[100_000]!]))[0],
     )
-  })
+    // Son 150.000 posiciones: en la máquina de GitHub tarda más que el tope por defecto.
+  }, 30_000)
 
   it('un Roadmap chico se guarda tal cual', () => {
     const draft: RoadmapDraft = {
