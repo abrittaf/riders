@@ -75,11 +75,17 @@ El emulador corre sobre Java 21 o superior (`brew install openjdk@21`).
 
 ## Reglas de seguridad
 
-`firestore.rules` implementa D4: cada Rider escribe solo su documento `riders/{id}` (nombre visible de 2 a 24 caracteres, avatar con opciones del sistema de avatares, fechas de creación y actualización) y su subdocumento privado `riders/{id}/private/vehicle` (marca/modelo de 2 a 40, autonomía entera de 50 a 1000). Cualquier Rider identificado lee los perfiles; nadie sin sesión lee nada; el Vehicle lo lee solo su dueño. Las reglas se publican junto con la app en cada merge en `main` y se prueban en `src/backend/firebase/firestore-rules.emulator.test.ts`.
+`firestore.rules` implementa D4 de rider-onboarding: cada Rider escribe solo su documento `riders/{id}` (nombre visible de 2 a 24 caracteres, avatar con opciones del sistema de avatares, fechas de creación y actualización) y su subdocumento privado `riders/{id}/private/vehicle` (marca/modelo de 2 a 40, autonomía entera de 50 a 1000). Cualquier Rider identificado lee los perfiles; nadie sin sesión lee nada; el Vehicle lo lee solo su dueño.
+
+La colección `roadmaps` (D4 de roadmap-planning) guarda un documento por Roadmap: `ownerId`, `name` (2 a 60), `description` (hasta 500), `status` (`planning`), `points` (2 a 50, cada uno con nombre, posición, origen, tipo y fecha opcional), `legs` (uno por par de Points consecutivos: distancia, tiempo, metros sin pavimentar, geometría como polilínea codificada y segmentos de superficie), totales y fechas. En planificación lo lee, modifica y borra solo su autor; el dueño y la fecha de creación no se cambian. Las reglas no recorren listas: la forma de cada Point y de cada tramo la valida la app al leer (`src/backend/firebase/roadmap-document.ts`). Un documento que superaría 500 KiB se guarda con la geometría simplificada (`src/roadmap-planning/fit-document-size.ts`).
+
+Las reglas se publican junto con la app en cada merge en `main` y se prueban en `src/backend/firebase/firestore-rules.emulator.test.ts`.
 
 ## Sin conexión y eliminación de la cuenta
 
 Firestore corre con caché local persistente (IndexedDB): el perfil se lee sin conexión y las escrituras hechas sin conexión quedan en cola y se envían al recuperarla; la app marca "pendiente de sincronizar" mientras haya escrituras sin confirmar por el servidor (D6). `saveProfile` da por hecho el cambio cuando queda aplicado en el celular, no cuando el servidor lo confirma: sin conexión, esperar al servidor bloquearía al Rider.
+
+Los Roadmaps ya vistos se leen sin conexión desde la misma caché; crearlos o editarlos requiere conexión (el cálculo de la ruta también), así que el servicio espera la confirmación del servidor.
 
 Eliminar la cuenta borra primero los documentos de Firestore y después el usuario de Authentication; si el ingreso tiene más de cinco minutos, Firebase exige reconfirmar la identidad y la app lo pide antes de borrar nada. La reconfirmación va por redirección a Google; al volver, la app retoma la eliminación.
 

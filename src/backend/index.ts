@@ -12,3 +12,4 @@ export type {
   RiderSession,
   SignedInRider,
 } from './rider-account-service.ts'
+export type { RoadmapService } from './roadmap-service.ts'

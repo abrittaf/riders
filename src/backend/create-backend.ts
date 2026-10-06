@@ -14,6 +14,7 @@ import {
 } from 'firebase/firestore'
 import type { Backend, BackendConfig } from './backend.ts'
 import { FirebaseRiderAccountService } from './firebase/firebase-rider-account-service.ts'
+import { FirebaseRoadmapService } from './firebase/firebase-roadmap-service.ts'
 
 export function createBackend(config: BackendConfig): Backend {
   const app = initializeApp(config.firebase)
@@ -41,5 +42,6 @@ export function createBackend(config: BackendConfig): Backend {
       firestore,
       window.localStorage,
     ),
+    roadmaps: new FirebaseRoadmapService(auth, firestore),
   }
 }

@@ -17,9 +17,9 @@
 
 ## 3. Modelo y reglas del Roadmap (`roadmap-planning`)
 
-- [ ] 3.1 Definir el modelo del Roadmap según D4 y D5 y el servicio `RoadmapService` en `backend` (crear, listar propios, leer, actualizar, borrar, suscripción), y verificar con pruebas unitarias las validaciones de nombre y cantidad mínima de Points, y el cálculo de kilómetros sin pavimentar por tramo a partir de los segmentos de superficie
-- [ ] 3.2 Implementar `RoadmapService` sobre Firestore con persistencia local, incluida la duplicación (copia de Points y ruta, sin fechas, estado en planificación), y escribir las reglas de la colección `roadmaps` (solo el dueño lee y escribe; validación de campos y de al menos dos Points); verificar con `@firebase/rules-unit-testing` que otro Rider no lee ni escribe y que un documento con un solo Point es rechazado, y con una prueba unitaria que el duplicado es independiente del original
-- [ ] 3.3 Implementar la simplificación de geometría por encima de 500 KiB y verificar con una prueba unitaria sobre un Roadmap sintético de 3.000 km que el documento resultante queda por debajo del umbral
+- [x] 3.1 Definir el modelo del Roadmap según D4 y D5 y el servicio `RoadmapService` en `backend` (crear, listar propios, leer, actualizar, borrar, suscripción), y verificar con pruebas unitarias las validaciones de nombre y cantidad mínima de Points, y el cálculo de kilómetros sin pavimentar por tramo a partir de los segmentos de superficie
+- [x] 3.2 Implementar `RoadmapService` sobre Firestore con persistencia local, incluida la duplicación (copia de Points y ruta, sin fechas, estado en planificación), y escribir las reglas de la colección `roadmaps` (solo el dueño lee y escribe; validación de campos y de al menos dos Points); verificar con `@firebase/rules-unit-testing` que otro Rider no lee ni escribe y que un documento con un solo Point es rechazado, y con una prueba unitaria que el duplicado es independiente del original
+- [x] 3.3 Implementar la simplificación de geometría por encima de 500 KiB y verificar con una prueba unitaria sobre un Roadmap sintético de 3.000 km que el documento resultante queda por debajo del umbral
 
 ## 4. Editor de Roadmap (`roadmap-planning`)
 
