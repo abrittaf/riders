@@ -5,7 +5,8 @@
   "nav": {
     "options": "Options",
     "close": "Close",
-    "offlineRegions": "Offline areas"
+    "offlineRegions": "Offline areas",
+    "roadmaps": "Roadmaps"
   },
   "options": {
     "title": "Options",
@@ -198,5 +199,54 @@
         "tooHigh": "The maximum range is 1000 km."
       }
     }
+  },
+  "roadmaps": {
+    "editor": {
+      "title": "New Roadmap",
+      "addPoint": "Add Point",
+      "noPoints": "No Points yet. Add the departure and the destination.",
+      "points": "Roadmap Points"
+    }
+  },
+  "pointLookup": {
+    "title": "Choose a Point",
+    "cancel": "Cancel",
+    "choose": "Choose",
+    "modes": {
+      "search": "Search by name",
+      "byType": "Places by type"
+    },
+    "longPressHint": "You can also press and hold on the map to choose any position.",
+    "search": {
+      "label": "Place name",
+      "submit": "Search",
+      "searching": "Searching…",
+      "unavailable": "Searching by name requires a connection",
+      "noMatches": "We found no place with that name. Press and hold on the map to choose the position by hand.",
+      "failed": "The search service could not be reached. Try again."
+    },
+    "byType": {
+      "label": "Place type",
+      "hint": "Choose a type to see the places in the visible area of the map.",
+      "none": "There are no {{type}} in the visible area. Zoom out or move the map."
+    },
+    "chosenPosition": {
+      "title": "Chosen position",
+      "name": "Point name",
+      "confirm": "Confirm",
+      "proposing": "Looking for the nearest place…"
+    }
+  },
+  "placeTypes": {
+    "fuel": "Fuel station",
+    "lodging": "Lodging",
+    "restaurant": "Restaurant",
+    "point-of-interest": "Point of interest"
+  },
+  "placeTypesPlural": {
+    "fuel": "fuel stations",
+    "lodging": "lodgings",
+    "restaurant": "restaurants",
+    "point-of-interest": "points of interest"
   }
 }

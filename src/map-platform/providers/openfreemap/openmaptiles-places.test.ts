@@ -73,6 +73,27 @@ describe('lugares de la capa poi de las teselas', () => {
     ).toHaveLength(1)
   })
 
+  it('cada lugar se lista con su nombre en el idioma pedido si existe, y con el original si no', () => {
+    const features = [
+      poi(
+        {
+          class: 'lodging',
+          name: 'Hotel Floripa',
+          'name:es': 'Hotel Florianópolis',
+        },
+        [-66.16, -25.12],
+      ),
+      poi({ class: 'lodging', name: 'Pousada do Mar' }, [-66.161, -25.12]),
+    ]
+
+    const places = placesInBounds(features, ['lodging'], CACHI_AREA, 'es-AR')
+
+    expect(places.map((place) => place.name)).toEqual([
+      'Hotel Florianópolis',
+      'Pousada do Mar',
+    ])
+  })
+
   it('un lugar sin nombre no se lista', () => {
     const features = [poi({ class: 'fuel' }, [-66.16, -25.12])]
 

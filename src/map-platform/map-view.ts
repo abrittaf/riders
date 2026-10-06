@@ -22,11 +22,23 @@ export interface OwnPositionMarker {
   isLastKnown: boolean
 }
 
+export type MapMarkerKind = 'highlighted-place' | 'point'
+
+/** Un marcador sobre el mapa: un lugar resaltado al elegir por tipo, o un Point numerado de un Roadmap. */
+export interface MapMarker {
+  id: string
+  position: GeoPosition
+  kind: MapMarkerKind
+  /** Texto dentro del marcador (el número del Point). */
+  label?: string
+}
+
 export interface MapViewProps {
   ref?: Ref<MapViewHandle>
   /** Idioma preferido para los nombres del mapa, cuando el dato existe. */
   language: string
   ownPosition: OwnPositionMarker | null
+  markers?: readonly MapMarker[]
   /** Avisa si en la zona visible hay partes del mapa que no se pudieron obtener. */
   onUnavailableAreaChange?: (hasUnavailableArea: boolean) => void
   /** Toque sostenido sobre el mapa: el gesto para elegir una posición cualquiera. */

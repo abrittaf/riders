@@ -10,10 +10,10 @@
 
 ## 2. Elegir Points (`point-lookup`)
 
-- [ ] 2.1 Implementar la búsqueda por nombre con lista de coincidencias (nombre, tipo, localidad, distancia), estado sin coincidencias y no disponible sin conexión, y verificar con Playwright contra el proveedor simulado los tres escenarios del spec
-- [ ] 2.2 Implementar la elección por tipo (estación de servicio, alojamiento, restaurante, punto de interés) con lista y resaltado sobre el mapa, y verificar con Playwright que funciona con red y sin red dentro de una zona descargada, y que sin lugares en la vista sugiere alejar el mapa
-- [ ] 2.3 Implementar la posición elegida con toque sostenido, con nombre propuesto por dirección inversa o coordenadas sin conexión, editable; verificar con Playwright los dos escenarios
-- [ ] 2.4 Mostrar los nombres de lugares en español cuando existe y en idioma de origen si no, en lugares por tipo y Points elegidos desde las teselas (la búsqueda por nombre trae solo el original, ver D2); verificar con una prueba unitaria los dos escenarios del spec
+- [x] 2.1 Implementar la búsqueda por nombre con lista de coincidencias (nombre, tipo, localidad, distancia), estado sin coincidencias y no disponible sin conexión, y verificar con Playwright contra el proveedor simulado los tres escenarios del spec
+- [x] 2.2 Implementar la elección por tipo (estación de servicio, alojamiento, restaurante, punto de interés) con lista y resaltado sobre el mapa, y verificar con Playwright que funciona con red y sin red dentro de una zona descargada, y que sin lugares en la vista sugiere alejar el mapa
+- [x] 2.3 Implementar la posición elegida con toque sostenido, con nombre propuesto por dirección inversa o coordenadas sin conexión, editable; verificar con Playwright los dos escenarios
+- [x] 2.4 Mostrar los nombres de lugares en español cuando existe y en idioma de origen si no, en lugares por tipo y Points elegidos desde las teselas (la búsqueda por nombre trae solo el original, ver D2); verificar con una prueba unitaria los dos escenarios del spec
 
 ## 3. Modelo y reglas del Roadmap (`roadmap-planning`)
 

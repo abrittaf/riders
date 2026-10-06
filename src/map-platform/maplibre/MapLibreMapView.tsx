@@ -9,7 +9,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useImperativeHandle, useRef } from 'react'
 import { boundsIntersect, type GeoBounds, type GeoPosition } from '../geo.ts'
 import type { MapProvider } from '../map-provider.ts'
-import type { MapView, MapViewProps } from '../map-view.ts'
+import type { MapMarker, MapView, MapViewProps } from '../map-view.ts'
 import type { Place, PlaceType } from '../place.ts'
 import {
   placesInBounds,
@@ -83,6 +83,50 @@ function exposeRenderDiagnostics(
   })
 }
 
+function createMarker(marker: MapMarker): Marker {
+  const element = document.createElement('div')
+  element.className = `map-marker map-marker-${marker.kind}`
+  element.textContent = marker.label ?? ''
+  return new Marker({ element })
+}
+
+/** Deja en el mapa exactamente los marcadores pedidos: crea los nuevos, mueve los que siguen y saca el resto. */
+function syncMarkers(
+  map: MapLibreMap,
+  shown: Map<string, { marker: Marker; kind: string; label?: string }>,
+  wanted: readonly MapMarker[],
+) {
+  const wantedIds = new Set(wanted.map((marker) => marker.id))
+  for (const [id, { marker }] of shown) {
+    if (!wantedIds.has(id)) {
+      marker.remove()
+      shown.delete(id)
+    }
+  }
+  for (const marker of wanted) {
+    const existing = shown.get(marker.id)
+    const lngLat: [number, number] = [
+      marker.position.longitude,
+      marker.position.latitude,
+    ]
+    if (
+      existing &&
+      existing.kind === marker.kind &&
+      existing.label === marker.label
+    ) {
+      existing.marker.setLngLat(lngLat)
+      continue
+    }
+    existing?.marker.remove()
+    const created = createMarker(marker).setLngLat(lngLat).addTo(map)
+    shown.set(marker.id, {
+      marker: created,
+      kind: marker.kind,
+      label: marker.label,
+    })
+  }
+}
+
 function createOwnPositionMarker(): Marker {
   const element = document.createElement('div')
   element.className = 'own-position-marker'
@@ -99,12 +143,16 @@ export function createMapLibreMapView(
     ref,
     language,
     ownPosition,
+    markers = [],
     onUnavailableAreaChange,
     onLongPress,
   }: MapViewProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     const mapRef = useRef<MapLibreMap>(null)
     const markerRef = useRef<Marker>(null)
+    const shownMarkersRef = useRef(
+      new Map<string, { marker: Marker; kind: string; label?: string }>(),
+    )
     const styleLanguageRef = useRef(language)
     const unavailableTilesRef = useRef(new Map<string, TileCoordinates>())
     const reportedUnavailableAreaRef = useRef(false)
@@ -172,6 +220,7 @@ export function createMapLibreMapView(
       })
 
       const unavailableTiles = unavailableTilesRef.current
+      const shownMarkers = shownMarkersRef.current
       const unsubscribe = protocol.subscribeToTileOutcomes(
         (coordinates, outcome) => {
           if (outcome === 'unavailable') {
@@ -188,6 +237,7 @@ export function createMapLibreMapView(
         unsubscribe()
         unavailableTiles.clear()
         markerRef.current = null
+        shownMarkers.clear()
         mapRef.current = null
         map.remove()
       }
@@ -220,6 +270,11 @@ export function createMapLibreMapView(
         .getElement()
         .classList.toggle('is-last-known', ownPosition.isLastKnown)
     }, [ownPosition])
+
+    useEffect(() => {
+      const map = mapRef.current
+      if (map) syncMarkers(map, shownMarkersRef.current, markers)
+    }, [markers])
 
     useImperativeHandle(ref, () => ({
       centerOn(position) {

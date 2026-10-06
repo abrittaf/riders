@@ -101,3 +101,16 @@ export async function readStoredDisplayName(
   }
   return body.fields?.displayName?.stringValue ?? null
 }
+
+/** Un Rider nuevo, identificado y con el perfil completo, listo para usar la app. */
+export async function givenSignedInRider(page: Page, name: string) {
+  const account = newGoogleAccount(name)
+  await page.goto('/')
+  await signInWithGoogle(page, account)
+  await expect(
+    page.getByRole('dialog', { name: 'Completá tu perfil' }),
+  ).toBeVisible()
+  await givenCompletedProfile(account, name)
+  await expect(page.getByRole('button', { name })).toBeVisible()
+  return account
+}

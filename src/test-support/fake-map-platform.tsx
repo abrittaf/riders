@@ -4,6 +4,8 @@ import type {
   GeoPosition,
   Geolocation,
   GeolocationState,
+  Place,
+  PlaceType,
   MapAttribution,
   MapViewHandle,
   MapViewProps,
@@ -46,12 +48,12 @@ export function createFakeMapView() {
     })),
     zoomIn: vi.fn(),
     retryUnavailableTiles: vi.fn(),
-    placesInView: vi.fn(() => []),
+    placesInView: vi.fn((_types: readonly PlaceType[]): Place[] => []),
   } satisfies MapViewHandle
   let lastProps: MapViewProps | null = null
 
   function FakeMapView({ ref, ...props }: MapViewProps) {
-    const { ownPosition } = props
+    const { ownPosition, markers = [] } = props
     useEffect(() => {
       lastProps = props
     })
@@ -65,7 +67,17 @@ export function createFakeMapView() {
             : undefined
         }
         data-own-position-is-last-known={ownPosition?.isLastKnown}
-      />
+      >
+        {markers.map((marker) => (
+          <span
+            key={marker.id}
+            data-testid={`marker-${marker.kind}`}
+            data-position={`${marker.position.latitude},${marker.position.longitude}`}
+          >
+            {marker.label}
+          </span>
+        ))}
+      </div>
     )
   }
 

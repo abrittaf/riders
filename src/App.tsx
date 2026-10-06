@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InstallPrompt } from './app-shell/install/InstallPrompt.tsx'
 import type { InstallPlatform } from './app-shell/install/install-platform.ts'
@@ -11,7 +11,13 @@ import {
 } from './connectivity/online-context.ts'
 import type { LanguagePreference } from './i18n/language-preference.ts'
 import type { RiderAccountService } from './backend/index.ts'
-import type { MapPlatform, MapViewHandle } from './map-platform/index.ts'
+import type {
+  GeoPosition,
+  MapMarker,
+  MapPlatform,
+  MapViewHandle,
+  Place,
+} from './map-platform/index.ts'
 import { MapScreen } from './map-view/MapScreen.tsx'
 import { OfflineRegionsPanel } from './offline-maps/OfflineRegionsPanel.tsx'
 import { StorageWarning } from './offline-maps/StorageWarning.tsx'
@@ -22,6 +28,7 @@ import { ProfileSetupScreen } from './rider-account/ProfileSetupScreen.tsx'
 import { SignInFailedNotice } from './rider-account/SignInFailedNotice.tsx'
 import { useRiderSession } from './rider-account/use-rider-session.ts'
 import { useOfflineRegions } from './offline-maps/use-offline-regions.ts'
+import { RoadmapEditor } from './roadmap-planning/RoadmapEditor.tsx'
 
 export interface AppDependencies {
   languagePreference: LanguagePreference
@@ -32,7 +39,16 @@ export interface AppDependencies {
   profileDrafts: ProfileDraftStore
 }
 
-type OpenPanel = 'none' | 'options' | 'offline-regions' | 'account'
+type OpenPanel =
+  'none' | 'options' | 'offline-regions' | 'account' | 'roadmap-editor'
+
+function highlightMarkers(places: readonly Place[]): MapMarker[] {
+  return places.map((place, index) => ({
+    id: `highlight-${index}`,
+    position: place.position,
+    kind: 'highlighted-place',
+  }))
+}
 
 export function App({ dependencies }: { dependencies: AppDependencies }) {
   const { t, i18n } = useTranslation()
@@ -42,6 +58,15 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
   const { mapPlatform, riderAccount } = dependencies
   const session = useRiderSession(riderAccount)
   const offlineRegions = useOfflineRegions(mapPlatform.offlineRegions)
+  const [markers, setMarkers] = useState<MapMarker[]>([])
+  const [longPressedPosition, setLongPressedPosition] =
+    useState<GeoPosition | null>(null)
+  const highlightPlaces = useCallback(
+    (places: Place[]) => setMarkers(highlightMarkers(places)),
+    [],
+  )
+  const getMap = useCallback(() => mapRef.current, [])
+  const hasProfile = session.status === 'signed-in' && session.profile !== null
 
   useEffect(() => {
     document.documentElement.lang = i18n.language
@@ -59,6 +84,14 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
               onSignIn={() => void riderAccount.signIn()}
               onOpenAccount={() => setOpenPanel('account')}
             />
+            {hasProfile && (
+              <button
+                type="button"
+                onClick={() => setOpenPanel('roadmap-editor')}
+              >
+                {t('nav.roadmaps')}
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setOpenPanel('offline-regions')}
@@ -86,8 +119,28 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
             mapPlatform={mapPlatform}
             mapRef={mapRef}
             offlineRegions={offlineRegions.regions}
+            markers={markers}
+            onLongPress={
+              openPanel === 'roadmap-editor'
+                ? setLongPressedPosition
+                : undefined
+            }
           />
         </main>
+        {openPanel === 'roadmap-editor' && hasProfile && (
+          <RoadmapEditor
+            placeSearch={mapPlatform.placeSearch}
+            geolocation={mapPlatform.geolocation}
+            getMap={getMap}
+            positionFromMap={longPressedPosition}
+            onPositionFromMapHandled={() => setLongPressedPosition(null)}
+            onHighlight={highlightPlaces}
+            onClose={() => {
+              setLongPressedPosition(null)
+              setOpenPanel('none')
+            }}
+          />
+        )}
         {openPanel === 'options' && (
           <OptionsPanel
             languagePreference={dependencies.languagePreference}
