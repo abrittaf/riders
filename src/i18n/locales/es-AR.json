@@ -101,8 +101,98 @@
     "manage": "Elegir zonas para borrar"
   },
   "riderAccount": {
-    "signInWithGoogle": "Ingresar con Google",
+    "signIn": "Ingresar",
+    "retrySignIn": "Volver a ingresar",
+    "signOut": "Cerrar sesión",
+    "account": "Cuenta",
+    "accountTitle": "Tu cuenta",
     "signedInAs": "Ingresaste como {{name}}",
-    "signOut": "Cerrar sesión"
+    "signInRequiresConnection": "Ingresar requiere conexión",
+    "signInFailed": "El ingreso no se completó. Podés volver a intentarlo.",
+    "dismiss": "Cerrar",
+    "completeProfile": {
+      "title": "Completá tu perfil",
+      "intro": "Para que otros Riders te reconozcan, elegí tu nombre visible, armá tu avatar y cargá tu moto.",
+      "submit": "Guardar y seguir"
+    },
+    "pendingSync": "Pendiente de sincronizar: tus cambios se enviarán cuando vuelva la conexión.",
+    "deleteAccount": {
+      "title": "Eliminación de la cuenta",
+      "action": "Eliminar mi cuenta",
+      "requiresConnection": "Eliminar la cuenta requiere conexión",
+      "confirmTitle": "Confirmar la eliminación",
+      "confirmText": "Se van a borrar tu perfil, tu moto y el vínculo con tu cuenta de Google. No se puede deshacer.",
+      "confirm": "Sí, eliminar mi cuenta",
+      "cancel": "Cancelar",
+      "reconfirmText": "Pasó un tiempo desde que ingresaste. Para borrar la cuenta, volvé a confirmar tu identidad con Google.",
+      "reconfirm": "Confirmar con Google"
+    }
+  },
+  "avatar": {
+    "preview": "Vista previa de tu avatar",
+    "helmetType": {
+      "label": "Casco",
+      "full-face": "Integral",
+      "modular": "Rebatible"
+    },
+    "helmetColor": {
+      "label": "Color del casco"
+    },
+    "neckwear": {
+      "label": "Cuello",
+      "bandana": "Pañuelo",
+      "buff": "Buff",
+      "tube": "Cilindro",
+      "checkered-flag": "Bandera a cuadros"
+    },
+    "neckwearColor": {
+      "label": "Color del cuello"
+    },
+    "colors": {
+      "white": "Blanco",
+      "black": "Negro",
+      "gray": "Gris",
+      "blue": "Azul",
+      "green": "Verde",
+      "red": "Rojo",
+      "orange": "Naranja",
+      "yellow": "Amarillo",
+      "light-blue": "Celeste"
+    },
+    "glasses": "Gafas",
+    "beard": "Barba"
+  },
+  "profile": {
+    "displayName": "Nombre visible",
+    "save": "Guardar",
+    "edit": "Editar perfil",
+    "avatarOf": "Avatar de {{name}}",
+    "errors": {
+      "displayName": {
+        "required": "Elegí un nombre visible.",
+        "tooShort": "El nombre necesita al menos 2 caracteres.",
+        "tooLong": "El nombre puede tener hasta 24 caracteres."
+      }
+    }
+  },
+  "vehicle": {
+    "model": "Marca y modelo de la moto",
+    "rangeKm": "Autonomía (km por tanque)",
+    "rangeWithUnit": "{{value}} km",
+    "missing": "Sin cargar",
+    "errors": {
+      "model": {
+        "required": "Cargá la marca y el modelo.",
+        "tooShort": "La marca y el modelo necesitan al menos 2 caracteres.",
+        "tooLong": "La marca y el modelo pueden tener hasta 40 caracteres."
+      },
+      "rangeKm": {
+        "required": "Cargá la autonomía en kilómetros.",
+        "notANumber": "La autonomía tiene que ser un número.",
+        "notAnInteger": "La autonomía tiene que ser un número entero, sin decimales.",
+        "tooLow": "La autonomía mínima es de 50 km.",
+        "tooHigh": "La autonomía máxima es de 1000 km."
+      }
+    }
   }
 }

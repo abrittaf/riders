@@ -8,3 +8,7 @@ playwright-report/
 .env.*
 .DS_Store
 .claude/settings.local.json
+
+# Registros del emulador de Firebase
+*-debug.log
+.firebase/

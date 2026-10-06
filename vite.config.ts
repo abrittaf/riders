@@ -5,8 +5,17 @@ import { firstOpenOfflineNotice } from './vite-plugins/first-open-offline-notice
 
 export default defineConfig({
   assetsInclude: ['**/*.pmtiles'],
-  // El renderizador de mapas pesa más que el límite de aviso por defecto.
-  build: { chunkSizeWarningLimit: 1500 },
+  build: {
+    // El renderizador de mapas pesa más que el límite de aviso por defecto.
+    chunkSizeWarningLimit: 1500,
+    // La galería de avatares existe solo para las capturas de referencia de Playwright.
+    rollupOptions: {
+      input:
+        process.env.VITE_MAP_DIAGNOSTICS === 'true'
+          ? ['index.html', 'galeria-de-avatares.html']
+          : 'index.html',
+    },
+  },
   plugins: [
     react(),
     firstOpenOfflineNotice(),
@@ -49,5 +58,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
+    // Las pruebas contra el emulador de Firebase corren aparte: `npm run test:emulator`.
+    exclude: ['**/node_modules/**', 'src/**/*.emulator.test.ts'],
   },
 })

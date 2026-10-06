@@ -6,10 +6,13 @@ import { useIsOnline } from './online-context.ts'
 export function OnlineOnlyButton({
   onClick,
   disabled = false,
+  unavailableMessage,
   children,
 }: {
   onClick: () => void
   disabled?: boolean
+  /** Explicación propia de la acción; por defecto, el aviso genérico. */
+  unavailableMessage?: string
   children: ReactNode
 }) {
   const { t } = useTranslation()
@@ -22,7 +25,7 @@ export function OnlineOnlyButton({
       </button>
       {!isOnline && (
         <small className="unavailable-offline">
-          {t('connectivity.unavailableOffline')}
+          {unavailableMessage ?? t('connectivity.unavailableOffline')}
         </small>
       )}
     </span>

@@ -10,10 +10,11 @@ del mapa y cómo reemplazarlo están documentados en `docs/proveedor-de-mapa.md`
 
 ## Requisitos
 
-Node.js 24 o superior, con npm. En Mac:
+Node.js 24 o superior, con npm, y Java 21 o superior para el emulador de Firebase que usan
+las pruebas. En Mac:
 
 ```sh
-brew install node
+brew install node openjdk@21
 ```
 
 ## Instalar
@@ -59,16 +60,30 @@ VITE_TILE_PROVIDER=pmtiles-sample npm run dev
 npm test
 ```
 
-Corre las pruebas unitarias y de componentes (Vitest con React Testing Library).
+Corre las pruebas unitarias y de componentes (Vitest con React Testing Library). No
+necesitan red ni emulador.
+
+```sh
+npm run test:emulator
+```
+
+Corre las pruebas que necesitan el backend: levanta Firebase Emulator Suite
+(Authentication y Firestore), corre las pruebas `*.emulator.test.ts` (el servicio de
+cuenta y las reglas de seguridad de `firestore.rules`) y lo apaga. Nunca toca el proyecto
+real.
 
 ```sh
 npm run test:e2e
 ```
 
-Corre las pruebas de flujo completo (Playwright, Chromium emulando un celular). Construye
-la app, la sirve y la recorre como un Rider: idioma, arranque sin conexión, mapa, gestos
-táctiles y descarga de zonas. Necesita conexión a internet, porque usa las teselas reales
-de OpenFreeMap.
+Corre las pruebas de flujo completo (Playwright, Chromium emulando un celular). Levanta el
+emulador, construye la app apuntando a él, la sirve y la recorre como un Rider: idioma,
+arranque sin conexión, mapa, gestos táctiles y descarga de zonas. Necesita conexión a
+internet, porque usa las teselas reales de OpenFreeMap.
+
+Para correr una sola prueba de Playwright o la app contra el emulador, `npm run emulators`
+lo deja levantado en una terminal; `npx playwright test <archivo>` y
+`VITE_BACKEND_EMULATOR=true npm run dev` lo encuentran ahí.
 
 ```sh
 npm run lint
@@ -117,6 +132,14 @@ cada versión publicada: en la consola, Hosting → historial de versiones → �
 ## Estructura
 
 - `src/app-shell/`: instalación, opciones e idioma.
+- `src/avatar/`: sistema de avatares de los Riders, dibujado en SVG a partir de opciones
+  (`docs/rider-avatars-no-background.png` es la referencia). Las capturas de referencia de
+  Playwright están en `e2e/capturas/`; se regeneran con
+  `npx playwright test e2e/avatares.spec.ts --update-snapshots`.
+- `src/backend/`: único módulo que conoce al proveedor de autenticación y de base de datos
+  (Firebase). Expone `RiderAccountService`. Ver `docs/backend.md`.
+- `src/rider-account/`: ingreso, sesión, perfil inicial y edición del perfil del Rider.
+- `src/rider-vehicles/`: la moto del Rider (marca/modelo y autonomía) y sus validaciones.
 - `src/connectivity/`: estado de conectividad y acciones que la requieren.
 - `src/i18n/`: textos por idioma (`locales/es-AR.json`, `locales/en.json`). Ningún
   componente lleva texto visible fijo; una prueba lo verifica.
@@ -126,4 +149,6 @@ cada versión publicada: en la consola, Hosting → historial de versiones → �
 - `src/map-view/`: pantalla del mapa, posición del Rider y atribución.
 - `src/offline-maps/`: pantalla de zonas descargadas y aviso de almacenamiento.
 - `src/config/map-config.ts`: proveedor de teselas, servidor, estilo y límites.
+- `src/config/backend-config.ts`: configuración pública del proyecto de Firebase.
+- `firestore.rules`: reglas de acceso a la base de datos, publicadas con la app.
 - `e2e/`: pruebas de flujo completo.

@@ -61,6 +61,28 @@ Todo lo que tiene comando se hace con el CLI de Firebase (`firebase-tools`, inst
 
 Este documento da la ruta de menú de cada paso en lugar de capturas de pantalla: la consola cambia de aspecto con frecuencia y la ruta envejece mejor.
 
+## Emulador local
+
+Las pruebas corren contra Firebase Emulator Suite (Authentication y Firestore), nunca contra el proyecto real. Los puertos están en `firebase.json` y en `src/backend/emulator-config.ts`; el proyecto emulado es `demo-riders`: el prefijo `demo-` garantiza que el emulador no consulte ningún proyecto de Google. La app construida con `VITE_BACKEND_EMULATOR=true` se conecta al emulador en lugar del proyecto real.
+
+| Comando                 | Qué hace                                                                |
+| ----------------------- | ----------------------------------------------------------------------- |
+| `npm run emulators`     | Deja el emulador levantado (Authentication en 9099, Firestore en 8080)  |
+| `npm run test:emulator` | Levanta el emulador, corre las pruebas `*.emulator.test.ts` y lo apaga  |
+| `npm run test:e2e`      | Igual, con las pruebas de Playwright sobre la app construida            |
+
+El emulador corre sobre Java 21 o superior (`brew install openjdk@21`).
+
+## Reglas de seguridad
+
+`firestore.rules` implementa D4: cada Rider escribe solo su documento `riders/{id}` (nombre visible de 2 a 24 caracteres, avatar con opciones del sistema de avatares, fechas de creación y actualización) y su subdocumento privado `riders/{id}/private/vehicle` (marca/modelo de 2 a 40, autonomía entera de 50 a 1000). Cualquier Rider identificado lee los perfiles; nadie sin sesión lee nada; el Vehicle lo lee solo su dueño. Las reglas se publican junto con la app en cada merge en `main` y se prueban en `src/backend/firebase/firestore-rules.emulator.test.ts`.
+
+## Sin conexión y eliminación de la cuenta
+
+Firestore corre con caché local persistente (IndexedDB): el perfil se lee sin conexión y las escrituras hechas sin conexión quedan en cola y se envían al recuperarla; la app marca "pendiente de sincronizar" mientras haya escrituras sin confirmar por el servidor (D6). `saveProfile` da por hecho el cambio cuando queda aplicado en el celular, no cuando el servidor lo confirma: sin conexión, esperar al servidor bloquearía al Rider.
+
+Eliminar la cuenta borra primero los documentos de Firestore y después el usuario de Authentication; si el ingreso tiene más de cinco minutos, Firebase exige reconfirmar la identidad y la app lo pide antes de borrar nada. La reconfirmación va por redirección a Google; al volver, la app retoma la eliminación.
+
 ## Consumo
 
 Consola de Firebase → proyecto → **Uso y facturación**. Los límites diarios del plan Spark que importan acá: 50.000 lecturas y 20.000 escrituras de Firestore, 360 MB de transferencia de Hosting.

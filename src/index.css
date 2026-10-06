@@ -47,13 +47,19 @@ input {
   gap: 0.5rem;
 }
 
-.provisional-sign-in {
+.notice {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background: #fff4d6;
+}
+
+.notice p {
+  margin: 0 0 0.5rem;
+}
+
+.notice-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  background: #e5e5e5;
 }
 
 .app-content {
@@ -114,6 +120,23 @@ input {
 
 .unavailable-offline {
   color: #6b6b70;
+}
+
+/* En la barra no hay lugar para una línea más: la explicación flota debajo, sin mover el mapa. */
+.app-bar .online-only-action {
+  position: relative;
+}
+
+.app-bar .unavailable-offline {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  z-index: 5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
 }
 
 .install-prompt {
@@ -273,4 +296,97 @@ input {
 
 .storage-warning p {
   margin: 0 0 0.25rem;
+}
+
+.avatar-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.avatar-preview {
+  align-self: center;
+}
+
+.avatar-builder fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d1d6;
+  border-radius: 0.5rem;
+}
+
+.avatar-builder legend {
+  padding: 0 0.25rem;
+  font-weight: 600;
+}
+
+.avatar-builder label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.avatar-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background: #d9e4c8;
+}
+
+.avatar-gallery figure {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.field-error {
+  color: #b3261e;
+}
+
+.profile-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.profile-summary dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  margin: 0;
+}
+
+.profile-summary dt {
+  font-weight: 600;
+}
+
+.profile-summary dd {
+  margin: 0;
+}
+
+.pending-sync {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #fff4d6;
+}
+
+.account-deletion {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #d1d1d6;
+  align-self: stretch;
 }

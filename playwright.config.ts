@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
+import { emulatorConfig } from './src/backend/emulator-config.ts'
 
 const previewPort = 4173
 const pmtilesPreviewPort = 4174
@@ -15,6 +16,10 @@ export default defineConfig({
     locale: 'es-AR',
     trace: 'on-first-retry',
   },
+  // Las capturas de referencia son las mismas en todas las plataformas, con una tolerancia mínima
+  // para diferencias de rasterizado entre versiones de Chromium.
+  snapshotPathTemplate: '{testDir}/capturas/{arg}{ext}',
+  expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.02 } },
   projects: [
     {
       name: 'celular-chromium',
@@ -32,14 +37,21 @@ export default defineConfig({
     },
   ],
   // Las pruebas corren contra la app construida: el service worker solo existe en el build.
+  // La app se construye apuntando al emulador de Firebase, que arranca junto con los servidores.
   webServer: [
     {
-      command: `VITE_MAP_DIAGNOSTICS=true npm run build && npm run preview -- --port ${previewPort} --strictPort`,
+      // `npm run test:e2e` ya lo levanta y lo apaga; esta entrada cubre correr `playwright test` a mano.
+      command: 'npm run emulators',
+      url: `http://${emulatorConfig.host}:4400/emulators`,
+      reuseExistingServer: true,
+    },
+    {
+      command: `VITE_MAP_DIAGNOSTICS=true VITE_BACKEND_EMULATOR=true npm run build && npm run preview -- --port ${previewPort} --strictPort`,
       url: `http://localhost:${previewPort}`,
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: `VITE_MAP_DIAGNOSTICS=true VITE_TILE_PROVIDER=pmtiles-sample npx vite build --outDir dist-pmtiles && npx vite preview --outDir dist-pmtiles --port ${pmtilesPreviewPort} --strictPort`,
+      command: `VITE_MAP_DIAGNOSTICS=true VITE_BACKEND_EMULATOR=true VITE_TILE_PROVIDER=pmtiles-sample npx vite build --outDir dist-pmtiles && npx vite preview --outDir dist-pmtiles --port ${pmtilesPreviewPort} --strictPort`,
       url: `http://localhost:${pmtilesPreviewPort}`,
       reuseExistingServer: !process.env.CI,
     },

@@ -24,9 +24,15 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      # El emulador de Firebase corre sobre Java.
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
       - run: npm ci
       - run: npm run lint
       - run: npm test
+      - run: npm run test:emulator
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: npm run build

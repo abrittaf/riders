@@ -4,8 +4,11 @@
  * composición de la app usa una vez al arrancar).
  */
 export type { Backend, BackendConfig } from './backend.ts'
+export type { EmulatorConfig } from './emulator-config.ts'
 export type {
+  DeleteAccountResult,
   RiderAccountService,
+  RiderProfile,
   RiderSession,
   SignedInRider,
 } from './rider-account-service.ts'
