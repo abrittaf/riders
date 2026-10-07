@@ -32,9 +32,11 @@ export function fitDocumentSize(draft: RoadmapDraft): RoadmapDraft {
     documentSizeOf(fitted) > MAX_DOCUMENT_SIZE_IN_BYTES &&
     tolerance <= MAX_TOLERANCE_IN_METERS
   ) {
+    // Cada ronda parte de la anterior: simplificar lo ya simplificado da el mismo resultado
+    // con tolerancias crecientes y evita recorrer la geometría completa en cada intento.
     fitted = {
-      ...draft,
-      legs: draft.legs.map((leg) => simplifyLeg(leg, tolerance)),
+      ...fitted,
+      legs: fitted.legs.map((leg) => simplifyLeg(leg, tolerance)),
     }
     tolerance *= 2
   }
