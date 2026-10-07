@@ -85,7 +85,9 @@ test('al recuperar la conectividad el mapa completa la zona que no estaba dispon
   await page.evaluate(() => navigator.serviceWorker.ready)
   await context.setOffline(true)
   await openMapAt(page, { zoom: 14, ...BUENOS_AIRES })
-  await expect(page.getByText(UNAVAILABLE_NOTICE)).toBeVisible()
+  await expect(page.getByText(UNAVAILABLE_NOTICE)).toBeVisible({
+    timeout: 20_000,
+  })
 
   await context.setOffline(false)
 

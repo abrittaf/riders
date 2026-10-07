@@ -72,9 +72,10 @@ test('tras cerrar sesión la app vuelve al estado sin cuenta y al reingresar el 
   const account = newGoogleAccount('Fernando')
   await page.goto('/')
   await signInWithGoogle(page, account)
+  // Al volver de Google la app resuelve la sesión y lee el perfil; en la máquina de GitHub tarda.
   await expect(
     page.getByRole('dialog', { name: 'Completá tu perfil' }),
-  ).toBeVisible()
+  ).toBeVisible({ timeout: 20_000 })
   await givenCompletedProfile(account, 'Fer')
   await expect(page.getByRole('button', { name: 'Fer' })).toBeVisible()
   await expect(page.getByRole('dialog')).toHaveCount(0)
