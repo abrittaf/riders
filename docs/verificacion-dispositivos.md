@@ -1,6 +1,6 @@
 # Verificación en celulares reales
 
-Registro de las pruebas en celulares de cada change (sección 7 de `openspec/changes/map-platform-foundation/tasks.md`
+Registro de las pruebas en celulares de cada change (sección 7 de `openspec/changes/archive/2026-10-07-map-platform-foundation/tasks.md`
 y las de `rider-onboarding`). Se completa a mano, por dispositivo, sobre la app publicada:
 hasta el 2026-10-05 en GitHub Pages (`https://abrittaf.github.io/riders/`), desde entonces
 en Firebase Hosting (`https://riders-65821.web.app`). Cada resultado
@@ -20,8 +20,9 @@ Los resultados de la columna «iPhone» valen para los dos modelos.
 No se dispone de un celular Android. La instalación, el mapa sin conexión y la posición
 propia (7.1, 7.2 y 7.4) no están verificados en un Android real; mientras tanto, la
 cobertura de Android es la de las pruebas de Playwright con emulación Chromium. La
-verificación en un dispositivo queda como tarea 7.6, pendiente hasta contar con uno, y sus
-resultados se anotan en la columna «Android» de cada tabla.
+verificación en un dispositivo quedó como tarea 7.6; el change se archivó el 2026-10-07 sin
+poder hacerla y sus resultados, cuando haya un Android, se anotan en la columna «Android»
+de cada tabla.
 
 ## 7.1 Instalación, apertura sin la interfaz del navegador y apertura sin red
 
@@ -44,15 +45,19 @@ resultados se anotan en la columna «Android» de cada tabla.
 
 ## 7.3 Persistencia después de cuatro días (iPhone)
 
-Pendiente: la reapertura corresponde el 2026-10-07 o después, sin abrir la app en el medio.
+No realizada en este change: la app se abrió en los iPhone antes de cumplirse los cuatro
+días (verificaciones de `rider-onboarding` y `roadmap-planning` sobre la misma instalación),
+así que la condición "sin abrir la app en el medio" no se dio. El change se archiva con la
+tarea cerrada sin resultado (decisión del 2026-10-07); la prueba se repite en una instancia
+posterior, con una zona descargada y la app sin abrir durante cuatro días.
 
 | Verificación | Resultado |
 | --- | --- |
 | Fecha de la descarga | 2026-10-03 |
-| Fecha de la reapertura (sin haber abierto la app en el medio) | Prevista: 2026-10-07 o después |
-| La zona sigue en la lista y el mapa se ve en modo avión | |
+| Fecha de la reapertura (sin haber abierto la app en el medio) | No se dio la condición |
+| La zona sigue en la lista y el mapa se ve en modo avión | Sin resultado; pendiente para una instancia posterior |
 
-Si la zona se pierde, hay que revisar la decisión D4 de `design.md`.
+Si al repetirla la zona se pierde, hay que revisar la decisión D4 del design archivado.
 
 ## 7.4 Posición propia en movimiento
 
