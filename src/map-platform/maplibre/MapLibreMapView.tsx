@@ -61,7 +61,15 @@ function exposeRenderDiagnostics(
   map.on('movestart', () => {
     container.dataset.mapIdle = 'false'
   })
+  const exposeView = () => {
+    container.dataset.zoom = String(map.getZoom())
+    container.dataset.centerLatitude = String(map.getCenter().lat)
+    container.dataset.centerLongitude = String(map.getCenter().lng)
+  }
+  // La vista se publica al terminar cada movimiento, sin esperar a que lleguen las teselas nuevas.
+  map.on('moveend', exposeView)
   map.on('idle', () => {
+    exposeView()
     const rendered = map.queryRenderedFeatures()
     const countIn = (sourceLayer: string) =>
       String(
@@ -76,9 +84,6 @@ function exposeRenderDiagnostics(
         (place) => place.name,
       ),
     )
-    container.dataset.zoom = String(map.getZoom())
-    container.dataset.centerLatitude = String(map.getCenter().lat)
-    container.dataset.centerLongitude = String(map.getCenter().lng)
     container.dataset.mapIdle = 'true'
   })
 }
