@@ -75,7 +75,7 @@ Clima sobre la ruta del Roadmap.
 ### `offline-maps`
 Mapa disponible sin conexión.
 - **Cubre:** descargar al celular una zona del mapa (con sus lugares) con tamaño estimado y progreso; verla sin conexión con el mismo detalle; listar, borrar y conocer el espacio ocupado; conservar las descargas en el tiempo. `roadmap-convening` lo extiende después con "descargar la zona del Roadmap".
-- **No cubre:** rutas ni posiciones (son datos de la app, no del mapa).
+- **No cubre:** rutas ni posiciones (son datos de la app, no del mapa); la evidencia de persistencia entre actualizaciones (ver change `offline-resilience`).
 - **Depende de:** `map-view`.
 
 ## Restricciones transversales (no son capabilities)
@@ -97,3 +97,5 @@ Se cumplen en todos los specs; están en `openspec/config.yaml`:
 7. `roadmap-weather-forecast`: `roadmap-weather`.
 
 Change chico, independiente del orden: `map-attribution-collapse`, que modifica `map-view` para que la atribución se pliegue detrás de un botón "(i)" tras unos segundos, como admiten las guías de la OpenStreetMap Foundation. Requiere que `map-platform-foundation` esté archivado.
+
+8. `offline-resilience`: capability transversal `offline-operation` (política de degradación controlada, diagnóstico de almacenamiento visible en la app, supervivencia de zonas y datos a una actualización de la app) y los escenarios sin conexión que falten en las demás capabilities. Retoma la verificación de persistencia de `map-platform-foundation` (7.3) con una condición de prueba realista: zona descargada, una publicación nueva de la app, apertura sin reinstalar. Verificación solo en iPhone; Android queda fuera de alcance hasta disponer de un dispositivo.
