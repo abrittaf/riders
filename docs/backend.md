@@ -1,6 +1,6 @@
 # Backend
 
-Riders usa Firebase en plan Spark (sin costo y sin medio de pago): Authentication con Google, Cloud Firestore y Hosting. Las decisiones están en `openspec/changes/rider-onboarding/design.md` (D1 a D9). El único módulo de la app que conoce a Firebase es `src/backend/`.
+Riders usa Firebase en plan Spark (sin costo y sin medio de pago): Authentication con Google, Cloud Firestore y Hosting. Las decisiones están en `openspec/changes/archive/2026-10-10-rider-onboarding/design.md` (D1 a D9). El único módulo de la app que conoce a Firebase es `src/backend/`.
 
 ## Proyecto actual
 
