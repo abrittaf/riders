@@ -28,7 +28,7 @@ const PLACE_TYPES_BY_CLASS: Record<string, PlaceType> = {
 /** Lo que `map-platform` lee de cada elemento de la capa `poi`; el renderizador entrega más. */
 export interface PoiFeature {
   properties: Record<string, unknown>
-  geometry: { type: string; coordinates: unknown }
+  geometry: { type: string; coordinates?: unknown }
 }
 
 export function placeTypeOfClass(poiClass: unknown): PlaceType | null {

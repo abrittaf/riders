@@ -19,6 +19,7 @@ import { tileBounds } from '../tile-math.ts'
 import { type TileCoordinates, tileKey } from '../tile-source.ts'
 import { watchLongPress } from './long-press.ts'
 import type { MapLibreResourceProtocol } from './maplibre-resource-protocol.ts'
+import { ROUTE_SOURCE_ID, setRoute } from './route-layers.ts'
 
 export interface MapLibreMapViewDependencies {
   provider: MapProvider
@@ -79,6 +80,17 @@ function exposeRenderDiagnostics(
     container.dataset.renderedRoads = countIn('transportation')
     container.dataset.renderedRoadNames = countIn('transportation_name')
     container.dataset.renderedPlaceNames = countIn('place')
+    container.dataset.routeSurfaces = map.getSource(ROUTE_SOURCE_ID)
+      ? [
+          ...new Set(
+            map
+              .querySourceFeatures(ROUTE_SOURCE_ID)
+              .map((feature) => String(feature.properties?.['surface'])),
+          ),
+        ]
+          .sort()
+          .join(',')
+      : ''
     container.dataset.fuelPlacesInView = JSON.stringify(
       queryPlacesInView(map, vectorSourceId, ['fuel'], language()).map(
         (place) => place.name,
@@ -149,6 +161,7 @@ export function createMapLibreMapView(
     language,
     ownPosition,
     markers = [],
+    route = [],
     onUnavailableAreaChange,
     onLongPress,
   }: MapViewProps) {
@@ -281,14 +294,44 @@ export function createMapLibreMapView(
       if (map) syncMarkers(map, shownMarkersRef.current, markers)
     }, [markers])
 
+    // La ruta se dibuja sobre el estilo cargado; al cambiar de estilo (idioma) se vuelve a agregar.
+    useEffect(() => {
+      const map = mapRef.current
+      if (!map) return
+      const draw = () => setRoute(map, route)
+      if (map.isStyleLoaded()) draw()
+      map.on('style.load', draw)
+      return () => {
+        map.off('style.load', draw)
+      }
+    }, [route, language])
+
     useImperativeHandle(ref, () => ({
       centerOn(position) {
         mapRef.current?.easeTo({
           center: [position.longitude, position.latitude],
         })
       },
+      fitBounds(bounds) {
+        mapRef.current?.fitBounds(
+          [
+            [bounds.west, bounds.south],
+            [bounds.east, bounds.north],
+          ],
+          { padding: 48, maxZoom: 14, duration: 0 },
+        )
+      },
       getVisibleBounds() {
         return visibleBounds(mapRef.current!)
+      },
+      positionAt(fraction) {
+        const map = mapRef.current!
+        const { width, height } = map.getContainer().getBoundingClientRect()
+        const { lat, lng } = map.unproject([
+          width * fraction.x,
+          height * fraction.y,
+        ])
+        return { latitude: lat, longitude: lng }
       },
       zoomIn(levels) {
         const map = mapRef.current

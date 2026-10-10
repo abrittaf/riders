@@ -40,6 +40,8 @@ export class FakeGeolocation implements Geolocation {
 export function createFakeMapView() {
   const handle = {
     centerOn: vi.fn(),
+    fitBounds: vi.fn(),
+    positionAt: vi.fn(() => ({ latitude: -34.5, longitude: -58.5 })),
     getVisibleBounds: vi.fn(() => ({
       west: -59,
       south: -35,
@@ -53,7 +55,7 @@ export function createFakeMapView() {
   let lastProps: MapViewProps | null = null
 
   function FakeMapView({ ref, ...props }: MapViewProps) {
-    const { ownPosition, markers = [] } = props
+    const { ownPosition, markers = [], route = [] } = props
     useEffect(() => {
       lastProps = props
     })
@@ -67,6 +69,10 @@ export function createFakeMapView() {
             : undefined
         }
         data-own-position-is-last-known={ownPosition?.isLastKnown}
+        data-route-legs={route.length}
+        data-route-surfaces={route
+          .flatMap((leg) => leg.surfaces.map((segment) => segment.surface))
+          .join(',')}
       >
         {markers.map((marker) => (
           <span

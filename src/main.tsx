@@ -26,13 +26,15 @@ const i18n = createI18n({
 const connectivity = new BrowserConnectivity()
 const mapPlatform = createMapPlatform(mapConfig, { connectivity })
 void mapPlatform.offlineRegions.initialize()
+const backend = createBackend(backendConfig)
 
 const dependencies: AppDependencies = {
   languagePreference,
   connectivity,
   installPlatform: new BrowserInstallPlatform(),
   mapPlatform,
-  riderAccount: createBackend(backendConfig).riderAccount,
+  riderAccount: backend.riderAccount,
+  roadmaps: backend.roadmaps,
   profileDrafts: new LocalStorageProfileDraftStore(window.localStorage),
 }
 

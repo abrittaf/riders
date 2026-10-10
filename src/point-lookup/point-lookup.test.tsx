@@ -114,8 +114,10 @@ describe('elegir un Point buscando por nombre', () => {
       within(picker).getByRole('tab', { name: 'Lugares por tipo' }),
     ).toBeEnabled()
     expect(
-      within(picker).getByText(/mantener el dedo sobre el mapa/),
-    ).toBeVisible()
+      within(picker).getByRole('button', {
+        name: 'Usar la posición bajo la mira',
+      }),
+    ).toBeEnabled()
   })
 
   it('si el buscador falla, lo informa y permite reintentar', async () => {
@@ -210,6 +212,36 @@ describe('elegir un Point por tipo entre lo visible', () => {
       'Hostal del Valle',
     )
     expect(placeSearch.queries).toHaveLength(0)
+  })
+})
+
+describe('elegir una posición con la mira del mapa', () => {
+  it('mientras el selector está abierto el mapa muestra la mira, y «Usar la posición bajo la mira» propone un Point en ese lugar', async () => {
+    const placeSearch = new FakePlaceSearch()
+    placeSearch.nearest = place({ name: 'Sarmiento', locality: 'Cachi' })
+    const { map, picker } = await openPointPicker({ placeSearch })
+    map.handle.positionAt.mockReturnValue({
+      latitude: -25.1197,
+      longitude: -66.1656,
+    })
+    expect(screen.getByTestId('map-crosshair')).toBeInTheDocument()
+
+    await userEvent.click(
+      within(picker).getByRole('button', {
+        name: 'Usar la posición bajo la mira',
+      }),
+    )
+
+    expect(map.handle.positionAt).toHaveBeenCalledWith({ x: 0.5, y: 0.3 })
+    expect(screen.getByText('-25,1197, -66,1656')).toBeVisible()
+    expect(await screen.findByLabelText('Nombre del Point')).toHaveDisplayValue(
+      'Sarmiento',
+    )
+
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar' }))
+
+    expect(pointSequence()).toHaveTextContent('Sarmiento')
+    expect(screen.queryByTestId('map-crosshair')).not.toBeInTheDocument()
   })
 })
 

@@ -12,7 +12,7 @@
 
 - [x] 2.1 Implementar la búsqueda por nombre con lista de coincidencias (nombre, tipo, localidad, distancia), estado sin coincidencias y no disponible sin conexión, y verificar con Playwright contra el proveedor simulado los tres escenarios del spec
 - [x] 2.2 Implementar la elección por tipo (estación de servicio, alojamiento, restaurante, punto de interés) con lista y resaltado sobre el mapa, y verificar con Playwright que funciona con red y sin red dentro de una zona descargada, y que sin lugares en la vista sugiere alejar el mapa
-- [x] 2.3 Implementar la posición elegida con toque sostenido, con nombre propuesto por dirección inversa o coordenadas sin conexión, editable; verificar con Playwright los dos escenarios
+- [x] 2.3 Implementar la posición elegida con toque sostenido, con nombre propuesto por dirección inversa o coordenadas sin conexión, editable; verificar con Playwright los dos escenarios (primera versión: eventos de puntero; ver 4.1)
 - [x] 2.4 Mostrar los nombres de lugares en español cuando existe y en idioma de origen si no, en lugares por tipo y Points elegidos desde las teselas (la búsqueda por nombre trae solo el original, ver D2); verificar con una prueba unitaria los dos escenarios del spec
 
 ## 3. Modelo y reglas del Roadmap (`roadmap-planning`)
@@ -23,10 +23,11 @@
 
 ## 4. Editor de Roadmap (`roadmap-planning`)
 
-- [ ] 4.1 Verificar en el iPhone instalado, con una pantalla mínima, que el toque sostenido sobre el mapa no dispara el menú contextual ni la selección de texto, y registrar el resultado en `docs/verificacion-dispositivos.md`; si falla, ajustar D6 antes de seguir
-- [ ] 4.2 Implementar la pantalla de edición: nombre, descripción, secuencia de Points con insertar, subir, bajar y quitar, fecha asociada opcional por Point, kilómetros aproximados, y las validaciones junto a cada campo; verificar con pruebas unitarias las validaciones, la lógica de secuencia y poner, cambiar y quitar la fecha de un Point
-- [ ] 4.3 Integrar el cálculo de ruta: recalcular solo los tramos afectados, mostrar distancia, tiempo y kilómetros sin pavimentar por tramo y totales, señalar el tramo sin camino, y bloquear cambios que requieren ruteo sin conexión; verificar con Playwright contra el proveedor simulado los escenarios de "Cálculo de la ruta" y los tres primeros de "Superficie de los tramos"
-- [ ] 4.4 Dibujar la ruta por segmentos con el estilo de línea de su superficie (continua, discontinua, punteada, punto y raya), los Points numerados y la referencia de estilos accesible desde la pantalla del Roadmap, con encuadre sobre la ruta completa; verificar visualmente con Playwright mediante capturas de referencia de un Roadmap con las cuatro clases de superficie
+- [x] 4.1 Verificar en el iPhone instalado, con una pantalla mínima, que el toque sostenido sobre el mapa no dispara el menú contextual ni la selección de texto, y registrar el resultado en `docs/verificacion-dispositivos.md`; si falla, ajustar D6 antes de seguir (resultado 2026-10-10: el toque sostenido no produce ningún efecto; D6 ajustado: la mira del mapa pasa a ser la forma principal)
+- [x] 4.1b Implementar la mira del mapa con «Usar esta posición» en el selector de Points, reimplementar el toque sostenido con eventos táctiles, y verificar con Playwright los escenarios de la mira y del toque; la verificación del toque en el iPhone se repite en 6.1
+- [x] 4.2 Implementar la pantalla de edición: nombre, descripción, secuencia de Points con insertar, subir, bajar y quitar, fecha asociada opcional por Point, kilómetros aproximados, y las validaciones junto a cada campo; verificar con pruebas unitarias las validaciones, la lógica de secuencia y poner, cambiar y quitar la fecha de un Point
+- [x] 4.3 Integrar el cálculo de ruta: recalcular solo los tramos afectados, mostrar distancia, tiempo y kilómetros sin pavimentar por tramo y totales, señalar el tramo sin camino, y bloquear cambios que requieren ruteo sin conexión; verificar con Playwright contra el proveedor simulado los escenarios de "Cálculo de la ruta" y los tres primeros de "Superficie de los tramos"
+- [x] 4.4 Dibujar la ruta por segmentos con el estilo de línea de su superficie (continua, discontinua, punteada, punto y raya), los Points numerados y la referencia de estilos accesible desde la pantalla del Roadmap, con encuadre sobre la ruta completa; verificar visualmente con Playwright mediante capturas de referencia de un Roadmap con las cuatro clases de superficie
 
 ## 5. Lista, detalle, borrado y sin conexión (`roadmap-planning`)
 
@@ -37,5 +38,5 @@
 
 ## 6. Verificación en iPhone sobre la URL publicada
 
-- [ ] 6.1 Armar un Roadmap real de al menos cuatro Points usando las tres formas de elegir Points (nombre, tipo, toque sostenido), con una fecha asociada a uno de ellos y un Point que solo tenga acceso por ripio, y registrar en `docs/verificacion-dispositivos.md` el resultado de cada forma, si la ruta es razonable y si el tramo de ripio aparece con su estilo y sus kilómetros
+- [ ] 6.1 Armar un Roadmap real de al menos cuatro Points usando las tres formas de elegir Points (nombre, tipo, toque sostenido, o la mira si el toque sostenido sigue sin funcionar; anotar cuál), con una fecha asociada a uno de ellos y un Point que solo tenga acceso por ripio, y registrar en `docs/verificacion-dispositivos.md` el resultado de cada forma, si la ruta es razonable y si el tramo de ripio aparece con su estilo y sus kilómetros
 - [ ] 6.2 Descargar la zona del Roadmap, activar el modo avión y verificar que el Roadmap se ve con su ruta y que las acciones no disponibles están señaladas; registrar el resultado

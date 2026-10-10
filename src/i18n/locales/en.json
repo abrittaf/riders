@@ -204,9 +204,65 @@
   "roadmaps": {
     "editor": {
       "title": "New Roadmap",
+      "editTitle": "Edit Roadmap",
+      "name": "Name",
+      "description": "Description (optional)",
       "addPoint": "Add Point",
+      "insertHere": "Insert Point here",
       "noPoints": "No Points yet. Add the departure and the destination.",
-      "points": "Roadmap Points"
+      "points": "Roadmap Points",
+      "pointDate": "Date",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "remove": "Remove",
+      "routingRequiresConnection": "Computing the route requires a connection",
+      "saveRequiresConnection": "Saving requires a connection",
+      "save": "Save",
+      "saveFailed": "The Roadmap could not be saved. Try again.",
+      "errors": {
+        "name": {
+          "empty": "Give the Roadmap a name.",
+          "too-short": "The name needs at least 2 characters.",
+          "too-long": "The name cannot exceed 60 characters."
+        },
+        "points": {
+          "too-few": "At least two Points are needed: departure and destination.",
+          "too-many": "A Roadmap holds up to 50 Points."
+        },
+        "legs": {
+          "no-route": "A leg has no route. Move or remove one of its Points.",
+          "incomplete": "Wait for the route to finish computing."
+        }
+      }
+    },
+    "legs": {
+      "unpaved": "{{distance}} unpaved",
+      "unknownSurface": "with parts of unknown surface",
+      "calculating": "Computing the leg…",
+      "noRoute": "No route between these Points: move or remove one of them.",
+      "unavailable": "The routing engine did not respond.",
+      "retry": "Retry"
+    },
+    "totals": "Total: {{distance}} · {{duration}} · {{unpaved}} unpaved",
+    "legend": {
+      "title": "Route line styles",
+      "open": "Line styles",
+      "paved": {
+        "name": "Paved",
+        "description": "solid line: asphalt, concrete, cobblestone"
+      },
+      "compacted": {
+        "name": "Compacted",
+        "description": "dashed line: gravel, compacted gravel"
+      },
+      "loose": {
+        "name": "Loose",
+        "description": "dotted line: dirt, sand, track"
+      },
+      "unknown": {
+        "name": "Unknown",
+        "description": "dash-dot: the map does not report the surface"
+      }
     }
   },
   "pointLookup": {
@@ -217,7 +273,6 @@
       "search": "Search by name",
       "byType": "Places by type"
     },
-    "longPressHint": "You can also press and hold on the map to choose any position.",
     "search": {
       "label": "Place name",
       "submit": "Search",
@@ -236,7 +291,9 @@
       "name": "Point name",
       "confirm": "Confirm",
       "proposing": "Looking for the nearest place…"
-    }
+    },
+    "anyPositionHint": "For any other position, move the map until it sits under the crosshair; you can also press and hold on it.",
+    "useCrosshair": "Use the position under the crosshair"
   },
   "placeTypes": {
     "fuel": "Fuel station",

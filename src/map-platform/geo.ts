@@ -37,3 +37,22 @@ export function distanceInMeters(a: GeoPosition, b: GeoPosition): number {
       Math.sin(longitudeDelta / 2) ** 2
   return 2 * EARTH_RADIUS_IN_METERS * Math.asin(Math.sqrt(h))
 }
+
+/** El rectángulo mínimo que contiene a todas las posiciones; `null` si no hay ninguna. */
+export function boundsOf(positions: readonly GeoPosition[]): GeoBounds | null {
+  const first = positions[0]
+  if (!first) return null
+  const bounds = {
+    west: first.longitude,
+    south: first.latitude,
+    east: first.longitude,
+    north: first.latitude,
+  }
+  for (const { latitude, longitude } of positions) {
+    bounds.west = Math.min(bounds.west, longitude)
+    bounds.east = Math.max(bounds.east, longitude)
+    bounds.south = Math.min(bounds.south, latitude)
+    bounds.north = Math.max(bounds.north, latitude)
+  }
+  return bounds
+}

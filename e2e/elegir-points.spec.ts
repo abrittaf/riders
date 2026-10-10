@@ -89,8 +89,10 @@ test.describe('buscar por nombre', () => {
       picker(page).getByRole('tab', { name: 'Lugares por tipo' }),
     ).toBeEnabled()
     await expect(
-      picker(page).getByText(/mantener el dedo sobre el mapa/),
-    ).toBeVisible()
+      picker(page).getByRole('button', {
+        name: 'Usar la posición bajo la mira',
+      }),
+    ).toBeEnabled()
   })
 })
 
@@ -174,6 +176,32 @@ test.describe('elegir por tipo', () => {
     await expect(picker(page).getByRole('listitem').first()).toContainText(
       'Estación de servicio',
     )
+  })
+})
+
+test.describe('posición con la mira del mapa', () => {
+  test('mientras se elige un Point el mapa muestra la mira, y «Usar la posición bajo la mira» propone un Point ahí', async ({
+    page,
+  }) => {
+    await givenSignedInRider(page, 'Fer')
+    await openMapAt(page, { zoom: 12, ...BUENOS_AIRES })
+    await openPointPicker(page)
+
+    const crosshair = page.getByTestId('map-crosshair')
+    await expect(crosshair).toBeVisible()
+    const box = (await crosshair.boundingBox())!
+    await picker(page)
+      .getByRole('button', { name: 'Usar la posición bajo la mira' })
+      .click()
+
+    await expect(page.getByLabel('Nombre del Point')).toHaveValue('Sarmiento')
+    await page.getByRole('button', { name: 'Confirmar' }).click()
+
+    await expect(pointSequence(page)).toContainText('Sarmiento')
+    await expect(crosshair).toHaveCount(0)
+    // La mira estaba sobre el mapa, en su tercio superior.
+    const map = (await mapLocator(page).boundingBox())!
+    expect(box.y + box.height / 2).toBeCloseTo(map.y + map.height * 0.3, -1)
   })
 })
 

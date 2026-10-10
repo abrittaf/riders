@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InstallPrompt } from './app-shell/install/InstallPrompt.tsx'
 import type { InstallPlatform } from './app-shell/install/install-platform.ts'
@@ -10,7 +10,7 @@ import {
   useConnectivity,
 } from './connectivity/online-context.ts'
 import type { LanguagePreference } from './i18n/language-preference.ts'
-import type { RiderAccountService } from './backend/index.ts'
+import type { RiderAccountService, RoadmapService } from './backend/index.ts'
 import type {
   GeoPosition,
   MapMarker,
@@ -28,6 +28,10 @@ import { ProfileSetupScreen } from './rider-account/ProfileSetupScreen.tsx'
 import { SignInFailedNotice } from './rider-account/SignInFailedNotice.tsx'
 import { useRiderSession } from './rider-account/use-rider-session.ts'
 import { useOfflineRegions } from './offline-maps/use-offline-regions.ts'
+import {
+  EMPTY_MAP_DISPLAY,
+  type RoadmapMapDisplay,
+} from './roadmap-planning/roadmap-map-display.ts'
 import { RoadmapEditor } from './roadmap-planning/RoadmapEditor.tsx'
 
 export interface AppDependencies {
@@ -36,6 +40,7 @@ export interface AppDependencies {
   installPlatform: InstallPlatform
   mapPlatform: MapPlatform
   riderAccount: RiderAccountService
+  roadmaps: RoadmapService
   profileDrafts: ProfileDraftStore
 }
 
@@ -58,12 +63,19 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
   const { mapPlatform, riderAccount } = dependencies
   const session = useRiderSession(riderAccount)
   const offlineRegions = useOfflineRegions(mapPlatform.offlineRegions)
-  const [markers, setMarkers] = useState<MapMarker[]>([])
+  const [highlighted, setHighlighted] = useState<MapMarker[]>([])
+  const [roadmapDisplay, setRoadmapDisplay] =
+    useState<RoadmapMapDisplay>(EMPTY_MAP_DISPLAY)
   const [longPressedPosition, setLongPressedPosition] =
     useState<GeoPosition | null>(null)
+  const [pickingPosition, setPickingPosition] = useState(false)
   const highlightPlaces = useCallback(
-    (places: Place[]) => setMarkers(highlightMarkers(places)),
+    (places: Place[]) => setHighlighted(highlightMarkers(places)),
     [],
+  )
+  const markers = useMemo(
+    () => [...roadmapDisplay.markers, ...highlighted],
+    [roadmapDisplay.markers, highlighted],
   )
   const getMap = useCallback(() => mapRef.current, [])
   const hasProfile = session.status === 'signed-in' && session.profile !== null
@@ -120,21 +132,27 @@ export function App({ dependencies }: { dependencies: AppDependencies }) {
             mapRef={mapRef}
             offlineRegions={offlineRegions.regions}
             markers={markers}
-            onLongPress={
-              openPanel === 'roadmap-editor'
-                ? setLongPressedPosition
-                : undefined
-            }
+            route={roadmapDisplay.route}
+            crosshair={pickingPosition}
+            onLongPress={pickingPosition ? setLongPressedPosition : undefined}
           />
         </main>
         {openPanel === 'roadmap-editor' && hasProfile && (
           <RoadmapEditor
-            placeSearch={mapPlatform.placeSearch}
-            geolocation={mapPlatform.geolocation}
+            dependencies={{
+              roadmaps: dependencies.roadmaps,
+              routeProvider: mapPlatform.routeProvider,
+              placeSearch: mapPlatform.placeSearch,
+              geolocation: mapPlatform.geolocation,
+            }}
+            roadmap={null}
             getMap={getMap}
             positionFromMap={longPressedPosition}
             onPositionFromMapHandled={() => setLongPressedPosition(null)}
+            onPickingChange={setPickingPosition}
             onHighlight={highlightPlaces}
+            onMapDisplayChange={setRoadmapDisplay}
+            onSaved={() => setOpenPanel('none')}
             onClose={() => {
               setLongPressedPosition(null)
               setOpenPanel('none')
