@@ -1,5 +1,6 @@
 import {
   type GeoPosition,
+  type MapAttribution,
   NoRouteError,
   type Route,
   type RouteLeg,
@@ -36,7 +37,7 @@ export function straightLeg(
  * Se le pueden declarar posiciones sin camino y simular que el servicio no responde.
  */
 export class FakeRouteProvider implements RouteProvider {
-  readonly attributions = []
+  readonly attributions: MapAttribution[] = []
   readonly requests: RouteRequest[] = []
   available = true
   /** Posiciones a las que no hay camino: cualquier tramo que llegue a ellas falla. */

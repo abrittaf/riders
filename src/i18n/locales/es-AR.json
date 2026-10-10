@@ -263,6 +263,31 @@
         "name": "Sin dato",
         "description": "punto y raya: el mapa no informa la superficie"
       }
+    },
+    "list": {
+      "title": "Roadmaps",
+      "create": "Nuevo Roadmap",
+      "createRequiresConnection": "Crear un Roadmap requiere conexión",
+      "points_one": "{{count}} Point",
+      "points_other": "{{count}} Points",
+      "empty": {
+        "title": "Todavía no tenés ningún Roadmap",
+        "body": "Un Roadmap es un viaje: los lugares por los que querés pasar, en orden, con el camino calculado entre ellos, la distancia, el tiempo y la superficie de cada tramo. Creá el primero con la salida y la llegada."
+      }
+    },
+    "detail": {
+      "edit": "Editar",
+      "duplicate": "Duplicar",
+      "delete": "Borrar",
+      "requiresConnection": "Requiere conexión",
+      "deleteConfirmTitle": "Borrar el Roadmap",
+      "deleteConfirmBody": "¿Borrar «{{name}}»? Desaparece de tu lista en todos tus dispositivos.",
+      "deleteConfirm": "Sí, borrar",
+      "copySuffix": "(copia)"
+    },
+    "sources": {
+      "open": "Fuentes del ruteo y la búsqueda",
+      "title": "Fuentes del ruteo y de la búsqueda de lugares"
     }
   },
   "pointLookup": {

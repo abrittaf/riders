@@ -33,6 +33,7 @@ async function openEditor(options: { routeProvider?: FakeRouteProvider } = {}) {
     ...options,
   })
   await userEvent.click(screen.getByRole('button', { name: 'Roadmaps' }))
+  await userEvent.click(screen.getByRole('button', { name: 'Nuevo Roadmap' }))
   return {
     ...app,
     placeSearch,
@@ -121,7 +122,7 @@ describe('editor de Roadmap: validaciones', () => {
     expect(saved.name).toBe('Ida a Cachi')
     expect(saved.points.map((p) => p.name)).toEqual(['Salta', 'Cachi'])
     expect(saved.legs).toHaveLength(1)
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: 'Ida a Cachi' })).toBeVisible()
   })
 })
 

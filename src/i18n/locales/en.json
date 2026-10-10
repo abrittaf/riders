@@ -263,6 +263,31 @@
         "name": "Unknown",
         "description": "dash-dot: the map does not report the surface"
       }
+    },
+    "list": {
+      "title": "Roadmaps",
+      "create": "New Roadmap",
+      "createRequiresConnection": "Creating a Roadmap requires a connection",
+      "points_one": "{{count}} Point",
+      "points_other": "{{count}} Points",
+      "empty": {
+        "title": "You have no Roadmaps yet",
+        "body": "A Roadmap is a trip: the places you want to pass through, in order, with the route computed between them and the distance, time and surface of each leg. Create the first one with a departure and a destination."
+      }
+    },
+    "detail": {
+      "edit": "Edit",
+      "duplicate": "Duplicate",
+      "delete": "Delete",
+      "requiresConnection": "Requires a connection",
+      "deleteConfirmTitle": "Delete the Roadmap",
+      "deleteConfirmBody": "Delete “{{name}}”? It disappears from your list on all your devices.",
+      "deleteConfirm": "Yes, delete",
+      "copySuffix": "(copy)"
+    },
+    "sources": {
+      "open": "Routing and search sources",
+      "title": "Routing and place search sources"
     }
   },
   "pointLookup": {

@@ -175,6 +175,27 @@ design quedó ajustado: la mira del mapa pasa a ser la forma principal de elegir
 el toque sostenido, reimplementado con eventos táctiles, queda como atajo; se vuelve a probar
 en 6.1.
 
+### 6.1 Roadmap real de cuatro Points
+
+Se completa a mano sobre `https://riders-65821.web.app`; "Pendiente" hasta que se haga.
+
+| Verificación | iPhone |
+| --- | --- |
+| Fecha y versión de iOS | Pendiente |
+| Point elegido buscando por nombre | Pendiente |
+| Point elegido por tipo entre lo visible | Pendiente |
+| Point elegido con toque sostenido (reimplementado con eventos táctiles) o, si sigue sin funcionar, con la mira del mapa (anotar cuál) | Pendiente |
+| Fecha asociada a uno de los Points, visible en el detalle | Pendiente |
+| La ruta calculada es razonable | Pendiente |
+| El tramo que llega por ripio se dibuja discontinuo y la lista informa sus km sin pavimentar | Pendiente |
+
+### 6.2 Roadmap en modo avión
+
+| Verificación | iPhone |
+| --- | --- |
+| Con la zona del Roadmap descargada y en modo avión, el Roadmap abre con su ruta y totales | Pendiente |
+| Editar, duplicar y borrar aparecen como no disponibles | Pendiente |
+
 ## Medición para fijar el límite de teselas por zona
 
 `design.md` deja abierto el límite de teselas por zona (hoy 12000, provisorio). Para

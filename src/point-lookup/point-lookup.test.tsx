@@ -28,6 +28,7 @@ async function openPointPicker(
   const app = renderApp({ riderAccount: signedInRider(), ...options })
   app.geolocation.report({ permission: 'granted', lastKnownPosition: SALTA })
   await userEvent.click(screen.getByRole('button', { name: 'Roadmaps' }))
+  await userEvent.click(screen.getByRole('button', { name: 'Nuevo Roadmap' }))
   await userEvent.click(screen.getByRole('button', { name: 'Agregar Point' }))
   return {
     ...app,

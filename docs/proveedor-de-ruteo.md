@@ -65,7 +65,8 @@ No hay registro, clave ni medio de pago.
 
 ## Atribución que muestra la app
 
-La pantalla del Roadmap muestra las fuentes del ruteo (tarea 5.4), con estos nombres y
+La pantalla del Roadmap muestra las fuentes del ruteo y de la búsqueda en un botón
+«© Valhalla · FOSSGIS e.V. · OpenStreetMap · Photon» que abre el detalle, con estos nombres y
 descripciones (textos de `src/i18n/locales/es-AR.json`, claves `map.sources.*`):
 
 | Fuente | Enlace | Descripción |

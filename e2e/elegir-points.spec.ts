@@ -13,8 +13,25 @@ const picker = (page: Page) =>
 const pointSequence = (page: Page) =>
   page.getByRole('list', { name: 'Points del Roadmap' })
 
+/** Espera a que las teselas cargadas tengan estaciones de servicio a la vista. */
+async function waitForFuelStationsInView(page: Page) {
+  await expect
+    .poll(
+      async () =>
+        (
+          JSON.parse(
+            (await mapLocator(page).getAttribute('data-fuel-places-in-view')) ??
+              '[]',
+          ) as string[]
+        ).length,
+      { timeout: 20_000 },
+    )
+    .toBeGreaterThan(0)
+}
+
 async function openPointPicker(page: Page) {
   await page.getByRole('button', { name: 'Roadmaps' }).click()
+  await page.getByRole('button', { name: 'Nuevo Roadmap' }).click()
   await page.getByRole('button', { name: 'Agregar Point' }).click()
   await expect(picker(page)).toBeVisible()
 }
@@ -102,6 +119,7 @@ test.describe('elegir por tipo', () => {
   }) => {
     await givenSignedInRider(page, 'Fer')
     await openMapAt(page, { zoom: 14, ...BUENOS_AIRES })
+    await waitForFuelStationsInView(page)
     await openPointPicker(page)
 
     await picker(page).getByRole('tab', { name: 'Lugares por tipo' }).click()
@@ -163,11 +181,22 @@ test.describe('elegir por tipo', () => {
     ).toHaveText('Disponible sin conexión', { timeout: 60_000 })
     await regions.getByRole('button', { name: 'Cerrar' }).click()
     await page.evaluate(() => navigator.serviceWorker.ready)
+    // Crear un Roadmap requiere conexión: el editor se abre con red y la red se corta después.
+    await openPointPicker(page)
 
     await page.context().setOffline(true)
     await page.reload()
     await waitForMapToSettle(page)
+    await waitForFuelStationsInView(page)
+    await expect(page.getByText('Sin conexión', { exact: true })).toBeVisible()
+    await page.getByRole('button', { name: 'Roadmaps' }).click()
+    await expect(
+      page.getByRole('button', { name: 'Nuevo Roadmap' }),
+    ).toBeDisabled()
+    await page.getByRole('button', { name: 'Cerrar' }).click()
+    await page.context().setOffline(false)
     await openPointPicker(page)
+    await page.context().setOffline(true)
     await picker(page).getByRole('tab', { name: 'Lugares por tipo' }).click()
     await picker(page)
       .getByRole('button', { name: 'Estación de servicio' })

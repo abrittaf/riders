@@ -1,6 +1,10 @@
-import { expect, type Page, test } from '@playwright/test'
-import { givenSignedInRider } from './support/cuenta.ts'
-import { mapLocator, waitForMapToSettle } from './support/mapa.ts'
+import { devices, expect, type Page, test } from '@playwright/test'
+import { givenSignedInRider, signInWithGoogle } from './support/cuenta.ts'
+import {
+  mapLocator,
+  readMapNumber,
+  waitForMapToSettle,
+} from './support/mapa.ts'
 import { simulatePlaceSearch, simulateRouting } from './support/proveedores.ts'
 
 const editor = (page: Page) =>
@@ -33,6 +37,7 @@ const departure = (page: Page) => addPoint(page, 'YPF', 'Chicoana')
 async function openNewRoadmap(page: Page) {
   await givenSignedInRider(page, 'Fer')
   await page.getByRole('button', { name: 'Roadmaps' }).click()
+  await page.getByRole('button', { name: 'Nuevo Roadmap' }).click()
   await expect(editor(page)).toBeVisible()
 }
 
@@ -177,5 +182,190 @@ test.describe('superficie de los tramos', () => {
     await expect(legend).toContainText('Consolidado línea discontinua')
     await expect(legend).toContainText('Suelto línea punteada')
     await expect(legend).toContainText('Sin dato punto y raya')
+  })
+})
+
+/** Crea y guarda un Roadmap Chicoana → La Merced con el nombre dado, y vuelve a la lista. */
+async function givenSavedRoadmap(page: Page, name: string) {
+  await page.getByRole('button', { name: 'Roadmaps' }).click()
+  await page.getByRole('button', { name: 'Nuevo Roadmap' }).click()
+  await editor(page).getByLabel('Nombre').fill(name)
+  await departure(page)
+  await addPoint(page, 'YPF', 'La Merced')
+  await expect(legSummaries(page)).toHaveCount(1)
+  await editor(page).getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByRole('dialog', { name })).toBeVisible()
+}
+
+test.describe('lista y detalle', () => {
+  test('sin Roadmaps explica qué es un Roadmap y ofrece crear el primero', async ({
+    page,
+  }) => {
+    await givenSignedInRider(page, 'Fer')
+    await page.getByRole('button', { name: 'Roadmaps' }).click()
+
+    const list = page.getByRole('dialog', { name: 'Roadmaps' })
+    await expect(
+      list.getByRole('heading', { name: 'Todavía no tenés ningún Roadmap' }),
+    ).toBeVisible()
+    await expect(
+      list.getByRole('button', { name: 'Nuevo Roadmap' }),
+    ).toBeEnabled()
+  })
+
+  test('el Roadmap guardado aparece en la lista con distancia, tiempo y Points, y al abrirlo el mapa se encuadra sobre la ruta', async ({
+    page,
+  }) => {
+    await givenSignedInRider(page, 'Fer')
+    await givenSavedRoadmap(page, 'Ida a La Merced')
+    await page
+      .getByRole('dialog', { name: 'Ida a La Merced' })
+      .getByRole('button', { name: 'Cerrar' })
+      .click()
+
+    const item = page.getByRole('button', { name: /Ida a La Merced/ })
+    await expect(item).toContainText(/\d+ km · \d+min · 2 Points/)
+    await item.click()
+
+    const detail = page.getByRole('dialog', { name: 'Ida a La Merced' })
+    await expect(detail.getByText(/^Total:/)).toBeVisible()
+    await expect(page.locator('.map-marker-point')).toHaveCount(2)
+    await waitForMapToSettle(page)
+    await expect(mapLocator(page)).toHaveAttribute(
+      'data-route-surfaces',
+      'paved',
+    )
+    // Chicoana (-25.10) y La Merced (-24.96) quedan dentro de la vista.
+    const latitude = await readMapNumber(page, 'data-center-latitude')
+    expect(latitude).toBeGreaterThan(-25.2)
+    expect(latitude).toBeLessThan(-24.9)
+  })
+})
+
+test.describe('edición, borrado y duplicación', () => {
+  test('un Roadmap borrado con confirmación desaparece también en una segunda sesión con la misma cuenta', async ({
+    page,
+    browser,
+  }) => {
+    const account = await givenSignedInRider(page, 'Fer')
+    await givenSavedRoadmap(page, 'Para borrar')
+
+    const detail = page.getByRole('dialog', { name: 'Para borrar' })
+    await detail.getByRole('button', { name: 'Borrar' }).click()
+    await page.getByRole('button', { name: 'Sí, borrar' }).click()
+    await expect(
+      page
+        .getByRole('dialog', { name: 'Roadmaps' })
+        .getByRole('button', { name: /Para borrar/ }),
+    ).toHaveCount(0)
+
+    const secondSession = await browser.newContext({
+      ...devices['Pixel 7'],
+      locale: 'es-AR',
+    })
+    const secondPage = await secondSession.newPage()
+    await simulatePlaceSearch(secondPage)
+    await simulateRouting(secondPage)
+    await secondPage.goto('/')
+    await signInWithGoogle(secondPage, account)
+    await expect(secondPage.getByRole('button', { name: 'Fer' })).toBeVisible()
+    await secondPage.getByRole('button', { name: 'Roadmaps' }).click()
+
+    await expect(
+      secondPage.getByRole('heading', {
+        name: 'Todavía no tenés ningún Roadmap',
+      }),
+    ).toBeVisible()
+    await secondSession.close()
+  })
+
+  test('duplicar abre un Roadmap nuevo sin fechas, listo para editar, y el original queda intacto', async ({
+    page,
+  }) => {
+    await givenSignedInRider(page, 'Fer')
+    await page.getByRole('button', { name: 'Roadmaps' }).click()
+    await page.getByRole('button', { name: 'Nuevo Roadmap' }).click()
+    await editor(page).getByLabel('Nombre').fill('Original')
+    await departure(page)
+    await addPoint(page, 'YPF', 'La Merced')
+    await editor(page).getByLabel('Fecha').last().fill('2026-11-20')
+    await expect(legSummaries(page)).toHaveCount(1)
+    await editor(page).getByRole('button', { name: 'Guardar' }).click()
+    const original = page.getByRole('dialog', { name: 'Original' })
+    await expect(original.getByText(/20 nov 2026/)).toBeVisible()
+
+    await original.getByRole('button', { name: 'Duplicar' }).click()
+
+    const copy = page.getByRole('dialog', { name: 'Original (copia)' })
+    await expect(copy).toBeVisible()
+    await expect(copy.getByText(/20 nov 2026/)).toHaveCount(0)
+    await expect(copy.getByText(/^Total:/)).toBeVisible()
+    await copy.getByRole('button', { name: 'Editar' }).click()
+    const copyEditor = page.getByRole('dialog', { name: 'Editar Roadmap' })
+    await expect(copyEditor.getByLabel('Nombre')).toHaveValue(
+      'Original (copia)',
+    )
+    await copyEditor.getByRole('button', { name: 'Cerrar' }).click()
+    await copy.getByRole('button', { name: 'Cerrar' }).click()
+    const list = page.getByRole('dialog', { name: 'Roadmaps' })
+    await expect(list.getByRole('button', { name: /^Original/ })).toHaveCount(2)
+    await expect(
+      list.getByRole('button', { name: /Original \(copia\)/ }),
+    ).toHaveCount(1)
+  })
+})
+
+test.describe('sin conexión', () => {
+  test('un Roadmap abierto antes se muestra sin red dentro de una zona descargada, con ruta y totales, y las acciones que requieren conexión quedan señaladas', async ({
+    page,
+  }) => {
+    await page.route('https://tiles.openfreemap.org/**', (route) =>
+      route.continue(),
+    )
+    await givenSignedInRider(page, 'Fer')
+    await givenSavedRoadmap(page, 'Valle de Lerma')
+    await page
+      .getByRole('dialog', { name: 'Valle de Lerma' })
+      .getByRole('button', { name: 'Cerrar' })
+      .click()
+    await page
+      .getByRole('dialog', { name: 'Roadmaps' })
+      .getByRole('button', { name: 'Cerrar' })
+      .click()
+    await page.getByRole('button', { name: 'Zonas sin conexión' }).click()
+    const regions = page.getByRole('dialog', { name: 'Zonas descargadas' })
+    await regions
+      .getByRole('button', { name: 'Descargar la zona visible en el mapa' })
+      .click()
+    await regions.getByLabel('Nombre de la zona').fill('Lerma')
+    await regions.getByRole('button', { name: 'Confirmar descarga' }).click()
+    await expect(
+      regions
+        .getByRole('listitem')
+        .filter({ hasText: 'Lerma' })
+        .getByRole('status'),
+    ).toHaveText('Disponible sin conexión', { timeout: 60_000 })
+    await regions.getByRole('button', { name: 'Cerrar' }).click()
+    await page.evaluate(() => navigator.serviceWorker.ready)
+
+    await page.context().setOffline(true)
+    await page.reload()
+    await waitForMapToSettle(page)
+    await page.getByRole('button', { name: 'Roadmaps' }).click()
+    await page.getByRole('button', { name: /Valle de Lerma/ }).click()
+
+    const detail = page.getByRole('dialog', { name: 'Valle de Lerma' })
+    await expect(detail.getByText(/^Total:/)).toContainText(/\d+ km · \d+min/)
+    await expect(legSummaries(page)).toHaveCount(1)
+    await expect(page.locator('.map-marker-point')).toHaveCount(2)
+    await waitForMapToSettle(page)
+    await expect(mapLocator(page)).toHaveAttribute(
+      'data-route-surfaces',
+      'paved',
+    )
+    for (const name of ['Editar', 'Duplicar', 'Borrar']) {
+      await expect(detail.getByRole('button', { name })).toBeDisabled()
+    }
+    await expect(detail.getByText('Requiere conexión').first()).toBeVisible()
   })
 })

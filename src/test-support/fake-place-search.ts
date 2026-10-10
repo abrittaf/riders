@@ -1,9 +1,14 @@
-import type { GeoPosition, Place, PlaceSearch } from '../map-platform/index.ts'
+import type {
+  GeoPosition,
+  MapAttribution,
+  Place,
+  PlaceSearch,
+} from '../map-platform/index.ts'
 import { PlaceSearchUnavailableError } from '../map-platform/index.ts'
 
 /** Buscador simulado: responde con los lugares que se le cargan y registra lo que se le pidió. */
 export class FakePlaceSearch implements PlaceSearch {
-  readonly attributions = []
+  readonly attributions: MapAttribution[] = []
   results: Place[] = []
   nearest: Place | null = null
   available = true

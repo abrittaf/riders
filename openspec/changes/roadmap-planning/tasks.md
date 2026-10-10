@@ -31,10 +31,10 @@
 
 ## 5. Lista, detalle, borrado y sin conexión (`roadmap-planning`)
 
-- [ ] 5.1 Implementar la lista de Roadmaps con nombre, distancia, tiempo y cantidad de Points, el estado vacío explicativo y la apertura sobre el mapa; verificar con Playwright los dos escenarios del spec
-- [ ] 5.2 Implementar edición, borrado con confirmación y duplicación, y verificar con Playwright contra el emulador que un Roadmap borrado desaparece en una segunda sesión con la misma cuenta y que el duplicado aparece sin fechas y editable
-- [ ] 5.3 Verificar con Playwright que un Roadmap abierto antes se muestra sin red dentro de una zona descargada, con ruta y totales, y con las acciones de ruteo y búsqueda señaladas como no disponibles
-- [ ] 5.4 Mostrar la atribución del motor de ruteo y del buscador en la pantalla del Roadmap, enlazada al detalle de fuentes, y verificar con una prueba que coincide con lo documentado en 1.5
+- [x] 5.1 Implementar la lista de Roadmaps con nombre, distancia, tiempo y cantidad de Points, el estado vacío explicativo y la apertura sobre el mapa; verificar con Playwright los dos escenarios del spec
+- [x] 5.2 Implementar edición, borrado con confirmación y duplicación, y verificar con Playwright contra el emulador que un Roadmap borrado desaparece en una segunda sesión con la misma cuenta y que el duplicado aparece sin fechas y editable
+- [x] 5.3 Verificar con Playwright que un Roadmap abierto antes se muestra sin red dentro de una zona descargada, con ruta y totales, y con las acciones de ruteo y búsqueda señaladas como no disponibles
+- [x] 5.4 Mostrar la atribución del motor de ruteo y del buscador en la pantalla del Roadmap, enlazada al detalle de fuentes, y verificar con una prueba que coincide con lo documentado en 1.5
 
 ## 6. Verificación en iPhone sobre la URL publicada
 

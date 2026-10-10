@@ -39,6 +39,10 @@ export class FirebaseRoadmapService implements RoadmapService {
   }
 
   subscribeToOwn(listener: (roadmaps: Roadmap[]) => void): () => void {
+    if (!this.auth.currentUser) {
+      listener([])
+      return () => {}
+    }
     const ownRoadmaps = query(
       collection(this.firestore, ROADMAPS_COLLECTION),
       where('ownerId', '==', this.ownerId()),
