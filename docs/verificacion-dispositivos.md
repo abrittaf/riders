@@ -122,7 +122,7 @@ Verificado el 2026-10-05 sobre `https://riders-65821.web.app`, con la app instal
 
 ## rider-onboarding en iPhone, sobre `https://riders-65821.web.app`
 
-Planilla de las tareas 7.1 a 7.3 de `openspec/changes/rider-onboarding/tasks.md`. Se completa a mano; "Pendiente" hasta que se haga.
+Planilla de las tareas 7.1 a 7.3 de `openspec/changes/archive/2026-10-10-rider-onboarding/tasks.md`. No realizadas en este change: se archivó el 2026-10-10 con las tres tareas cerradas sin resultado; la verificación se hace en una instancia posterior sobre la app publicada (que ya tiene todo lo necesario) y se anota en estas tablas, hoy en "Pendiente". Lo único verificado en iPhone de este change es el ingreso con Google en la app instalada (tarea 1.4, arriba).
 
 ### 7.1 Instalación y zona descargada sobre la URL de Firebase Hosting
 

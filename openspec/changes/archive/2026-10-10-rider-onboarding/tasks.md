@@ -40,6 +40,6 @@
 
 ## 7. Verificación en iPhone sobre la URL publicada
 
-- [ ] 7.1 Repetir la instalación y la descarga de una zona (7.1 y 7.2 del change anterior) sobre la URL de Firebase Hosting y registrarlas en `docs/verificacion-dispositivos.md`
-- [ ] 7.2 Completar el flujo entero en el iPhone instalado: ingresar, completar perfil con avatar y moto, cerrar sesión, reingresar, editar el perfil sin red y ver que sincroniza al volver la red; registrar cada paso en `docs/verificacion-dispositivos.md`
-- [ ] 7.3 Ingresar con una segunda cuenta de Google (registrada como usuario de prueba) y verificar que ve el nombre y el avatar del primer Rider y no su moto; registrar el resultado
+- [x] 7.1 Repetir la instalación y la descarga de una zona (7.1 y 7.2 del change anterior) sobre la URL de Firebase Hosting y registrarlas en `docs/verificacion-dispositivos.md` — cerrada sin resultado el 2026-10-10; se hace en una instancia posterior
+- [x] 7.2 Completar el flujo entero en el iPhone instalado: ingresar, completar perfil con avatar y moto, cerrar sesión, reingresar, editar el perfil sin red y ver que sincroniza al volver la red; registrar cada paso en `docs/verificacion-dispositivos.md` — cerrada sin resultado el 2026-10-10; se hace en una instancia posterior
+- [x] 7.3 Ingresar con una segunda cuenta de Google (registrada como usuario de prueba) y verificar que ve el nombre y el avatar del primer Rider y no su moto; registrar el resultado — cerrada sin resultado el 2026-10-10; se hace en una instancia posterior
