@@ -4,7 +4,12 @@
  * composición de la app usa una vez al arrancar).
  */
 export type { GeoBounds, GeoPosition } from './geo.ts'
-export { boundsCenter, boundsIntersect, distanceInMeters } from './geo.ts'
+export {
+  boundsCenter,
+  boundsIntersect,
+  boundsOf,
+  distanceInMeters,
+} from './geo.ts'
 export type {
   Geolocation,
   GeolocationState,
@@ -12,6 +17,7 @@ export type {
 } from './geolocation.ts'
 export type { MapPlatform, MapPlatformConfig } from './map-platform.ts'
 export type { MapAttribution } from './map-provider.ts'
+export { MAP_CROSSHAIR_POSITION } from './map-view.ts'
 export type {
   MapMarker,
   MapMarkerKind,
@@ -19,6 +25,7 @@ export type {
   MapViewHandle,
   MapViewProps,
   OwnPositionMarker,
+  RouteLegDisplay,
 } from './map-view.ts'
 export type {
   DownloadPauseReason,

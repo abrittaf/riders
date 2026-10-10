@@ -4,9 +4,11 @@ import { useIsOnline } from '../connectivity/online-context.ts'
 import {
   boundsIntersect,
   type GeoPosition,
+  MAP_CROSSHAIR_POSITION,
   type MapMarker,
   type MapPlatform,
   type MapViewHandle,
+  type MapViewProps,
   type OfflineRegion,
   type GeoBounds,
   type OwnPositionMarker,
@@ -22,12 +24,17 @@ export function MapScreen({
   mapRef,
   offlineRegions,
   markers,
+  route,
+  crosshair = false,
   onLongPress,
 }: {
   mapPlatform: Pick<MapPlatform, 'MapView' | 'geolocation' | 'attributions'>
   mapRef: RefObject<MapViewHandle | null>
   offlineRegions: readonly OfflineRegion[]
   markers?: readonly MapMarker[]
+  route?: MapViewProps['route']
+  /** La mira para elegir una posición del mapa (spec point-lookup). */
+  crosshair?: boolean
   onLongPress?: (position: GeoPosition) => void
 }) {
   const { t, i18n } = useTranslation()
@@ -79,6 +86,7 @@ export function MapScreen({
         language={i18n.language}
         ownPosition={ownPosition}
         markers={markers}
+        route={route}
         onLongPress={onLongPress}
         onUnavailableAreaChange={(hasUnavailableArea) =>
           setUnavailableArea(
@@ -88,6 +96,17 @@ export function MapScreen({
           )
         }
       />
+      {crosshair && (
+        <div
+          className="map-crosshair"
+          data-testid="map-crosshair"
+          style={{
+            left: `${MAP_CROSSHAIR_POSITION.x * 100}%`,
+            top: `${MAP_CROSSHAIR_POSITION.y * 100}%`,
+          }}
+          aria-hidden
+        />
+      )}
       {unavailableArea && (
         <p className="map-notice" role="status">
           {unavailableAreaNotice(unavailableArea.visibleBounds)}

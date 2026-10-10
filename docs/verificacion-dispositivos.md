@@ -160,16 +160,41 @@ La 7.3 necesita una pantalla donde un Rider vea a otro, que llega con los próxi
 
 Pantalla mínima: ingresar, tocar «Roadmaps», «Agregar Point» y mantener el dedo sobre el mapa medio segundo sin moverlo. Se completa a mano; "Pendiente" hasta que se haga.
 
-| Verificación | iPhone 17 Pro Max | iPhone 11 Pro Max |
-| --- | --- | --- |
-| Fecha, versión de iOS y dirección probada | Pendiente | Pendiente |
-| Al sostener el dedo aparece «Posición elegida» con las coordenadas del punto tocado | Pendiente | Pendiente |
-| No aparece el menú contextual de Safari (vista previa, copiar, compartir) | Pendiente | Pendiente |
-| No se selecciona texto ni se resalta el mapa | Pendiente | Pendiente |
-| Arrastrar y hacer zoom con dos dedos siguen funcionando igual | Pendiente | Pendiente |
-| Lo mismo con la app instalada en la pantalla de inicio | Pendiente | Pendiente |
+| Verificación | iPhone (instalada) |
+| --- | --- |
+| Fecha y dirección probada | 2026-10-10, `https://riders-65821.web.app` (app instalada en la pantalla de inicio) |
+| Al sostener el dedo aparece «Posición elegida» con las coordenadas del punto tocado | **Falla: no aparece nada** |
+| No aparece el menú contextual de Safari (vista previa, copiar, compartir) | Ok (no aparece nada en absoluto) |
+| No se selecciona texto ni se resalta el mapa | Ok |
+| Arrastrar y hacer zoom con dos dedos siguen funcionando igual | Ok |
 
-Si falla, se ajusta D6 del design antes de seguir con el editor (tarea 4.1).
+Resultado: el toque sostenido no provoca ningún efecto en el mapa en iOS, mientras que en
+Chromium (Playwright, emulación de celular) entrega la posición. La implementación de ese
+momento (`src/map-platform/maplibre/long-press.ts`) escuchaba eventos de puntero. D6 del
+design quedó ajustado: la mira del mapa pasa a ser la forma principal de elegir una posición y
+el toque sostenido, reimplementado con eventos táctiles, queda como atajo; se vuelve a probar
+en 6.1.
+
+### 6.1 Roadmap real de cuatro Points
+
+Se completa a mano sobre `https://riders-65821.web.app`; "Pendiente" hasta que se haga.
+
+| Verificación | iPhone |
+| --- | --- |
+| Fecha y versión de iOS | Pendiente |
+| Point elegido buscando por nombre | Pendiente |
+| Point elegido por tipo entre lo visible | Pendiente |
+| Point elegido con toque sostenido (reimplementado con eventos táctiles) o, si sigue sin funcionar, con la mira del mapa (anotar cuál) | Pendiente |
+| Fecha asociada a uno de los Points, visible en el detalle | Pendiente |
+| La ruta calculada es razonable | Pendiente |
+| El tramo que llega por ripio se dibuja discontinuo y la lista informa sus km sin pavimentar | Pendiente |
+
+### 6.2 Roadmap en modo avión
+
+| Verificación | iPhone |
+| --- | --- |
+| Con la zona del Roadmap descargada y en modo avión, el Roadmap abre con su ruta y totales | Pendiente |
+| Editar, duplicar y borrar aparecen como no disponibles | Pendiente |
 
 ## Medición para fijar el límite de teselas por zona
 

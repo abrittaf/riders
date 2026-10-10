@@ -204,9 +204,90 @@
   "roadmaps": {
     "editor": {
       "title": "Nuevo Roadmap",
+      "editTitle": "Editar Roadmap",
+      "name": "Nombre",
+      "description": "Descripción (opcional)",
       "addPoint": "Agregar Point",
+      "insertHere": "Insertar Point acá",
       "noPoints": "Todavía no hay Points. Agregá la salida y la llegada.",
-      "points": "Points del Roadmap"
+      "points": "Points del Roadmap",
+      "pointDate": "Fecha",
+      "moveUp": "Subir",
+      "moveDown": "Bajar",
+      "remove": "Quitar",
+      "routingRequiresConnection": "Calcular la ruta requiere conexión",
+      "saveRequiresConnection": "Guardar requiere conexión",
+      "save": "Guardar",
+      "saveFailed": "No se pudo guardar el Roadmap. Probá de nuevo.",
+      "errors": {
+        "name": {
+          "empty": "Poné un nombre al Roadmap.",
+          "too-short": "El nombre necesita al menos 2 caracteres.",
+          "too-long": "El nombre no puede superar los 60 caracteres."
+        },
+        "points": {
+          "too-few": "Hacen falta al menos dos Points: la salida y la llegada.",
+          "too-many": "Un Roadmap admite hasta 50 Points."
+        },
+        "legs": {
+          "no-route": "Hay un tramo sin camino. Mové o quitá uno de sus Points.",
+          "incomplete": "Esperá a que termine el cálculo de la ruta."
+        }
+      }
+    },
+    "legs": {
+      "unpaved": "{{distance}} sin pavimentar",
+      "unknownSurface": "con partes sin dato de superficie",
+      "calculating": "Calculando el tramo…",
+      "noRoute": "Sin camino entre estos Points: mové o quitá uno de los dos.",
+      "unavailable": "El motor de ruteo no respondió.",
+      "retry": "Reintentar"
+    },
+    "totals": "Total: {{distance}} · {{duration}} · {{unpaved}} sin pavimentar",
+    "legend": {
+      "title": "Referencia de estilos de la ruta",
+      "open": "Referencia de estilos",
+      "paved": {
+        "name": "Pavimento",
+        "description": "línea continua: asfalto, hormigón, adoquín"
+      },
+      "compacted": {
+        "name": "Consolidado",
+        "description": "línea discontinua: ripio, grava compactada"
+      },
+      "loose": {
+        "name": "Suelto",
+        "description": "línea punteada: tierra, arena, huella"
+      },
+      "unknown": {
+        "name": "Sin dato",
+        "description": "punto y raya: el mapa no informa la superficie"
+      }
+    },
+    "list": {
+      "title": "Roadmaps",
+      "create": "Nuevo Roadmap",
+      "createRequiresConnection": "Crear un Roadmap requiere conexión",
+      "points_one": "{{count}} Point",
+      "points_other": "{{count}} Points",
+      "empty": {
+        "title": "Todavía no tenés ningún Roadmap",
+        "body": "Un Roadmap es un viaje: los lugares por los que querés pasar, en orden, con el camino calculado entre ellos, la distancia, el tiempo y la superficie de cada tramo. Creá el primero con la salida y la llegada."
+      }
+    },
+    "detail": {
+      "edit": "Editar",
+      "duplicate": "Duplicar",
+      "delete": "Borrar",
+      "requiresConnection": "Requiere conexión",
+      "deleteConfirmTitle": "Borrar el Roadmap",
+      "deleteConfirmBody": "¿Borrar «{{name}}»? Desaparece de tu lista en todos tus dispositivos.",
+      "deleteConfirm": "Sí, borrar",
+      "copySuffix": "(copia)"
+    },
+    "sources": {
+      "open": "Fuentes del ruteo y la búsqueda",
+      "title": "Fuentes del ruteo y de la búsqueda de lugares"
     }
   },
   "pointLookup": {
@@ -217,7 +298,6 @@
       "search": "Buscar por nombre",
       "byType": "Lugares por tipo"
     },
-    "longPressHint": "También podés mantener el dedo sobre el mapa para elegir cualquier posición.",
     "search": {
       "label": "Nombre del lugar",
       "submit": "Buscar",
@@ -236,7 +316,9 @@
       "name": "Nombre del Point",
       "confirm": "Confirmar",
       "proposing": "Buscando el lugar más cercano…"
-    }
+    },
+    "anyPositionHint": "Para cualquier otra posición, mové el mapa hasta dejarla bajo la mira; también podés mantener el dedo sobre ella.",
+    "useCrosshair": "Usar la posición bajo la mira"
   },
   "placeTypes": {
     "fuel": "Estación de servicio",

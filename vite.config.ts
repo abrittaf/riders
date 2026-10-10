@@ -8,11 +8,11 @@ export default defineConfig({
   build: {
     // El renderizador de mapas pesa más que el límite de aviso por defecto.
     chunkSizeWarningLimit: 1500,
-    // La galería de avatares existe solo para las capturas de referencia de Playwright.
+    // Las galerías de avatares y de rutas existen solo para las capturas de referencia de Playwright.
     rollupOptions: {
       input:
         process.env.VITE_MAP_DIAGNOSTICS === 'true'
-          ? ['index.html', 'galeria-de-avatares.html']
+          ? ['index.html', 'galeria-de-avatares.html', 'galeria-de-rutas.html']
           : 'index.html',
     },
   },

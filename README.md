@@ -2,8 +2,10 @@
 
 Riders (nombre provisorio) es una aplicación para el celular que ayuda a grupos de
 viajeros en moto a planificar y realizar viajes. Se distribuye como PWA (Progressive Web
-App). Este repositorio contiene la base de la app: la PWA instalable, el mapa con la
-posición del Rider y la descarga de zonas del mapa para usarlas sin conexión.
+App). Este repositorio contiene la app: la PWA instalable, el mapa con la posición del
+Rider, la descarga de zonas del mapa para usarlas sin conexión, la cuenta y el perfil del
+Rider con su moto, y los Roadmaps en planificación: la secuencia de Points de un viaje con
+la ruta calculada entre ellos y la superficie de cada tramo.
 
 La especificación vive en `openspec/` (ver `docs/mapa-de-capabilities.md`). Los proveedores
 externos y cómo reemplazarlos están documentados en `docs/proveedor-de-mapa.md` (teselas),
@@ -139,16 +141,23 @@ cada versión publicada: en la consola, Hosting → historial de versiones → �
   Playwright están en `e2e/capturas/`; se regeneran con
   `npx playwright test e2e/avatares.spec.ts --update-snapshots`.
 - `src/backend/`: único módulo que conoce al proveedor de autenticación y de base de datos
-  (Firebase). Expone `RiderAccountService`. Ver `docs/backend.md`.
+  (Firebase). Expone `RiderAccountService` y `RoadmapService`. Ver `docs/backend.md`.
 - `src/rider-account/`: ingreso, sesión, perfil inicial y edición del perfil del Rider.
 - `src/rider-vehicles/`: la moto del Rider (marca/modelo y autonomía) y sus validaciones.
 - `src/connectivity/`: estado de conectividad y acciones que la requieren.
 - `src/i18n/`: textos por idioma (`locales/es-AR.json`, `locales/en.json`). Ningún
   componente lleva texto visible fijo; una prueba lo verifica.
 - `src/map-platform/`: único módulo que conoce al renderizador (MapLibre) y a los
-  proveedores de mapa. Expone `TileSource`, `OfflineRegionStore`, `MapView` y
-  `Geolocation`.
-- `src/map-view/`: pantalla del mapa, posición del Rider y atribución.
+  proveedores de mapa, ruteo y búsqueda. Expone `TileSource`, `OfflineRegionStore`,
+  `MapView`, `Geolocation`, `RouteProvider` y `PlaceSearch`. La galería de rutas
+  (`galeria-de-rutas.html`) existe solo para la captura de referencia de Playwright; se
+  regenera con `npx playwright test e2e/rutas.spec.ts --update-snapshots`.
+- `src/map-view/`: pantalla del mapa, posición del Rider, mira para elegir posiciones y
+  atribución.
+- `src/point-lookup/`: cómo un Rider elige un Point: por nombre, por tipo entre lo visible,
+  o una posición del mapa.
+- `src/roadmap-planning/`: el Roadmap en planificación: modelo, editor con cálculo de ruta
+  por tramos, lista, detalle, borrado y duplicación.
 - `src/offline-maps/`: pantalla de zonas descargadas y aviso de almacenamiento.
 - `src/config/map-config.ts`: proveedor de teselas, servidor, estilo y límites.
 - `src/config/backend-config.ts`: configuración pública del proyecto de Firebase.

@@ -10,6 +10,8 @@ import {
 import { FakeOfflineRegionStore } from './fake-offline-region-store.ts'
 import { FakePlaceSearch } from './fake-place-search.ts'
 import { FakeRiderAccountService } from './fake-rider-account-service.ts'
+import { FakeRoadmapService } from './fake-roadmap-service.ts'
+import { FakeRouteProvider } from './fake-route-provider.ts'
 import { FakeConnectivity, notInstallablePlatform } from './fakes.ts'
 import { renderInSpanish } from './render-with-i18n.tsx'
 
@@ -20,12 +22,16 @@ export function renderApp(
     storageRunningLow?: boolean
     riderAccount?: FakeRiderAccountService
     placeSearch?: FakePlaceSearch
+    routeProvider?: FakeRouteProvider
+    roadmaps?: FakeRoadmapService
   } = {},
 ) {
   const connectivity = new FakeConnectivity()
   const riderAccount = options.riderAccount ?? new FakeRiderAccountService()
   const map = createFakeMapView()
   const placeSearch = options.placeSearch ?? new FakePlaceSearch()
+  const routeProvider = options.routeProvider ?? new FakeRouteProvider()
+  const roadmaps = options.roadmaps ?? new FakeRoadmapService()
   const geolocation = new FakeGeolocation()
   const offlineRegions = new FakeOfflineRegionStore(options.regions)
   offlineRegions.isRunningLow = options.storageRunningLow ?? false
@@ -38,16 +44,14 @@ export function renderApp(
         connectivity,
         installPlatform: notInstallablePlatform,
         riderAccount,
+        roadmaps,
         profileDrafts: new LocalStorageProfileDraftStore(window.localStorage),
         mapPlatform: {
           MapView: map.MapView,
           tileSource: { getTile: () => Promise.reject(new Error('sin uso')) },
           offlineRegions,
           geolocation,
-          routeProvider: {
-            attributions: [],
-            calculateRoute: () => Promise.reject(new Error('sin uso')),
-          },
+          routeProvider,
           placeSearch,
           attributions: fakeAttributions,
         },
@@ -59,6 +63,8 @@ export function renderApp(
     map,
     geolocation,
     placeSearch,
+    routeProvider,
+    roadmaps,
     offlineRegions,
     riderAccount,
     unmount: rendered.unmount,

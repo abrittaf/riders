@@ -37,15 +37,23 @@ La aplicación SHALL listar los lugares de un tipo elegido (estación de servici
 - **THEN** ve los lugares de ese tipo igual que con conexión
 
 ### Requirement: Posición elegida en el mapa
-La aplicación SHALL permitir elegir cualquier posición del mapa como Point, con un toque sostenido, y SHALL proponer un nombre a partir de la dirección o del lugar más cercano cuando puede obtenerlo, o las coordenadas en su defecto; el nombre SHALL ser editable.
+La aplicación SHALL permitir elegir cualquier posición del mapa como Point de dos maneras: llevando la mira del mapa hasta la posición y confirmándola, o con un toque sostenido sobre la posición cuando el celular lo admite; y SHALL proponer un nombre a partir de la dirección o del lugar más cercano cuando puede obtenerlo, o las coordenadas en su defecto; el nombre SHALL ser editable.
+
+#### Scenario: Posición con la mira del mapa
+- **WHEN** el Rider desplaza el mapa hasta dejar la posición bajo la mira y confirma
+- **THEN** aparece un Point en esa posición con un nombre propuesto, que puede cambiar antes de confirmar
 
 #### Scenario: Posición con nombre propuesto
-- **WHEN** el Rider mantiene el toque sobre una posición del mapa con conectividad
-- **THEN** aparece un Point en esa posición con un nombre propuesto a partir del lugar o la dirección más cercana, que puede cambiar antes de confirmar
+- **WHEN** el Rider elige una posición del mapa con conectividad
+- **THEN** el nombre propuesto es el del lugar o la dirección más cercana, y puede cambiarlo antes de confirmar
 
 #### Scenario: Posición sin conectividad
-- **WHEN** el Rider mantiene el toque sobre una posición del mapa sin conectividad
-- **THEN** aparece un Point con sus coordenadas como nombre propuesto, editable
+- **WHEN** el Rider elige una posición del mapa sin conectividad
+- **THEN** el nombre propuesto son las coordenadas de la posición, editables
+
+#### Scenario: Toque sostenido
+- **WHEN** el Rider mantiene el toque sobre una posición del mapa en un celular que entrega ese gesto a la aplicación
+- **THEN** la posición queda elegida igual que con la mira, sin menú contextual ni selección de texto
 
 ### Requirement: Nombres de lugares en español o en su idioma de origen
 La aplicación SHALL mostrar el nombre de cada lugar en español cuando el proveedor de mapas lo tiene, y en su idioma de origen en caso contrario.
