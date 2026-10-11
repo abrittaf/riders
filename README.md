@@ -150,8 +150,9 @@ cada versión publicada: en la consola, Hosting → historial de versiones → �
 - `src/map-platform/`: único módulo que conoce al renderizador (MapLibre) y a los
   proveedores de mapa, ruteo y búsqueda. Expone `TileSource`, `OfflineRegionStore`,
   `MapView`, `Geolocation`, `RouteProvider` y `PlaceSearch`. La galería de rutas
-  (`galeria-de-rutas.html`) existe solo para la captura de referencia de Playwright; se
-  regenera con `npx playwright test e2e/rutas.spec.ts --update-snapshots`.
+  (`galeria-de-rutas.html`) existe solo para las pruebas de Playwright de la ruta dibujada:
+  la verificación estructural corre en todos los sistemas y la captura de referencia solo en
+  macOS (se regenera con `npx playwright test e2e/rutas.spec.ts --update-snapshots`).
 - `src/map-view/`: pantalla del mapa, posición del Rider, mira para elegir posiciones y
   atribución.
 - `src/point-lookup/`: cómo un Rider elige un Point: por nombre, por tipo entre lo visible,
