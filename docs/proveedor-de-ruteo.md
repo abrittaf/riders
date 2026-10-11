@@ -7,7 +7,7 @@ prueba automatizada (`src/map-platform/providers/provider-docs.test.ts`) falla s
 
 El único módulo que conoce al proveedor es `src/map-platform/`, detrás de la interfaz
 `RouteProvider`. Las decisiones están en D1 y D1b de
-`openspec/changes/roadmap-planning/design.md`.
+`openspec/changes/archive/2026-10-10-roadmap-planning/design.md`.
 
 ## Configuración vigente
 
