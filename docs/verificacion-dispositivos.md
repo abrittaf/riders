@@ -175,26 +175,31 @@ design quedó ajustado: la mira del mapa pasa a ser la forma principal de elegir
 el toque sostenido, reimplementado con eventos táctiles, queda como atajo; se vuelve a probar
 en 6.1.
 
-### 6.1 Roadmap real de cuatro Points
+### 6.1 Roadmap real
 
-Se completa a mano sobre `https://riders-65821.web.app`; "Pendiente" hasta que se haga.
+Verificado el 2026-10-10 en el iPhone con la app instalada, sobre `https://riders-65821.web.app`, con el Roadmap «Bandejita» de 3 Points.
 
 | Verificación | iPhone |
 | --- | --- |
-| Fecha y versión de iOS | Pendiente |
-| Point elegido buscando por nombre | Pendiente |
-| Point elegido por tipo entre lo visible | Pendiente |
-| Point elegido con toque sostenido (reimplementado con eventos táctiles) o, si sigue sin funcionar, con la mira del mapa (anotar cuál) | Pendiente |
-| Fecha asociada a uno de los Points, visible en el detalle | Pendiente |
-| La ruta calculada es razonable | Pendiente |
-| El tramo que llega por ripio se dibuja discontinuo y la lista informa sus km sin pavimentar | Pendiente |
+| Point elegido buscando por nombre | Ok |
+| Point elegido por tipo entre lo visible | Ok |
+| Point elegido con toque sostenido (reimplementado con eventos táctiles) | **No provocó efecto**; la posición se eligió con la mira del mapa, que funcionó |
+| Fecha asociada a uno de los Points, visible en el detalle | Ok |
+| La ruta calculada es razonable | Sí |
+| El tramo que llega por ripio se dibuja discontinuo o punteado y la lista informa sus km sin pavimentar | Ok |
+
+El toque sostenido sigue sin llegar a la aplicación en iOS, también con eventos táctiles:
+la mira del mapa es la forma de elegir una posición en el iPhone, como prevé D6. Averiguar
+por qué iOS no entrega el gesto queda fuera de este change; la app no depende de él.
 
 ### 6.2 Roadmap en modo avión
 
+Verificado el 2026-10-10 en el mismo iPhone, con la zona del Roadmap descargada.
+
 | Verificación | iPhone |
 | --- | --- |
-| Con la zona del Roadmap descargada y en modo avión, el Roadmap abre con su ruta y totales | Pendiente |
-| Editar, duplicar y borrar aparecen como no disponibles | Pendiente |
+| Con la zona del Roadmap descargada y en modo avión, el Roadmap abre con su ruta y totales | Ok |
+| Editar, duplicar y borrar aparecen como no disponibles | Ok (deshabilitados) |
 
 ## Medición para fijar el límite de teselas por zona
 

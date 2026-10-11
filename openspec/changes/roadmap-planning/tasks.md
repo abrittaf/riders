@@ -38,5 +38,5 @@
 
 ## 6. Verificación en iPhone sobre la URL publicada
 
-- [ ] 6.1 Armar un Roadmap real de al menos cuatro Points usando las tres formas de elegir Points (nombre, tipo, toque sostenido, o la mira si el toque sostenido sigue sin funcionar; anotar cuál), con una fecha asociada a uno de ellos y un Point que solo tenga acceso por ripio, y registrar en `docs/verificacion-dispositivos.md` el resultado de cada forma, si la ruta es razonable y si el tramo de ripio aparece con su estilo y sus kilómetros
-- [ ] 6.2 Descargar la zona del Roadmap, activar el modo avión y verificar que el Roadmap se ve con su ruta y que las acciones no disponibles están señaladas; registrar el resultado
+- [x] 6.1 Armar un Roadmap real de al menos cuatro Points usando las tres formas de elegir Points (nombre, tipo, toque sostenido, o la mira si el toque sostenido sigue sin funcionar; anotar cuál), con una fecha asociada a uno de ellos y un Point que solo tenga acceso por ripio, y registrar en `docs/verificacion-dispositivos.md` el resultado de cada forma, si la ruta es razonable y si el tramo de ripio aparece con su estilo y sus kilómetros (hecho el 2026-10-10 con «Bandejita», de 3 Points; el toque sostenido siguió sin efecto en iOS y se usó la mira)
+- [x] 6.2 Descargar la zona del Roadmap, activar el modo avión y verificar que el Roadmap se ve con su ruta y que las acciones no disponibles están señaladas; registrar el resultado
