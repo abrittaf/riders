@@ -68,6 +68,13 @@ context: |
   - Identidad: ingreso con Google por redirección; cada Rider tiene un documento en la colección riders (nombre visible y avatar, legibles por cualquier Rider identificado) y un subdocumento privado con su Vehicle.
   - Avatar paramétrico: se guardan las opciones (casco, color, accesorio de cuello, gafas, barba) y se dibuja como SVG en la app; ninguna imagen se sube ni se almacena.
   - Reglas de seguridad de Firestore versionadas en el repositorio y probadas con el emulador local de Firebase.
+  Fijado por roadmap-planning (implementado y publicado):
+  - Motor de ruteo: Valhalla en la instancia pública de FOSSGIS (valhalla1.openstreetmap.de), perfil de motocicleta con política de superficie fija (exclude_unpaved, use_trails en cero), una consulta de ruta más una de atributos de superficie por cálculo; condiciones de uso en docs/proveedor-de-ruteo.md (una consulta por segundo, atribución con enlace a fix the map, correo de contacto del operador visible en la app, límite de 1.500 km por consulta).
+  - Buscador de lugares: Photon en la instancia pública de komoot, para la búsqueda por nombre y la dirección inversa (nombre original de los lugares; la instancia no indexa el español). Los lugares por tipo se leen de la capa poi de las teselas, sin servicio. Condiciones en docs/proveedor-de-busqueda.md.
+  - Las pruebas automatizadas corren contra respuestas grabadas de los proveedores (fixtures) y contra proveedores simulados en Playwright; la instancia real se consulta a mano una vez por change y se documenta.
+  - Superficie de la ruta en cuatro clases con la convención del mapa de OpenStreetMap: pavimento (línea continua), consolidado (discontinua), suelto (punteada), sin dato (punto y raya).
+  - Roadmaps en la colección roadmaps de Firestore, un documento por Roadmap con sus Points copiados y la ruta (geometría como polilínea codificada, superficie por segmento); en planificación lo lee y escribe solo su autor. Se crean y editan con conexión; los ya vistos se leen sin conexión.
+  - Elegir una posición del mapa: la mira en el centro del mapa es la forma garantizada; el toque sostenido es un atajo que iOS no entrega a la app. Las interfaces RouteProvider y PlaceSearch viven en src/map-platform/, con la misma regla de linter.
 
   ## Principios
   - Un change es una intención que se puede enunciar en una frase. Preferir varios changes chicos a uno grande.
@@ -79,7 +86,6 @@ context: |
 
   ## Decisiones pendientes
   - Nombre definitivo de la aplicación.
-  - Motor de ruteo y buscador de lugares: Valhalla (perfil de motocicleta) y Photon, propuestos en roadmap-planning; se fijan al archivarlo.
   - Point a partir de un enlace compartido desde Google Maps: fuera de alcance mientras no haya dónde resolver la redirección del enlace corto fuera del navegador (ver design.md de roadmap-planning).
   - Proveedor de información del clima: se decide en roadmap-weather-forecast.
   - Permiso de OpenFreeMap para la descarga de zonas (pedido por correo; ver design.md de map-platform-foundation).
@@ -102,3 +108,4 @@ rules:
   tasks:
     - Cada grupo de tareas incluye sus propias pruebas y su verificación; no acumularlas en un grupo final.
     - Toda tarea que agregue textos visibles al usuario incluye su verificación en el idioma inicial y en un segundo idioma.
+    - Ninguna verificación automatizada depende de capturas de píxeles ni de tiempos ajustados; lo visual se verifica por estructura y lo temporal con esperas por condición.

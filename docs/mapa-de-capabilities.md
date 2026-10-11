@@ -38,7 +38,7 @@ La moto del Rider y su autonomía.
 
 ### `point-lookup`
 Cómo un Rider encuentra y elige un Point.
-- **Cubre:** búsqueda de lugares por nombre; lugares por tipo dentro de la vista del mapa (también sin conexión en zonas descargadas); posición elegida con toque sostenido, con nombre propuesto; nombres en español o en idioma de origen; datos de un Point (nombre, posición, origen, tipo, fecha asociada opcional).
+- **Cubre:** búsqueda de lugares por nombre; lugares por tipo dentro de la vista del mapa (también sin conexión en zonas descargadas); posición elegida llevando la mira del mapa hasta ella (o con toque sostenido donde el celular entrega el gesto), con nombre propuesto; nombres en español o en idioma de origen; datos de un Point (nombre, posición, origen, tipo, fecha asociada opcional).
 - **No cubre:** qué se hace con el Point una vez elegido (ver `roadmap-planning`); Point desde un enlace compartido de Google Maps (fuera de alcance mientras no haya dónde resolver la redirección fuera del navegador).
 - **Depende de:** `map-view`.
 
@@ -88,9 +88,9 @@ Se cumplen en todos los specs; están en `openspec/config.yaml`:
 
 ## Orden propuesto de changes
 
-1. `map-platform-foundation`: crea la PWA y encapsula los proveedores de mapa detrás de una interfaz propia. Introduce `app-shell`, `map-view` y `offline-maps`. Integrado; archive pendiente de la verificación de persistencia en iPhone.
-2. `rider-onboarding`: `rider-account` y `rider-vehicles`. Introduce el backend del proyecto (Firebase, plan sin costo) y mueve el hosting a Firebase Hosting. Integrado; archive pendiente de las verificaciones en iPhone.
-3. `roadmap-planning`: `point-lookup` y `roadmap-planning`. Fija el motor de ruteo (Valhalla, perfil de motocicleta) y el buscador de lugares (Photon).
+1. `map-platform-foundation`: crea la PWA y encapsula los proveedores de mapa detrás de una interfaz propia. Introduce `app-shell`, `map-view` y `offline-maps`. Archivado el 2026-10-07.
+2. `rider-onboarding`: `rider-account` y `rider-vehicles`. Introduce el backend del proyecto (Firebase, plan sin costo) y mueve el hosting a Firebase Hosting. Archivado el 2026-10-10.
+3. `roadmap-planning`: `point-lookup` y `roadmap-planning`. Fija el motor de ruteo (Valhalla, perfil de motocicleta) y el buscador de lugares (Photon). Archivado el 2026-10-10.
 4. `roadmap-fuel-stops`: la capability homónima.
 5. `roadmap-convening`: la capability homónima.
 6. `roadmap-live-tracking`: `roadmap-tracking`.
