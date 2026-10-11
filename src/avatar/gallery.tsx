@@ -9,7 +9,7 @@ import { Avatar } from './Avatar.tsx'
 
 import { representativeAvatars } from './representative-avatars.ts'
 
-function Gallery() {
+export function Gallery() {
   return (
     <main className="avatar-gallery">
       {Object.entries(representativeAvatars).map(([name, options]) => (

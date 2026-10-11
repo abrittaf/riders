@@ -15,7 +15,7 @@ import '../../index.css'
 import { SurfaceLegend } from '../../roadmap-planning/SurfaceLegend.tsx'
 import type { GeoPosition } from '../geo.ts'
 import type { RouteLegDisplay } from '../map-view.ts'
-import { setRoute } from './route-layers.ts'
+import { ROUTE_LINE_DASHES, ROUTE_SOURCE_ID, setRoute } from './route-layers.ts'
 
 setWorkerUrl(workerUrl)
 
@@ -59,7 +59,31 @@ function sampleRoute(): { route: RouteLegDisplay[]; points: GeoPosition[] } {
   }
 }
 
-function RouteSample() {
+/**
+ * Lo que las pruebas verifican de la estructura dibujada, sin depender de píxeles: qué trazo tiene
+ * la capa de cada superficie y qué superficies hay en la ruta.
+ */
+function exposeRouteStructure(map: MapLibreMap, container: HTMLElement) {
+  const dashes = Object.fromEntries(
+    Object.keys(ROUTE_LINE_DASHES).map((surface) => [
+      surface,
+      map.getPaintProperty(`roadmap-route-${surface}`, 'line-dasharray') ??
+        null,
+    ]),
+  )
+  container.dataset.routeLayerDashes = JSON.stringify(dashes)
+  container.dataset.routeSurfaces = [
+    ...new Set(
+      map
+        .querySourceFeatures(ROUTE_SOURCE_ID)
+        .map((feature) => String(feature.properties?.['surface'])),
+    ),
+  ]
+    .sort()
+    .join(',')
+}
+
+export function RouteSample() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -95,6 +119,7 @@ function RouteSample() {
       })
     })
     map.on('idle', () => {
+      if (map.getSource(ROUTE_SOURCE_ID)) exposeRouteStructure(map, container)
       container.dataset.mapIdle = 'true'
     })
     return () => map.remove()
