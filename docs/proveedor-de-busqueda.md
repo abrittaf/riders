@@ -10,7 +10,7 @@ El único módulo que conoce al proveedor es `src/map-platform/`, detrás de la 
 `PlaceSearch`. Los lugares por tipo (estaciones de servicio, alojamientos, restaurantes,
 puntos de interés) no usan este proveedor: se leen de la capa `poi` de las teselas ya
 cargadas en el mapa, con y sin conexión. La decisión está en D2 de
-`openspec/changes/roadmap-planning/design.md`.
+`openspec/changes/archive/2026-10-10-roadmap-planning/design.md`.
 
 ## Configuración vigente
 
